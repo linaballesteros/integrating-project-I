@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', seek_Uviews.home),
     path('register', seek_Uviews.register_user),
+    path('login', seek_Uviews.login)
 ]
 
