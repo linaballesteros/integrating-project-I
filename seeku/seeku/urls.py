@@ -19,6 +19,7 @@ from django.urls import path, include
 from app import views as seek_Uviews
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', seek_Uviews.register_user)
+    path('', seek_Uviews.home),
+    path('register', seek_Uviews.register_user),
 ]
 

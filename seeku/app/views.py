@@ -29,7 +29,8 @@ config = {
   'measurementId': "G-4PZTY17X6V"
 }
 
-cred = credentials.Certificate('C:/Users/juane/OneDrive/Documentos/Proyecto_prueba/Proyecto_prueba/SeekU_1Project/seek-u-34bb1-firebase-adminsdk-qezx3-e8b002c1a6.json')
+cred = credentials.Certificate('C:\\Users\\juane\\OneDrive\\Documentos\\project\\integrating-project-I\\seeku\\seek-u-34bb1-firebase-adminsdk-qezx3-e8b002c1a6.json')
+
 
 initialize_app(cred)
 db = firestore.client()
@@ -67,7 +68,7 @@ def register_user(request):
                 error_message = str(e.error_info.message)
             print('Error al registrar usuario:', error_message)
 
-    return render(request, 'register.html')  # Cambia 'registro.html' al nombre de tu plantilla de registro
+    return render(request, 'app/register.html')  # Cambia 'registro.html' al nombre de tu plantilla de registro
 
 
 
