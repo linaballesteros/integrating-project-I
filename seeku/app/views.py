@@ -89,9 +89,17 @@ def login(request):
                 # Generar el token personalizado
                 custom_token = auth.create_custom_token(str(user.uid))
                 return render(request, 'dashboard.html', {'custom_token': custom_token})  # Puedes pasar el token a tu template si lo necesitas
-        except:
-            print("oli")
-        return render(request, "app/login.html")
+            else:
+                error_message = "Por favor, verifica tu correo electronico"
+                return render(request, 'app/login.html', {'error_message': error_message})
+        except Exception as e:
+            error_message = str(e)
+            if hasattr(e, 'error_info') and hasattr(e.error_info, 'message'):
+                error_message = str(e.error_info.message)
+            print('Error al registrar usuario:', error_message)
+            return render(request, 'app/register.html', {'error_message': error_message})
+        
+     return render(request, 'app/login.html')
 
 def home(request):
     return render(request, "app/home.html")
