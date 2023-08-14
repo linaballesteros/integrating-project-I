@@ -29,7 +29,7 @@ config = {
   'measurementId': "G-4PZTY17X6V"
 }
 
-cred = credentials.Certificate('C:\\Users\\juane\\OneDrive\\Documentos\\project\\integrating-project-I\\seeku\\seek-u-34bb1-firebase-adminsdk-qezx3-e8b002c1a6.json')
+cred = credentials.Certificate('seek-u-34bb1-firebase-adminsdk-qezx3-e8b002c1a6.json')
 
 
 initialize_app(cred)
@@ -73,7 +73,7 @@ def register_user(request):
 
 
 def home(request):
-    return render(request, "app/home.html")
+    return render(request, "app/index2.html")
 
 
 

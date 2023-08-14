@@ -1,15 +1,8 @@
-.goodnesseccont img{
-    width:100%
+.icon-hover:hover {
+  border-color: #3b71ca !important;
+  background-color: white !important;
 }
-/*
-.buttermilk{
-    background-color: #fff;background-image: linear-gradient(#fff7ef, #fff);
-    background-image: -webkit-linear-gradient(#fff7ef, #fff);
-    background-image: -moz-linear-gradient(#fff7ef, #fff);
-    background-image: -ms-linear-gradient(#fff7ef, #fff);
-    background-image: -o-linear-gradient(#fff7ef, #fff);
-    padding: 50px 40px;
-    border:1px
-} 
 
-*/
+.icon-hover:hover i {
+  color: #3b71ca !important;
+}
