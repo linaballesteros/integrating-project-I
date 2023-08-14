@@ -6,8 +6,11 @@ CATEGORY_CHOICES=(('PH', 'Phone'), ('KY', 'Keys'), ('NB', 'NoteBooks'), ('HP', '
 
 class Object(models.Model):
     title = models.CharField(max_length=100)
-    selling_price = models.FloatField()
-    discounted_price = models.FloatField()
+    description = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="product")
+    url = models.URLField(blank=True)
+    
+    """discounted_price = models.FloatField()
     description = models.TextField()
     composition = models.TextField(default='')
     prodapp = models.TextField(default='')
@@ -16,4 +19,4 @@ class Object(models.Model):
     product_image = models.ImageField(upload_to='product')
     def __str__(self):
         return self.title
-    
+    """
