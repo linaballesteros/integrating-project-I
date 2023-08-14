@@ -45,13 +45,18 @@ def register_user(request):
         email = request.POST['email']
         password = request.POST['password']
         phone = request.POST['mobile_phone']
+        country_phone = request.POST['country_code']
+        phone_complete = country_phone+phone
 
         try:
             #Verifica que el dominio sea de @eafit.edu.co
             if not email.endswith('@eafit.edu.co'):
                 error_message = "Por favor, use un correo electrónico válido de @eafit.edu.co"
-                return render(request, 'register.html', {'error_message': error_message})
-            user = auth.create_user(email=email, password=password, phone_number=phone)
+                return render(request, 'app/register.html', {'error_message': error_message})
+            if len(password) < 6:
+                error_message = "La contrasena no es lo suficientemente larga"
+                return render(request, 'app/register.html', {'error_message': error_message})
+            user = auth.create_user(email=email, password=password, phone_number=phone_complete)
             # Crear usuario en Firebase Auth
             print("Usuario creado:", user.email)
             # Generar enlace de verificación y enviar correo
@@ -60,17 +65,33 @@ def register_user(request):
             print("Enlace de verificación:", link)
             send_email(user.email,link)
             # Redirigir a la página de inicio de sesión u otra página deseada
-            return redirect(reverse('login'))  # Cambia 'login' al nombre de tu ruta de inicio de sesión
+            return redirect(reverse('login')) 
 
         except Exception as e:
             error_message = str(e)
             if hasattr(e, 'error_info') and hasattr(e.error_info, 'message'):
                 error_message = str(e.error_info.message)
             print('Error al registrar usuario:', error_message)
+            return render(request, 'app/register.html', {'error_message': error_message})
 
-    return render(request, 'app/register.html')  # Cambia 'registro.html' al nombre de tu plantilla de registro
+    return render(request, 'app/register.html') 
 
 
+def login(request):
+     if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        
+        try:
+            user = auth.get_user_by_email(email)
+            if user.email_verified:
+                auth_pyrebase.sign_in_with_email_and_password(email, password)
+                # Generar el token personalizado
+                custom_token = auth.create_custom_token(str(user.uid))
+                return render(request, 'dashboard.html', {'custom_token': custom_token})  # Puedes pasar el token a tu template si lo necesitas
+        except:
+            print("oli")
+        return render(request, "app/login.html")
 
 def home(request):
     return render(request, "app/index2.html")
@@ -101,4 +122,3 @@ def send_email(email_user,verification_link):
     with smtplib.SMTP_SSL("smtp.gmail.com",465,context = context) as smtp:
         smtp.login(email_sender,password)
         smtp.sendmail(email_sender,email_reciver,em.as_string())
-
