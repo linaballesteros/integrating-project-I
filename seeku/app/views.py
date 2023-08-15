@@ -107,8 +107,11 @@ def home(request):
 
 
 def search(request):
-    searchTerm = request.GET.get('searchTerm')
-    objects = Object.objects.all()
+    searchTerm = request.GET.get('searchObject')
+    if searchTerm:
+        objects = Object.objects.filter(title__icontains=searchTerm)        
+    else:
+        objects = Object.objects.all()
     return render(request, "app/index2.html", {'searchTerm': searchTerm, 'objects': objects})
 
 
