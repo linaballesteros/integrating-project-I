@@ -17,10 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from app import views as seek_Uviews
+
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', seek_Uviews.home),
     path('register', seek_Uviews.register_user),
-    path('login', seek_Uviews.login)
+    path('login', seek_Uviews.login),
+    path('search', seek_Uviews.search),
+    
 ]
 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

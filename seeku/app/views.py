@@ -9,10 +9,11 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from firebase_admin._auth_utils import handle_auth_backend_error
 from django.urls import reverse
+from .models import Object
 
 #Librerias para mandar correos automaticos
 import os
-from dotenv import load_dotenv
+
 from email.message import EmailMessage
 import ssl
 import smtplib
@@ -102,10 +103,13 @@ def login(request):
      return render(request, 'app/login.html')
 
 def home(request):
-    return render(request, "app/index2.html")
+    return render(request, "app/index.html")
 
 
-
+def search(request):
+    searchTerm = request.GET.get('searchTerm')
+    objects = Object.objects.all()
+    return render(request, "app/index2.html", {'searchTerm': searchTerm, 'objects': objects})
 
 
 
