@@ -103,7 +103,14 @@ def login(request):
      return render(request, 'app/login.html')
 
 def home(request):
-    return render(request, "app/index.html")
+    searchTerm = request.GET.get('searchObject')
+    if searchTerm:
+        objects = Object.objects.filter(title__icontains=searchTerm)        
+    elif searchTerm == False:
+        objects = Object.objects.all()
+    else:
+        return render(request, "app/index.html")        
+    return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects})   
 
 
 def search(request):
@@ -112,7 +119,7 @@ def search(request):
         objects = Object.objects.filter(title__icontains=searchTerm)        
     else:
         objects = Object.objects.all()
-    return render(request, "app/index2.html", {'searchTerm': searchTerm, 'objects': objects})
+    return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects})
 
 
 

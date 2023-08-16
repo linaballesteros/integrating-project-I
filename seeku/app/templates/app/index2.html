@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
+  
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -13,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"  />
     <!-- Custom styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.20.0/css/mdb.min.css" />
+    
 </head>
 <body>
     <!--Main Navigation-->
@@ -23,7 +26,7 @@
       <div class="row gy-3">
         <!-- Left elements -->
         <div class="col-lg-2 col-sm-4 col-4">
-          <a href="https://mdbootstrap.com/" target="_blank" class="float-start">
+          <a href="https://github.com/linaballesteros/integrating-project-I" target="_blank" class="float-start">
             <img src="https://github.com/linaballesteros/integrating-project-I/assets/140737132/8dc9fc23-9394-4101-82fd-faaf220de752" height="120" />
           </a>
         </div>
@@ -34,8 +37,8 @@
           <div class="d-flex float-end">
             
           <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">My Profile</p> </a>
-          <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-heart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">History</p> </a>
-          <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-shopping-cart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Claim Request</p> </a>
+          <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-bars m-1 me-md-2"></i><p class="d-none d-md-block mb-0">History</p> </a>
+          <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-check-square m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Claim Requests</p> </a>
         </div>
         </div>
         <!-- Center elements -->
@@ -59,7 +62,7 @@
           <span class="text-white-50 mx-2"> > </span>
           <a href="" class="text-white-50">Categories</a>
           <span class="text-white-50 mx-2"> > </span>
-          <a href="" class="text-white"><u>Objects</u></a>
+          <a href="http://localhost:8000/search" class="text-white"><u>Objects</u></a>
         </h6>
       </nav>
       <!-- Breadcrumb -->
@@ -212,71 +215,62 @@
            
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
-                <button
-                        class="accordion-button text-dark bg-light"
-                        type="button"
-                        data-mdb-toggle="collapse"
-                        data-mdb-target="#panelsStayOpen-collapseFive"
-                        aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseFive"
-                        >
-                  Ratings
-                </button>
+                  <button
+                      class="accordion-button text-dark bg-light"
+                      type="button"
+                      data-mdb-toggle="collapse"
+                      data-mdb-target="#panelsStayOpen-collapseFive"
+                      aria-expanded="false"
+                      aria-controls="panelsStayOpen-collapseFive"
+                  >
+                      Hour Range
+                  </button>
               </h2>
-              <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show" aria-labelledby="headingThree">
-                <div class="accordion-body">
-                  <!-- Default checkbox -->
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
-                      <i class="fas fa-star text-warning"></i>
-                    </label>
+              <div
+                  id="panelsStayOpen-collapseFive"
+                  class="accordion-collapse collapse show"
+                  aria-labelledby="headingThree"
+              >
+                  <div class="accordion-body">
+                      <!-- Hour range picker inputs -->
+                      <div class="form-group">
+                          <label for="startHour" class="form-label">Start Hour:</label>
+                          <input
+                              type="time"
+                              id="startHour"
+                              class="form-control"
+                          />
+                      </div>
+                      <div class="form-group">
+                          <label for="endHour" class="form-label">End Hour:</label>
+                          <input
+                              type="time"
+                              id="endHour"
+                              class="form-control"
+                          />
+                      </div>
                   </div>
-                  <!-- Default checkbox -->
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
-                      <i class="fas fa-star text-secondary"></i>
-                    </label>
-                  </div>
-                  <!-- Default checkbox -->
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-secondary"></i>
-                      <i class="fas fa-star text-secondary"></i>
-                    </label>
-                  </div>
-                  <!-- Default checkbox -->
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-secondary"></i><i class="fas fa-star text-secondary"></i>
-                      <i class="fas fa-star text-secondary"></i>
-                    </label>
-                  </div>
-                </div>
               </div>
-            </div>
+          </div>
+          
+          
           </div>
         </div>
       </div>
   
 <div class="col-lg-9">
-  <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
-    <div class="ms-auto">
+      <div class="ms-auto">
       <!-- sidebar -->
       <form action="">
         <div class="mb-3">
-          <label for="searchMovie" class="form-label">
+          <label for="searchObject" class="form-label">
             Search objects:
           </label>
-          <input type="text" class="form-control" name="searchMovie" />
+          <input type="text" class="form-control" name="searchObject" />
         </div>
         <button type="submit" class="btn btn-primary">Search</button>
       </form>
+      
       <!-- content -->
      
           <div class="ms-auto">
@@ -310,6 +304,8 @@
                 <div class="card-body">
                   <h5 class="card-title fw-bold">{{ object.title }}</h5>
                   <p class="card-text">{{ object.description }}</p>
+                  <p class="card-text">{{ object.place_found }}</p>
+                  <p class="card-text">{{ object.date_found }}</p>
                   {% if object.url %}
                   <a href="{{ object.url }}" class="btn btn-primary">
                     Claim Request
@@ -394,7 +390,7 @@
           </h6>
           <ul class="list-unstyled mb-4">
             <li><a class="text-white-50" href="#">Help center</a></li>
-            <li><a class="text-white-50" href="#">About the Lost Objects System in EAFIT</a></li>
+            <li><a class="text-white-50" href="#">About the Lost and Found Objects System in EAFIT</a></li>
             <li><a class="text-white-50" href="#">Information</a></li>
             <li><a class="text-white-50" href="#">Contribute</a></li>
           </ul>
@@ -488,6 +484,7 @@
     <!-- MDB -->
       <script type="text/javascript" src="/static/app/js/script.js"></script>
     <script type="text/javascript" src="https://unpkg.com/mdbootstrap@4.20.0/js/mdb.min.js"></script>
+    
 </body>
 </html>
 
