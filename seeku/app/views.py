@@ -122,7 +122,8 @@ def search(request):
     return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects})
 
 
-
+def claim_request(request):
+    return render(request, "app\index3.html")
 
 #Funcion para mandar los correos con los links de verificacion de la cuenta. 
 def send_email(email_user,verification_link):
