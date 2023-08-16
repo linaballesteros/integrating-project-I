@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+  <style>
+    /* Adjust the width and center the search bar */
+    .search-form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px; /* Add some spacing at the bottom */
+    }
+  
+    /* Make the input field wider */
+    .search-form input[type="text"] {
+      width: 300px;
+    }
+  </style>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -37,8 +53,8 @@
           <div class="d-flex float-end">
             
           <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">My Profile</p> </a>
-          <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-heart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">History</p> </a>
-          <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-shopping-cart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Claim Request</p> </a>
+          <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-bars m-1 me-md-2"></i><p class="d-none d-md-block mb-0">History</p> </a>
+          <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-check-square m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Claim Requests</p> </a>
         </div>
         </div>
         <!-- Center elements -->
@@ -47,15 +63,7 @@
 
         <!-- sssssssssssssssss-->
     
-        <form action="">
-          <div class="mb-3">
-            <label for="searchObject" class="form-label">
-              Search your Lost Item:
-            </label>
-            <input type="text" class="form-control" name="searchObject" />
-          </div>
-          <button type="submit" class="btn btn-primary">Search</button>
-        </form>
+        
         <!-- Right elements -->
       </div>
     </div>
@@ -116,6 +124,15 @@
 <section>
   <div class="container my-5">
     <header class="mb-4">
+      <form action="" class="search-form">
+        <div class="mb-3">
+          <label for="searchObject" class="form-label">
+            Search your Lost Item:
+          </label>
+          <input type="text" class="form-control" name="searchObject" />
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
       <h3>Published Objects</h3>
     </header>
 
@@ -125,7 +142,7 @@
           <img src="https://www.dilmar.es/uploads/5/0/0/2/50022395/reparar-llave-mando-volkswagen-5.jpg" class="card-img-top" style="aspect-ratio: 1 / 1" />
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">Black Keys</h5>
-            <p class="card-text">Date Published: 12/03/</p>
+            <p class="card-text">Date Published: 12/03/23</p>
             <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
               <a href="#!" class="btn btn-primary shadow-0 me-1">Claim Request</a>
               <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fas fa-heart fa-lg text-secondary px-1"></i></a>
@@ -135,7 +152,20 @@
       </div>
       <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
         <div class="card w-100 my-2 shadow-2-strong">
-          <img src="hhttps://http2.mlstatic.com/D_NQ_NP_859677-MLA54970690233_042023-O.webp" class="card-img-top" style="aspect-ratio: 1 / 1" />
+          <img src="https://exitocol.vtexassets.com/arquivos/ids/16325527-800-auto?v=638100990805300000&width=800&height=auto&aspect=true" class="card-img-top" style="aspect-ratio: 1 / 1" />
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Black Backpack with Brown Square</h5>
+            <p class="card-text">Date Published: 11/05/23</p>
+            <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+              <a href="#!" class="btn btn-primary shadow-0 me-1">Claim Request</a>
+              <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+        <div class="card w-100 my-2 shadow-2-strong">
+          <img src="https://easygaragesales.cl/wp-content/uploads/2023/05/WhatsApp-Image-2022-09-06-at-4.05.05-PM-4.jpeg" class="card-img-top" style="aspect-ratio: 1 / 1" />
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">Canon Camera</h5>
             <p class="card-text">Date Published: 11/05/23</p>
@@ -148,22 +178,9 @@
       </div>
       <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
         <div class="card w-100 my-2 shadow-2-strong">
-          <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/3.webp" class="card-img-top" style="aspect-ratio: 1 / 1" />
+          <img src="https://m.media-amazon.com/images/I/31Isx2BP+BL._AC_UF1000,1000_QL80_.jpg" class="card-img-top" style="aspect-ratio: 1 / 1" />
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Canon Camera</h5>
-            <p class="card-text">Date Published: 11/05/23</p>
-            <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-              <a href="#!" class="btn btn-primary shadow-0 me-1">Claim Request</a>
-              <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fas fa-heart fa-lg text-secondary px-1"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
-        <div class="card w-100 my-2 shadow-2-strong">
-          <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/4.webp" class="card-img-top" style="aspect-ratio: 1 / 1" />
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Apple iPhone 12 Pro 6.1" RAM 6GB 512GB Unlocked</h5>
+            <h5 class="card-title">Faceworks Pink Lipstick</h5>
             <p class="card-text">$120.00</p>
             <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
               <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
@@ -174,9 +191,9 @@
       </div>
       <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
         <div class="card w-100 my-2 shadow-2-strong">
-          <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/5.webp" class="card-img-top" style="aspect-ratio: 1 / 1" />
+          <img src="https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/c78ebbc5-1010-4736-9019-cb18e04cfa6b?rule=hw396_70p" class="card-img-top" style="aspect-ratio: 1 / 1" />
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Apple Watch Series 1 Sport Case 38mm Black</h5>
+            <h5 class="card-title">Black Glasses4</h5>
             <p class="card-text">$790.50</p>
             <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
               <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
