@@ -9,10 +9,11 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from firebase_admin._auth_utils import handle_auth_backend_error
 from django.urls import reverse
+from .models import Object
 
 #Librerias para mandar correos automaticos
 import os
-from dotenv import load_dotenv
+
 from email.message import EmailMessage
 import ssl
 import smtplib
@@ -102,13 +103,27 @@ def login(request):
      return render(request, 'app/login.html')
 
 def home(request):
-    return render(request, "app/index2.html")
+    searchTerm = request.GET.get('searchObject')
+    if searchTerm:
+        objects = Object.objects.filter(title__icontains=searchTerm)        
+    elif searchTerm == False:
+        objects = Object.objects.all()
+    else:
+        return render(request, "app/index.html")        
+    return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects})   
 
 
+def search(request):
+    searchTerm = request.GET.get('searchObject')
+    if searchTerm:
+        objects = Object.objects.filter(title__icontains=searchTerm)        
+    else:
+        objects = Object.objects.all()
+    return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects})
 
 
-
-
+def claim_request(request):
+    return render(request, "app\index3.html")
 
 #Funcion para mandar los correos con los links de verificacion de la cuenta. 
 def send_email(email_user,verification_link):

@@ -5,4 +5,27 @@
 
 .icon-hover:hover i {
   color: #3b71ca !important;
+}  /* Adjust the width and center the search bar */
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Add some spacing at the bottom */
+}
+
+/* Make the input field wider and taller */
+.search-form input[type="text"] {
+  width: 1000px !important;
+  height: 80px !important;
+  font-size: 24px !important;
+}
+
+.icon-hover:hover {
+  border-color: #3b71ca !important;
+  background-color: white !important;
+  color: #3b71ca !important;
+}
+
+.icon-hover:hover i {
+  color: #3b71ca !important;
 }
