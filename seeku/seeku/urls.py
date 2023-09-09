@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from app import views as seek_Uviews
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', seek_Uviews.home),

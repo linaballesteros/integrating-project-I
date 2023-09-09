@@ -161,9 +161,6 @@ def login_required(view_func):
     return _wrapped_view
 
 
-
-
-
 def home(request):
     searchTerm = request.GET.get('searchObject')
     if searchTerm:
@@ -171,17 +168,71 @@ def home(request):
     elif searchTerm == False:
         objects = Object.objects.all()
     else:
-        return render(request, "app/index.html")        
+        return render(request, "app\index.html")        
     return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects})   
 
 
 def search(request):
     searchTerm = request.GET.get('searchObject')
+    category = request.GET.get('category')
+    place_found = request.GET.getlist('place_found') 
+    selected_block = request.GET.get('block', '')
+    
+    objects = Object.objects.all()
+
     if searchTerm:
-        objects = Object.objects.filter(title__icontains=searchTerm)        
-    else:
-        objects = Object.objects.all()
+        objects = objects.filter(title__icontains=searchTerm)
+
+    if category:
+        objects = objects.filter(category=category)
+
+    if place_found:
+        # Filter objects based on selected block checkboxes
+        objects = objects.filter(place_found=place_found)
+    if selected_block:
+        objects = objects.filter(place_found=selected_block)
+
     return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects})
+
+    
+    """
+    searchTerm = request.GET.get('searchObject')
+    category = request.GET.get('category') 
+    # place_found = request.GET.get('place')
+    
+    objects = Object.objects.all()
+    # Filter objects based on search term and category
+    if searchTerm:
+        objects = Object.objects.filter(title__icontains=searchTerm)   
+    elif searchTerm == False:
+        objects = Object.objects.all()
+    else:
+        return render(request, "app\index2.html")     
+    # Apply category filter if a category parameter is provided
+    if category:
+        objects = objects.filter(category=category)
+    """
+    """
+    
+    if place_found == "Blocks 1-10":
+        objects = objects.filter(category=place_found[0])
+        
+    elif place_found == "Blocks 11-15":
+        objects = objects.filter(category=place_found[1])
+        
+    elif place_found == "Blocks 16-21":
+        objects = objects.filter(category=place_found[2])
+    
+    elif place_found == "Blocks 22-30":
+        objects = objects.filter(category=place_found[3])
+        
+    elif place_found == "Blocks 31-38":
+        objects = objects.filter(category=place_found[4])
+        
+    else:
+        objects = objects.filter(category=place_found)
+    """
+    return render(request, "app/index2.html", {'searchTerm': searchTerm, 'objects': objects, 'category': category})
 
 @login_required
 def claim_request(request):
@@ -228,8 +279,6 @@ def send_email(email_user,verification_link):
         smtp.login(email_sender,password)
         smtp.sendmail(email_sender,email_reciver,em.as_string())
         
-<<<<<<< HEAD
-=======
 #Function that add to the collection a user
 def create_Collectio_User(email,mobile_phone,profile_role,user_uid,password):
     coleccion_ref = db.collection('usuario_eafit')
@@ -241,4 +290,3 @@ def create_Collectio_User(email,mobile_phone,profile_role,user_uid,password):
         'password': password
     }   
     coleccion_ref.document(user_uid).set(nuevo_documento)
->>>>>>> f893075bb33b1c302f033a251d66d805a5ba5dc6

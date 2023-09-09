@@ -29,3 +29,18 @@
 .icon-hover:hover i {
   color: #3b71ca !important;
 }
+/* Initially hide blocks with a counter greater than 4 */
+.form-check.d-none {
+    display: none;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 10px; /* spacing between cells */
+}
+
+.grid-item {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}

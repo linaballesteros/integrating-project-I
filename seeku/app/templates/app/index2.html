@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   
-  
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -58,7 +58,7 @@
       <!-- Breadcrumb -->
       <nav class="d-flex mb-2">
         <h6 class="mb-0">
-          <a href="" class="text-white-50">Home</a>
+          <a href="http://localhost:8000" class="text-white-50"><u>Home</u></a>
           <span class="text-white-50 mx-2"> > </span>
           <a href="" class="text-white-50">Categories</a>
           <span class="text-white-50 mx-2"> > </span>
@@ -76,7 +76,7 @@
   <div class="container">
     <div class="row">
       <!-- sidebar -->
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         <!-- Toggle button -->
         <button
                 class="btn btn-outline-secondary mb-3 w-100 d-lg-none"
@@ -90,7 +90,7 @@
           <span>Show filter</span>
         </button>
         <!-- Collapsible wrapper -->
-        <div class="collapse card d-lg-block mb-5" id="navbarSupportedContent">
+        <div class="collapse card d-lg-block mb-3" id="navbarSupportedContent">
           <div class="accordion" id="accordionPanelsStayOpenExample">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
@@ -107,70 +107,75 @@
               </h2>
               <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
                 <div class="accordion-body">
-                  <ul class="list-unstyled">
-                    <li><a href="#" class="text-dark">Technology </a></li>
-                    <li><a href="#" class="text-dark">Keys </a></li>
-                    <li><a href="#" class="text-dark">Books </a></li>
-                    <li><a href="#" class="text-dark">Watter Bottles</a></li>
-                    <li><a href="#" class="text-dark">Headphones</a></li>
-                    <li><a href="#" class="text-dark">Lunchboxes </a></li>
-                    <li><a href="#" class="text-dark">Clothes </a></li>
-                    <li><a href="#" class="text-dark">Accesories </a></li>
+                    <ul class="list-unstyled">
+                      <li><a href="?searchObject=&category=Technology" class="text-dark">Technology</a></li>
+                      <li><a href="?searchObject=&category=Keys" class="text-dark">Keys</a></li>
+                      <li><a href="?searchObject=&category=Books" class="text-dark">Books</a></li>
+                      <li><a href="?searchObject=&category=Water Bottles" class="text-dark category-button" data-category="Water Bottles">Water Bottles</a></li>
+                      <li><a href="?searchObject=&category=Headphones" class="text-dark category-button" data-category="Headphones">Headphones</a></li>
+                      <li><a href="?searchObject=&category=Lunchboxes" class="text-dark category-button" data-category="Lunchboxes">Lunchboxes</a></li>
+                      <li><a href="?searchObject=&category=Clothes" class="text-dark category-button" data-category="Clothes">Clothes</a></li>
+                      <li><a href="?searchObject=&category=Accessories" class="text-dark category-button" data-category="Accessories">Accessories</a></li>
+                    
                   </ul>
                 </div>
               </div>
             </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
-                <button
-                        class="accordion-button text-dark bg-light"
-                        type="button"
-                        data-mdb-toggle="collapse"
-                        data-mdb-target="#panelsStayOpen-collapseTwo"
-                        aria-expanded="true"
-                        aria-controls="panelsStayOpen-collapseTwo"
-                        >
-                  Blocks
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
-                <div class="accordion-body">
-                  <div>
-                    <!-- Checked checkbox -->
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" checked />
-                      <label class="form-check-label" for="flexCheckChecked1">Blocks 1-10</label>
-                      <span class="badge badge-secondary float-end">30</span>
-                    </div>
-                    <!-- Checked checkbox -->
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
-                      <label class="form-check-label" for="flexCheckChecked2">Blocks 11-15</label>
-                      <span class="badge badge-secondary float-end">15</span>
-                    </div>
-                    <!-- Checked checkbox -->
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" checked />
-                      <label class="form-check-label" for="flexCheckChecked3">Blocks 16-21</label>
-                      <span class="badge badge-secondary float-end">35</span>
-                    </div>
-                    <!-- Checked checkbox -->
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked />
-                      <label class="form-check-label" for="flexCheckChecked4">Blocks 22-30</label>
-                      <span class="badge badge-secondary float-end">89</span>
-                    </div>
-                    <!-- Default checkbox -->
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                      <label class="form-check-label" for="flexCheckDefault">Blocks 31-38</label>
-                      <span class="badge badge-secondary float-end">30</span>
-                    </div>
-                    <!-- Default checkbox -->
+         
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                
+                  <h2 class="accordion-header" id="headingTwo">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+                          Blocks
+                      </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
+                      <div class="accordion-body">
+              
+                          <div class="row">
+                              <div class="col-md-6">
+                                  {% for block_number in "123456789" %}
+                                  <div class="form-check">
+                                      <input href="?searchObject=&place_found=Block {{block_number}}"  class="form-check-input" type="checkbox" value="Block {{ block_number }}" id="blockCheckbox{{ block_number }}" name="blockCheckboxes">
+                                      <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Block {{ block_number }}</label>
+                                      <span class="badge badge-secondary float-end">30</span>
+                                  </div>
+                                  {% endfor %}
+                                  {% for block_number in "123456789" %}
+                                  <div class="form-check">
+                                      <input href="?searchObject=&place_found=Block 1{{block_number}}" class="form-check-input" type="checkbox" value="Block 1{{ block_number }}" id="blockCheckbox1{{ block_number }}" name="blockCheckboxes">
+                                      <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Block 1{{ block_number }}</label>
+                                      <span class="badge badge-secondary float-end">30</span>
+                                  </div>
+                                  {% endfor %}
+                              </div>
+                              <div class="col-md-6">
+                                  {% for block_number in "0123456789" %}
+                                  <div class="form-check">
+                                      <input href="?searchObject=&place_found=Block 2{{block_number}}" class="form-check-input" type="checkbox" value="Block 2{{ block_number }}" id="blockCheckbox2{{ block_number }}" name="blockCheckboxes">
+                                      <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Block 2{{ block_number }}</label>
+                                      <span class="badge badge-secondary float-end">30</span>
+                                  </div>
+                                  {% endfor %}
+                                  {% for block_number in "012345678" %}
+                                  <div class="form-check">
+                                      <input href="?searchObject=&place_found=Block 3{{block_number}}" class="form-check-input" type="checkbox" value="Block {{ block_number }}" id="blockCheckbox3{{ block_number }}" name="blockCheckboxes">
+                                      <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Block 3{{ block_number }}</label>
+                                      <span class="badge badge-secondary float-end">30</span>
+                                  </div>
+                                  {% endfor %}                           
+                              </div>
+                          </div>
+                      </div>
                   </div>
-                </div>
               </div>
-            </div>
+          </div>
+          
+            
+            
+            
+            
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
                 <button
@@ -258,7 +263,7 @@
         </div>
       </div>
   
-<div class="col-lg-9">
+<div class="col-lg-8">
       <div class="ms-auto">
       <!-- sidebar -->
       <form action="">
@@ -292,7 +297,7 @@
           
         </header>
 
-        <div class="container">
+
           <p>Searching for "{{ searchTerm }}"</p>
     
           <p>Items Found</p>
@@ -317,7 +322,7 @@
             {% endfor %}
           </div>
 
-        </div>
+    
 
         <hr />
 
@@ -482,9 +487,20 @@
 </footer>
 <!-- Footer -->
     <!-- MDB -->
-      <script type="text/javascript" src="/static/app/js/script.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/mdbootstrap@4.20.0/js/mdb.min.js"></script>
-    
+    <script type="text/javascript" src="/static/app/js/script.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/mdbootstrap@4.20.0/js/mdb.min.js"></script> 
+    <script>
+      const showMoreButton = document.getElementById("showMoreBlocks");
+      const hiddenBlocks = document.querySelectorAll(".form-check.d-none");
+  
+      showMoreButton.addEventListener("click", () => {
+          hiddenBlocks.forEach((block) => {
+              block.classList.remove("d-none");
+          });
+          showMoreButton.style.display = "none"; // Hide the "Show More" button after revealing all blocks.
+      });
+  </script>
+      
 </body>
 </html>
 

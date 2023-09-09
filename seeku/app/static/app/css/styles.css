@@ -4329,6 +4329,21 @@ textarea.form-control-lg {
     border-bottom-left-radius: 0;
   }
 }
+/* Move the Categories card to the left */
+#panelsStayOpen-collapseOne {
+  margin-left: 10px; /* Adjust the margin as needed */
+}
+
+/* Move the Blocks card to the left */
+#panelsStayOpen-collapseTwo {
+  margin-left: 10px; /* Adjust the margin as needed */
+}
+
+/* Move the Date Hour Range card to the left */
+#panelsStayOpen-collapseThree {
+  margin-left: 10px; /* Adjust the margin as needed */
+}
+
 
 .accordion {
   --bs-accordion-color: #212529;
