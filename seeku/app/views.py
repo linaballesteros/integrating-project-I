@@ -1,8 +1,6 @@
 #Librerias para manejar firebase, son firebase_admin y pyrebase
 from django.shortcuts import render
 from django.views.generic import View
-from django.shortcuts import render
-from django.views.generic import View
 from firebase_admin import credentials, auth, firestore, initialize_app
 import pyrebase
 from django.shortcuts import redirect
@@ -10,6 +8,7 @@ from django.contrib import messages
 from firebase_admin._auth_utils import handle_auth_backend_error
 from django.urls import reverse
 from .models import Object
+from django.db.models import Q # para hacer consultas
 from django.http import HttpResponse
 from functools import wraps
 #Librerias para mandar correos automaticos
@@ -18,6 +17,8 @@ import os
 from email.message import EmailMessage
 import ssl
 import smtplib
+from .forms import BlockFilterForm
+from datetime import datetime
 
 #Connect to firebase data. 
 #-------------------------------------------------------------------------------------------
@@ -175,22 +176,115 @@ def home(request):
 def search(request):
     searchTerm = request.GET.get('searchObject')
     category = request.GET.get('category')
-    place_found = request.GET.getlist('place_found') 
-    selected_block = request.GET.get('block', '')
+    selected_blocks = request.POST.getlist('blockCheckboxes')
     
     objects = Object.objects.all()
+    
+    if request.method == 'POST':
+        print("Selected Blocks:", selected_blocks)
+        
+        start_date = request.POST.get('startDate')
+        end_date = request.POST.get('endDate')
+        start_hour = request.POST.get('startHour')
+        end_hour = request.POST.get('endHour')
+        
+        print(start_date)
+        print(end_date)
+
+        if start_date and end_date:
+            try:
+
+
+                start_date = datetime.strptime(start_date, '%Y-%m-%d')
+                end_date = datetime.strptime(end_date, '%Y-%m-%d')
+                
+                # date range
+                objects = objects.filter(date_found__gte=start_date, date_found__lte=end_date)
+            except ValueError:
+                print("Invalid date format")
+                
+        if selected_blocks and start_date and end_date:
+                try:
+
+                    start_date = datetime.strptime(start_date, '%Y-%m-%d')
+                    end_date = datetime.strptime(end_date, '%Y-%m-%d')
+                    
+                    # 
+                    objects = objects.filter(place_found__in=selected_blocks, date_found__gte=start_date, date_found__lte=end_date)
+                except ValueError:
+                    print("Invalid date format")
+                
+        else:
+            print("Both start_date and end_date are required")
+            
+        if selected_blocks:
+            objects = objects.filter(place_found__in=selected_blocks)
+       # objects = objects.filter(date_found__gte=start_date, date_found__lte=end_date)
+        if start_hour and end_hour and selected_blocks:
+            try:
+                # Convert the hour strings to time objects
+                start_hour = datetime.strptime(start_hour, '%H:%M').time()
+                end_hour = datetime.strptime(end_hour, '%H:%M').time()
+
+                # Filter objects based on selected blocks and hour range
+                objects = objects.filter(
+                    place_found__in=selected_blocks,
+                    hour_range__gte=start_hour,
+                    hour_range__lte=end_hour
+                )
+            except ValueError:
+                print("Invalid time format")
+        else:
+            print("Both start_hour and end_hour are required")
+            
+        if start_hour and end_hour and selected_blocks and start_date and end_date:
+            try:
+                # Convert the hour strings to time objects
+                start_hour = datetime.strptime(start_hour, '%H:%M').time()
+                end_hour = datetime.strptime(end_hour, '%H:%M').time()
+
+                # Filter objects based on selected blocks and hour range
+                objects = objects.filter(
+                    date_found__gte=start_date, 
+                    date_found__lte=end_date,
+                    place_found__in=selected_blocks,
+                    hour_range__gte=start_hour,
+                    hour_range__lte=end_hour
+                )
+            except ValueError:
+                print("Invalid time format")
+        else:
+            print("Both start_hour and end_hour are required")
+            
+        if start_hour and end_hour:
+            try:
+                # Convert the hour strings to time objects
+                start_hour = datetime.strptime(start_hour, '%H:%M').time()
+                end_hour = datetime.strptime(end_hour, '%H:%M').time()
+
+                # Filter objects based on selected blocks and hour range
+                objects = objects.filter(
+                    hour_range__gte=start_hour,
+                    hour_range__lte=end_hour
+                )
+            except ValueError:
+                print("Invalid time format")
+        else:
+            print("Both start_hour and end_hour are required")
+        context = {
+            'objects': objects,
+            'searchTerm': '',  #
+        }
+   # selected_blocks = request.GET.getlist("blockCheckboxes")
+
 
     if searchTerm:
         objects = objects.filter(title__icontains=searchTerm)
 
     if category:
         objects = objects.filter(category=category)
-
-    if place_found:
-        # Filter objects based on selected block checkboxes
-        objects = objects.filter(place_found=place_found)
-    if selected_block:
-        objects = objects.filter(place_found=selected_block)
+   # if selected_blocks:
+       # objects = objects.filter(place_found=selected_blocks)
 
     return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects})
 
@@ -208,7 +302,7 @@ def search(request):
         objects = Object.objects.all()
     else:
         return render(request, "app\index2.html")     
-    # Apply category filter if a category parameter is provided
+    # Apply category filter 
     if category:
         objects = objects.filter(category=category)
     """

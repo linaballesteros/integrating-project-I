@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', seek_Uviews.home),
     path('register', seek_Uviews.register_user),
-    path("search/", seek_Uviews.search),
+    path("search/", seek_Uviews.search, name = 'search'),
     path("claim_request/", seek_Uviews.claim_request, name = 'claim_request'),
     path('login', seek_Uviews.login, name='login'),
 ]

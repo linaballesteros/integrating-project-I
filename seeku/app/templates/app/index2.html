@@ -72,9 +72,10 @@
 </header>
 
 <!-- sidebar + content -->
-<section class="">
-  <div class="container">
-    <div class="row">
+  <form method="POST" action="{% url 'search' %}">
+      <section class="">
+        <div class="container">
+        <div class="row">
       <!-- sidebar -->
       <div class="col-lg-4">
         <!-- Toggle button -->
@@ -122,22 +123,32 @@
               </div>
             </div>
          
-            <div class="accordion" id="accordionExample">
+    
+       {% csrf_token %}
+            <div class="accordion" id="accordionPanelsStayOpenExample">
               <div class="accordion-item">
                 
                   <h2 class="accordion-header" id="headingTwo">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
-                          Blocks
-                      </button>
+                    <button
+                    class="accordion-button text-dark bg-light"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#panelsStayOpen-collapseOne"
+                    aria-expanded="true"
+                    aria-controls="panelsStayOpen-collapseOne"
+                    >
+              Blocks
+              </button>
                   </h2>
                   <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
                       <div class="accordion-body">
               
                           <div class="row">
                               <div class="col-md-6">
+                                
                                   {% for block_number in "123456789" %}
                                   <div class="form-check">
-                                      <input href="?searchObject=&place_found=Block {{block_number}}"  class="form-check-input" type="checkbox" value="Block {{ block_number }}" id="blockCheckbox{{ block_number }}" name="blockCheckboxes">
+                                      <input href="?searchObject=&place_found=Block {{block_number}}"  class="form-check-input" type="checkbox" value="Block {{ block_number }}" id="blockCheckbox{{ block_number }}" name="blockCheckboxes" >
                                       <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Block {{ block_number }}</label>
                                       <span class="badge badge-secondary float-end">30</span>
                                   </div>
@@ -149,8 +160,8 @@
                                       <span class="badge badge-secondary float-end">30</span>
                                   </div>
                                   {% endfor %}
-                              </div>
-                              <div class="col-md-6">
+                                  </div>
+                                    <div class="col-md-6">
                                   {% for block_number in "0123456789" %}
                                   <div class="form-check">
                                       <input href="?searchObject=&place_found=Block 2{{block_number}}" class="form-check-input" type="checkbox" value="Block 2{{ block_number }}" id="blockCheckbox2{{ block_number }}" name="blockCheckboxes">
@@ -164,13 +175,14 @@
                                       <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Block 3{{ block_number }}</label>
                                       <span class="badge badge-secondary float-end">30</span>
                                   </div>
-                                  {% endfor %}                           
+                                  {% endfor %}                      
                               </div>
                           </div>
                       </div>
                   </div>
               </div>
           </div>
+         
           
             
             
@@ -200,7 +212,7 @@
                         Start Date
                       </p>
                       <div class="form-outline">
-                        <input type="date" id="startDate" class="form-control" />
+                        <input type="date" id="startDate" name="startDate" class="form-control" />
                       </div>
                     </div>
                     <div class="col-6">
@@ -208,7 +220,7 @@
                         End Date
                       </p>
                       <div class="form-outline">
-                        <input type="date" id="endDate" class="form-control" />
+                        <input type="date" id="endDate" name="endDate" class="form-control" />
                       </div>
                     </div>
                   </div>
@@ -217,6 +229,8 @@
               </div>
               
             </div>
+        
+
            
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
@@ -240,19 +254,11 @@
                       <!-- Hour range picker inputs -->
                       <div class="form-group">
                           <label for="startHour" class="form-label">Start Hour:</label>
-                          <input
-                              type="time"
-                              id="startHour"
-                              class="form-control"
-                          />
+                          <input type="time" id="startHour" class="form-control" name="startHour" />
                       </div>
                       <div class="form-group">
                           <label for="endHour" class="form-label">End Hour:</label>
-                          <input
-                              type="time"
-                              id="endHour"
-                              class="form-control"
-                          />
+                          <input type="time" id="endHour" class="form-control" name="endHour" />
                       </div>
                   </div>
               </div>
@@ -261,12 +267,13 @@
           
           </div>
         </div>
+        <button type="submit" class="btn btn-primary">Apply Filters</button>
       </div>
+      
   
 <div class="col-lg-8">
       <div class="ms-auto">
       <!-- sidebar -->
-      <form action="">
         <div class="mb-3">
           <label for="searchObject" class="form-label">
             Search objects:
@@ -311,6 +318,7 @@
                   <p class="card-text">{{ object.description }}</p>
                   <p class="card-text">{{ object.place_found }}</p>
                   <p class="card-text">{{ object.date_found }}</p>
+                  <p class="card-text">{{ object.hour_range }}</p>
                   {% if object.url %}
                   <a href="{{ object.url }}" class="btn btn-primary">
                     Claim Request
@@ -503,4 +511,3 @@
       
 </body>
 </html>
-
