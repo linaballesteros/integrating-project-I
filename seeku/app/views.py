@@ -175,12 +175,16 @@ def home(request):
 
 def search(request):
     searchTerm = request.GET.get('searchObject')
-    category = request.GET.get('category')
+    categories = request.POST.getlist('category')
     selected_blocks = request.POST.getlist('blockCheckboxes')
     
     objects = Object.objects.all()
+    print("Selected Categories", categories)
     
     if request.method == 'POST':
+        print("Selected Categories", categories)
+        if categories:
+            objects = objects.filter(category__in=categories)
         print("Selected Blocks:", selected_blocks)
         
         start_date = request.POST.get('startDate')
@@ -277,12 +281,10 @@ def search(request):
         }
    # selected_blocks = request.GET.getlist("blockCheckboxes")
 
-
     if searchTerm:
         objects = objects.filter(title__icontains=searchTerm)
 
-    if category:
-        objects = objects.filter(category=category)
+    
    # if selected_blocks:
        # objects = objects.filter(place_found=selected_blocks)
 

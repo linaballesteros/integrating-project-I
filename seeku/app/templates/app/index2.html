@@ -73,11 +73,12 @@
 
 <!-- sidebar + content -->
   <form method="POST" action="{% url 'search' %}">
+    {% csrf_token %}
       <section class="">
         <div class="container">
         <div class="row">
-      <!-- sidebar -->
-      <div class="col-lg-4">
+        <!-- sidebar -->
+        <div class="col-lg-4">
         <!-- Toggle button -->
         <button
                 class="btn btn-outline-secondary mb-3 w-100 d-lg-none"
@@ -109,22 +110,62 @@
               <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
                 <div class="accordion-body">
                     <ul class="list-unstyled">
-                      <li><a href="?searchObject=&category=Technology" class="text-dark">Technology</a></li>
-                      <li><a href="?searchObject=&category=Keys" class="text-dark">Keys</a></li>
-                      <li><a href="?searchObject=&category=Books" class="text-dark">Books</a></li>
-                      <li><a href="?searchObject=&category=Water Bottles" class="text-dark category-button" data-category="Water Bottles">Water Bottles</a></li>
-                      <li><a href="?searchObject=&category=Headphones" class="text-dark category-button" data-category="Headphones">Headphones</a></li>
-                      <li><a href="?searchObject=&category=Lunchboxes" class="text-dark category-button" data-category="Lunchboxes">Lunchboxes</a></li>
-                      <li><a href="?searchObject=&category=Clothes" class="text-dark category-button" data-category="Clothes">Clothes</a></li>
-                      <li><a href="?searchObject=&category=Accessories" class="text-dark category-button" data-category="Accessories">Accessories</a></li>
-                    
-                  </ul>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="category" value="Technology" id="categoryTechnology">
+                                <label class="form-check-label" for="categoryTechnology">Technology</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="category" value="Keys" id="categoryKeys">
+                                <label class="form-check-label" for="categoryKeys">Keys</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="category" value="Books" id="categoryBooks">
+                                <label class="form-check-label" for="categoryBooks">Books</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="category" value="Water Bottles" id="categoryWaterBottles">
+                                <label class="form-check-label" for="categoryWaterBottles">Water Bottles</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input category-button" type="checkbox" name="category" value="Headphones" id="categoryHeadphones">
+                                <label class="form-check-label" for="categoryHeadphones">Headphones</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input category-button" type="checkbox" name="category" value="Lunchboxes" id="categoryLunchboxes">
+                                <label class="form-check-label" for="categoryLunchboxes">Lunchboxes</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input category-button" type="checkbox" name="category" value="Clothes" id="categoryClothes">
+                                <label class="form-check-label" for="categoryClothes">Clothes</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input category-button" type="checkbox" name="category" value="Accessories" id="categoryAccessories">
+                                <label class="form-check-label" for="categoryAccessories">Accessories</label>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-              </div>
+            </div>
+            
             </div>
          
     
-       {% csrf_token %}
+       
             <div class="accordion" id="accordionPanelsStayOpenExample">
               <div class="accordion-item">
                 
@@ -203,9 +244,7 @@
               </h2>
               <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree">
                 <div class="accordion-body">
-                  <div class="range">
-                    <input type="range" class="form-range" id="customRange1" min="0" max="365" step="1" />
-                  </div>
+                  
                   <div class="row mb-3">
                     <div class="col-6">
                       <p class="mb-0">
@@ -267,7 +306,6 @@
           
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Apply Filters</button>
       </div>
       
   
@@ -281,7 +319,7 @@
           <input type="text" class="form-control" name="searchObject" />
         </div>
         <button type="submit" class="btn btn-primary">Search</button>
-      </form>
+     
       
       <!-- content -->
      
@@ -319,6 +357,7 @@
                   <p class="card-text">{{ object.place_found }}</p>
                   <p class="card-text">{{ object.date_found }}</p>
                   <p class="card-text">{{ object.hour_range }}</p>
+                  <p class="card-text">{{ object.category }}</p>
                   {% if object.url %}
                   <a href="{{ object.url }}" class="btn btn-primary">
                     Claim Request
@@ -359,6 +398,7 @@
     </div>
   </div>            
 </section>
+</form>
 <!-- sidebar + content -->
 
 <!-- Footer -->
