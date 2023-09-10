@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 from app import views as seek_Uviews
 
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', seek_Uviews.home),
@@ -25,5 +28,9 @@ urlpatterns = [
     path("search/", seek_Uviews.search, name = 'search'),
     path("claim_request/", seek_Uviews.claim_request, name = 'claim_request'),
     path('login', seek_Uviews.login, name='login'),
+    path('my_profile', seek_Uviews.my_profile, name='my_profile'),
+    path('history', seek_Uviews.history, name='history'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

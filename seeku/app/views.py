@@ -174,23 +174,58 @@ def home(request):
 
 
 def search(request):
-    searchTerm = request.GET.get('searchObject')
+    searchTerm = request.POST.get('searchObject')
     categories = request.POST.getlist('category')
     selected_blocks = request.POST.getlist('blockCheckboxes')
+    start_date = request.POST.get('startDate')
+    end_date = request.POST.get('endDate')
+    start_hour = request.POST.get('startHour')
+    end_hour = request.POST.get('endHour')
     
     objects = Object.objects.all()
     print("Selected Categories", categories)
+    print("Search term =", searchTerm)
     
     if request.method == 'POST':
+        
+        if searchTerm:
+            objects = objects.filter(title__icontains=searchTerm)
+        
         print("Selected Categories", categories)
         if categories:
             objects = objects.filter(category__in=categories)
+            
+        if categories and selected_blocks:
+            objects = objects.filter(place_found__in=selected_blocks, category__in=categories)
+            
+        if categories and selected_blocks and start_date and end_date:
+            try:
+
+                start_date = datetime.strptime(start_date, '%Y-%m-%d')
+                end_date = datetime.strptime(end_date, '%Y-%m-%d')
+                
+                # date range
+                objects = objects.filter(place_found__in=selected_blocks, category__in=categories,date_found__gte=start_date, date_found__lte=end_date)
+            except ValueError:
+                print("Invalid date format")
+                
+        if categories and selected_blocks and start_date and end_date and start_hour and end_hour:
+            try:
+
+                start_date = datetime.strptime(start_date, '%Y-%m-%d')
+                end_date = datetime.strptime(end_date, '%Y-%m-%d')
+                start_hour = datetime.strptime(start_hour, '%H:%M').time()
+                end_hour = datetime.strptime(end_hour, '%H:%M').time()
+                
+                # date range
+                objects = objects.filter(place_found__in=selected_blocks, category__in=categories,date_found__gte=start_date, date_found__lte=end_date, hour_range__gte=start_hour,
+                    hour_range__lte=end_hour)
+            except ValueError:
+                print("Invalid date format")
+                
         print("Selected Blocks:", selected_blocks)
         
-        start_date = request.POST.get('startDate')
-        end_date = request.POST.get('endDate')
-        start_hour = request.POST.get('startHour')
-        end_hour = request.POST.get('endHour')
+        
         
         print(start_date)
         print(end_date)
@@ -244,6 +279,8 @@ def search(request):
         if start_hour and end_hour and selected_blocks and start_date and end_date:
             try:
                 # Convert the hour strings to time objects
+                start_date = datetime.strptime(start_date, '%Y-%m-%d')
+                end_date = datetime.strptime(end_date, '%Y-%m-%d')
                 start_hour = datetime.strptime(start_hour, '%H:%M').time()
                 end_hour = datetime.strptime(end_hour, '%H:%M').time()
 
@@ -281,8 +318,7 @@ def search(request):
         }
    # selected_blocks = request.GET.getlist("blockCheckboxes")
 
-    if searchTerm:
-        objects = objects.filter(title__icontains=searchTerm)
+    
 
     
    # if selected_blocks:
@@ -333,6 +369,12 @@ def search(request):
 @login_required
 def claim_request(request):
     return render(request, "app\index3.html")
+
+def my_profile(request):
+    return render(request, "app\profile.html")
+
+def history(request):
+    return render(request, "app\history.html")
 
 
 
