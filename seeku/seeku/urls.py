@@ -30,6 +30,7 @@ urlpatterns = [
     path('login', seek_Uviews.login, name='login'),
     path('my_profile', seek_Uviews.my_profile, name='my_profile'),
     path('history', seek_Uviews.history, name='history'),
+    path('publish_object', seek_Uviews.publish_object, name='publish_object'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

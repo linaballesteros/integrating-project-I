@@ -368,13 +368,16 @@ def search(request):
 
 @login_required
 def claim_request(request):
-    return render(request, "app\index3.html")
+    return render(request, "app\claim_request.html")
 
 def my_profile(request):
     return render(request, "app\profile.html")
 
 def history(request):
     return render(request, "app\history.html")
+
+def publish_object(request):
+    return render(request, "app\publish_object.html")
 
 
 
