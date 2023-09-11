@@ -98,51 +98,56 @@
              
               <div class="row mb-3">
                 <div class="col-md-6">
+                  <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <h5 class="card-title mb-3">Object Details</h5>
                     <div class="mb-3">
                         <label for="objectName" class="form-label">Object Name</label>
                         <input type="text" class="form-control" id="objectName" placeholder="Enter object name">
+                        {{ form.title }}
                     </div>
                     <div class="mb-3">
                         <label for="objectImage" class="form-label">Object Image</label>
-                        <input type="file" class="form-control" id="objectImage">
+                        <input type="file" class="form-control" id="objectImage" placeholder="Enter object image">>
+                        {{ form.image }}
                     </div>
                     <div class="mb-3">
                         <label for="dateFound" class="form-label">Date Found</label>
-                        <input type="date" class="form-control" id="dateFound">
+                        <input type="date" class="form-control" id="dateFound" placeholder="Enter Date Found">>
+                        {{ form.date_found }}
                     </div>
                     <div class="mb-3">
                         <label for="placeFound" class="form-label">Place Found</label>
-                        <select class="form-select" id="placeFound">
+                        <select class="form-select" id="placeFound" placeholder="Select the Place Found">
                             <option value="">Select a place</option>
                             <option value="block1">Block 1</option>
-                            <option value="block2">Block 2</option>
-                            <option value="block3">Block 3</option>
-                            <option value="block1">Block 1</option>
-                            <option value="block2">Block 2</option>
-                            <option value="block3">Block 3</option>
-                            <option value="block1">Block 1</option>
-                            <option value="block2">Block 2</option>
-                            <option value="block3">Block 3</option>
-                            <option value="block1">Block 1</option>
-                            <option value="block2">Block 2</option>
-                            <option value="block3">Block 3</option>
-                            <option value="block1">Block 1</option>
-                            <option value="block2">Block 2</option>
-                            <option value="block3">Block 3</option>
-                            <option value="block1">Block 1</option>
-                            <option value="block2">Block 2</option>
-                            <option value="block3">Block 3</option>
-                            <option value="block1">Block 1</option>
-                            <option value="block2">Block 2</option>
-                            <option value="block3">Block 3</option>
-                            <option value="block1">Block 1</option>
-                            <option value="block2">Block 2</option>
-                            <option value="block3">Block 3</option>
-                            <option value="block1">Block 1</option>
-                            <option value="block2">Block 2</option>
-                            <option value="block3">Block 3</option>
-                            <option value="block1">Block 1</option>
+                            <option value="block2">Block 3</option >
+                            <option value="block3">Block 4</option>
+                            <option value="block1">Block 7</option>
+                            <option value="block2">Block 9</option>
+                            <option value="block3">Block 12</option>
+                            <option value="block1">Block 13</option>
+                            <option value="block2">Block 14</option>
+                            <option value="block3">Block 15</option>
+                            <option value="block1">Block 16</option>
+                            <option value="block2">Block 16</option>
+                            <option value="block3">Block 17</option>
+                            <option value="block1">Block 18</option>
+                            <option value="block2">Block 19</option>
+                            <option value="block3">Block 20</option>
+                            <option value="block1">Block 21</option>
+                            <option value="block2">Block 23</option>
+                            <option value="block3">Block 26</option>
+                            <option value="block1">Block 27</option>
+                            <option value="block2">Block 28</option>
+                            <option value="block3">Block 29</option>
+                            <option value="block1">Block 30</option>
+                            <option value="block2">Block 32</option>
+                            <option value="block3">Block 33</option>
+                            <option value="block1">Block 34</option>
+                            <option value="block2">Block 35</option>
+                            <option value="block3">Block 37</option>
+                            <option value="block1">Block 38</option>
                             <option value="block2">Block 2</option>
                             <option value="block3">Block 3</option>
                             
@@ -206,6 +211,7 @@
               <div class="float-end">
                 <button class="btn btn-light border">Cancel</button>
                 <button class="btn btn-success shadow-0 border">Publish Object</button>
+              </form>
               </div>
             </div>
           </div>

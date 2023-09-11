@@ -1,4 +1,5 @@
 from django import forms
+from .models import Object
 
 class BlockFilterForm(forms.Form):
     block_checkboxes = forms.MultipleChoiceField(
@@ -16,3 +17,8 @@ class ClaimObject(forms.ModelForm):
         widgets = {
             'date_found': forms.DateInput(attrs={'type': 'date'})
         }
+        
+class PublishObjectForm(forms.ModelForm):
+    class Meta:
+        model = Object
+        fields = ['title', 'description', 'image', 'place_found', 'hour_range', 'color', 'category']  # Add all fields here

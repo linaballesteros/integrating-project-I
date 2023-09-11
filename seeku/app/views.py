@@ -379,6 +379,17 @@ def history(request):
 def publish_object(request):
     return render(request, "app\publish_object.html")
 
+def publish_object(request): # for publishing objects (vista vigilantes)
+    if request.method == 'POST':
+        form = Object(request.POST, request.FILES)
+        if form.is_valid():
+            new_object = form.save()  # Save the form data to the database (in djangooo)x
+            return redirect('success_page')  # Redirect to a success page
+    else:
+        form = Object()
+
+    return render(request, 'app/publish_object.html', {'form': form})
+
 
 
 
