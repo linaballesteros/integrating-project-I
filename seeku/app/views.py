@@ -431,3 +431,17 @@ def create_Collectio_User(email,mobile_phone,profile_role,user_uid,password):
         'password': password
     }   
     coleccion_ref.document(user_uid).set(nuevo_documento)
+class ClaimObjectView(View):
+    def get(self,request):
+        form=ClaimObject()
+        return render(request,"app/claim_req.html",{'form':form})
+    def post(self,request):
+        pass
+def filterObjects(request):
+    place=request.GET.get('place_found','')
+    date=request.GET.get('date_found','datetime')
+    color = request.GET.get('color', '')
+    brand = request.GET.get('brands', '')
+    filtered_objects = Object.objects.filter(color=color, brands=brand,place_found=place,date_found__gte=date)
+    print(filtered_objects)
+    return render(request,"app/index2.html",{'objects': filtered_objects})
