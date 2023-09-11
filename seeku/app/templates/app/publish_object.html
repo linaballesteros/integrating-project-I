@@ -95,135 +95,113 @@
           <!-- Checkout -->
           <div class="card shadow-0 border">
             <div class="p-4">
-              <h5 class="card-title mb-3">Security Guard that publishes:</h5>
-              <div class="row">
-                <div class="col-6 mb-3">
-                  <p class="mb-0">First name</p>
-                  <div class="form-outline">
-                    <input type="text" id="typeText" placeholder="Type here" class="form-control" />
-                  </div>
-                </div>
-  
-                <div class="col-6">
-                  <p class="mb-0">Last name</p>
-                  <div class="form-outline">
-                    <input type="text" id="typeText" placeholder="Type here" class="form-control" />
-                  </div>
-                </div>
-  
-                <div class="col-6 mb-3">
-                  <p class="mb-0">ID</p>
-                  <div class="form-outline">
-                    <input type="tel" id="typePhone" placeholder="Enter your ID" value="" class="form-control" />
-                  </div>
-                </div>
-  
-                <div class="col-6 mb-3">
-                  <p class="mb-0">Email</p>
-                  <div class="form-outline">
-                    <input type="email" id="typeEmail" placeholder="example@eafit.edu.co" class="form-control" />
-                  </div>
-                </div>
-              </div>
-  
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                <label class="form-check-label" for="flexCheckDefault"> Item is in good conditions </label>
-              </div>
-  
-              <hr class="my-4" />
-  
-              <h5 class="card-title mb-3">Choose Category</h5>
-  
+             
               <div class="row mb-3">
-                <div class="col-lg-4 mb-3">
-                  <!-- Default checked radio -->
-                  <div class="form-check h-100 border rounded-3">
-                    <div class="p-3">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked />
-                      <label class="form-check-label" for="flexRadioDefault1">
-                        Technology <br />
-                        <small class="text-muted">Phones, Tablets, Watches, Headphones</small>
-                      </label>
+                <div class="col-md-6">
+                    <h5 class="card-title mb-3">Object Details</h5>
+                    <div class="mb-3">
+                        <label for="objectName" class="form-label">Object Name</label>
+                        <input type="text" class="form-control" id="objectName" placeholder="Enter object name">
                     </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 mb-3">
-                  <!-- Default radio -->
-                  <div class="form-check h-100 border rounded-3">
-                    <div class="p-3">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-                      <label class="form-check-label" for="flexRadioDefault2">
-                        Accesories <br />
-                        <small class="text-muted">Necklaces, bracelets, rings, earrings</small>
-                      </label>
+                    <div class="mb-3">
+                        <label for="objectImage" class="form-label">Object Image</label>
+                        <input type="file" class="form-control" id="objectImage">
                     </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 mb-3">
-                  <!-- Default radio -->
-                  <div class="form-check h-100 border rounded-3">
-                    <div class="p-3">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" />
-                      <label class="form-check-label" for="flexRadioDefault3">
-                        Books <br />
-                        <small class="text-muted">Academic Books for example </small>
-                      </label>
+                    <div class="mb-3">
+                        <label for="dateFound" class="form-label">Date Found</label>
+                        <input type="date" class="form-control" id="dateFound">
                     </div>
-                  </div>
+                    <div class="mb-3">
+                        <label for="placeFound" class="form-label">Place Found</label>
+                        <select class="form-select" id="placeFound">
+                            <option value="">Select a place</option>
+                            <option value="block1">Block 1</option>
+                            <option value="block2">Block 2</option>
+                            <option value="block3">Block 3</option>
+                            <option value="block1">Block 1</option>
+                            <option value="block2">Block 2</option>
+                            <option value="block3">Block 3</option>
+                            <option value="block1">Block 1</option>
+                            <option value="block2">Block 2</option>
+                            <option value="block3">Block 3</option>
+                            <option value="block1">Block 1</option>
+                            <option value="block2">Block 2</option>
+                            <option value="block3">Block 3</option>
+                            <option value="block1">Block 1</option>
+                            <option value="block2">Block 2</option>
+                            <option value="block3">Block 3</option>
+                            <option value="block1">Block 1</option>
+                            <option value="block2">Block 2</option>
+                            <option value="block3">Block 3</option>
+                            <option value="block1">Block 1</option>
+                            <option value="block2">Block 2</option>
+                            <option value="block3">Block 3</option>
+                            <option value="block1">Block 1</option>
+                            <option value="block2">Block 2</option>
+                            <option value="block3">Block 3</option>
+                            <option value="block1">Block 1</option>
+                            <option value="block2">Block 2</option>
+                            <option value="block3">Block 3</option>
+                            <option value="block1">Block 1</option>
+                            <option value="block2">Block 2</option>
+                            <option value="block3">Block 3</option>
+                            
+                            
+                            <!-- Add more locations here -->
+                        </select>
+                    </div>
                 </div>
+                <div class="col-md-6">
+                    <h5 class="card-title mb-3">Guard Information</h5>
+                    <div class="mb-3">
+                        <label for="guardFirstName" class="form-label">Guard First Name</label>
+                        <input type="text" class="form-control" id="guardFirstName" placeholder="Enter guard's first name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="guardLastName" class="form-label">Guard Last Name</label>
+                        <input type="text" class="form-control" id="guardLastName" placeholder="Enter guard's last name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="guardID" class="form-label">Guard ID</label>
+                        <input type="text" class="form-control" id="guardID" placeholder="Enter guard's ID">
+                    </div>
+                    <div class="mb-3">
+                        <label for="guardEmail" class="form-label">Guard Email</label>
+                        <input type="email" class="form-control" id="guardEmail" placeholder="Enter guard's email">
+                    </div>
+                </div>
+            </div>
+            
+            <h5 class="card-title mb-3">Choose a Category</h5>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="technology" id="categoryTech">
+                        <label class="form-check-label" for="categoryTech">Technology</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="accessories" id="categoryAccessories">
+                        <label class="form-check-label" for="categoryAccessories">Accessories</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="books" id="categoryBooks">
+                        <label class="form-check-label" for="categoryBooks">Books</label>
+                    </div>
+                </div>
+                <br>
+              </br>
+                <!-- Add more categories as needed -->
+                <div class="mb-3">
+                  <label for="itemDescription" class="form-label">Additional Item Description</label>
+                  <textarea class="form-control" id="itemDescription" rows="4" placeholder="Describe the item or add details"></textarea>
               </div>
-  
-              <div class="row">
-                <div class="col-sm-8 mb-3">
-                  <p class="mb-0">Title / Name of the object</p>
-                  <div class="form-outline">
-                    <input type="text" id="typeText" placeholder="Type here" class="form-control" />
-                  </div>
-                </div>
-  
-                <div class="col-sm-4 mb-3">
-                  <p class="mb-0">Block</p>
-                  <select class="form-select">
-                    <option value="1">Block 1</option>
-                    <option value="2">Block 2</option>
-                    <option value="3">Block 3</option>
-                  </select>
-                </div>
-  
-                <div class="col-sm-4 mb-3">
-                  <p class="mb-0">House</p>
-                  <div class="form-outline">
-                    <input type="text" id="typeText" placeholder="Type here" class="form-control" />
-                  </div>
-                </div>
-  
-                <div class="col-sm-4 col-6 mb-3">
-                  <p class="mb-0">Postal code</p>
-                  <div class="form-outline">
-                    <input type="text" id="typeText" class="form-control" />
-                  </div>
-                </div>
-  
-                <div class="col-sm-4 col-6 mb-3">
-                  <p class="mb-0">Zip</p>
-                  <div class="form-outline">
-                    <input type="text" id="typeText" class="form-control" />
-                  </div>
-                </div>
-              </div>
-  
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1" />
-                <label class="form-check-label" for="flexCheckDefault1">Save this address</label>
-              </div>
-  
-              <div class="mb-3">
-                <p class="mb-0">Message to seller</p>
-                <div class="form-outline">
-                  <textarea class="form-control" id="textAreaExample1" rows="2"></textarea>
-                </div>
-              </div>
+            </div>
+            
+              
   
               <div class="float-end">
                 <button class="btn btn-light border">Cancel</button>
@@ -233,6 +211,37 @@
           </div>
           <!-- Checkout -->
         </div>
+        <div class="col-xl-4 col-lg-4 mb-4">
+          <div class="card mb-4 border shadow-0">
+            <div class="p-4">
+              <h5>Security Questions</h5>
+              <p class="mb-0 text-wrap">Answer security questions to verify ownership.</p>
+              <!-- Add your security questions here -->
+              <div class="mb-3">
+                <label for="securityQuestion1" class="form-label">Security Question 1</label>
+                <input type="text" class="form-control" id="securityQuestion1" placeholder="Enter your answer">
+              </div>
+              <div class="mb-3">
+                <label for="securityQuestion2" class="form-label">Security Question 2</label>
+                <input type="text" class="form-control" id="securityQuestion2" placeholder="Enter your answer">
+              </div>
+              <div class="mb-3">
+                <label for="securityQuestion2" class="form-label">Security Question 3</label>
+                <input type="text" class="form-control" id="securityQuestion2" placeholder="Enter your answer">
+              </div>
+              <div class="mb-3">
+                <label for="securityQuestion2" class="form-label">Security Question 4</label>
+                <input type="text" class="form-control" id="securityQuestion2" placeholder="Enter your answer">
+              </div>
+              <div class="mb-3">
+                <label for="securityQuestion2" class="form-label">Security Question 5</label>
+                <input type="text" class="form-control" id="securityQuestion2" placeholder="Enter your answer">
+              </div>
+              <!-- You can add more security questions as needed -->
+            </div>
+          </div>
+        </div>
+        
         
   <!-- Footer -->
   <footer class="text-center text-lg-start text-muted bg-primary mt-3">

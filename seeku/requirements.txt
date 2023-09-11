@@ -1,2 +1,8 @@
-Django
-Pillow
+django
+pillow
+uuid
+emailMessage
+dotenv
+firebase_admin
+smtplib
+pyrebase4
