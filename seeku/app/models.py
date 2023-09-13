@@ -148,19 +148,12 @@ class Object(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
     image = models.ImageField(upload_to="uploads/")
-    
-
-    
-    url = models.URLField(blank=True)
-    # place found, different lists
     place_found = models.CharField(max_length=100, default='Block 1', choices=BLOCK_CHOICES)
-
     date_found = models.DateField(default=date.today)  #set default to today's date
     hour_range = models.CharField(max_length=11, default='05:00-06:00', choices=HOUR_CHOICES)
     brands = models.CharField(max_length=100, default="Versage")
     color = models.CharField(max_length=100, default='Block 1', choices=COLOR_CHOICES)   
-    category = models.CharField(max_length=100, default='Technology', choices=CATEGORY_CHOICES)   
-    place_range = models.CharField(max_length=100)            
+    category = models.CharField(max_length=100, default='Technology', choices=CATEGORY_CHOICES)            
 
 
     

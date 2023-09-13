@@ -74,7 +74,7 @@
   </div>
   <!-- Heading -->
 </header>
-  
+<form method="POST" enctype="multipart/form-data" action="{% url 'publish_object_' %}">
   <section class="bg-light py-5">
     <div class="container">
       <div class="row">
@@ -98,64 +98,98 @@
              
               <div class="row mb-3">
                 <div class="col-md-6">
-                  <form method="post" enctype="multipart/form-data">
+
                     {% csrf_token %}
                     <h5 class="card-title mb-3">Object Details</h5>
                     <div class="mb-3">
                         <label for="objectName" class="form-label">Object Name</label>
-                        <input type="text" class="form-control" id="objectName" placeholder="Enter object name">
-                        {{ form.title }}
+                        <input type="text" class="form-control" id="objectName" placeholder="Enter object name" name="title" value="{{ form.title.value }}">
+                        
                     </div>
                     <div class="mb-3">
+                      <label for="objectColor" class="form-label">Object Color</label>
+                      <input type="text" class="form-control" id="objectColor" placeholder="Enter object color" name="color" value="{{ form.color.value }}">
+                      
+                  </div>
+                    <div class="mb-3">
                         <label for="objectImage" class="form-label">Object Image</label>
-                        <input type="file" class="form-control" id="objectImage" placeholder="Enter object image">>
-                        {{ form.image }}
+                        <input type="file" class="form-control" id="objectImage" placeholder="Enter object image" name="image" value="{{ form.image.value }}">
+                       
                     </div>
                     <div class="mb-3">
                         <label for="dateFound" class="form-label">Date Found</label>
-                        <input type="date" class="form-control" id="dateFound" placeholder="Enter Date Found">>
-                        {{ form.date_found }}
+                        <input type="date" class="form-control" id="dateFound" placeholder="Enter Date Found" name="date_found" value="{{ form.date_found.value }}">
+                     
                     </div>
                     <div class="mb-3">
+                      <label for="objectBrand" class="form-label">Object Brand</label>
+                      <input type="text" class="form-control" id="objectBrand" placeholder="Enter object name" name="brands" value="{{ form.brands.value }}">
+                      
+                  </div>
+                    <div class="mb-3">
                         <label for="placeFound" class="form-label">Place Found</label>
-                        <select class="form-select" id="placeFound" placeholder="Select the Place Found">
-                            <option value="">Select a place</option>
-                            <option value="block1">Block 1</option>
-                            <option value="block2">Block 3</option >
-                            <option value="block3">Block 4</option>
-                            <option value="block1">Block 7</option>
-                            <option value="block2">Block 9</option>
-                            <option value="block3">Block 12</option>
-                            <option value="block1">Block 13</option>
-                            <option value="block2">Block 14</option>
-                            <option value="block3">Block 15</option>
-                            <option value="block1">Block 16</option>
-                            <option value="block2">Block 16</option>
-                            <option value="block3">Block 17</option>
-                            <option value="block1">Block 18</option>
-                            <option value="block2">Block 19</option>
-                            <option value="block3">Block 20</option>
-                            <option value="block1">Block 21</option>
-                            <option value="block2">Block 23</option>
-                            <option value="block3">Block 26</option>
-                            <option value="block1">Block 27</option>
-                            <option value="block2">Block 28</option>
-                            <option value="block3">Block 29</option>
-                            <option value="block1">Block 30</option>
-                            <option value="block2">Block 32</option>
-                            <option value="block3">Block 33</option>
-                            <option value="block1">Block 34</option>
-                            <option value="block2">Block 35</option>
-                            <option value="block3">Block 37</option>
-                            <option value="block1">Block 38</option>
-                            <option value="block2">Block 2</option>
-                            <option value="block3">Block 3</option>
-                            
-                            
+                        <select class="form-select" id="placeFound" placeholder="Select the Place Found" name="place_found" value="{{ form.place_found.value }}">
+                            <option value="Block 1">Block 1</option>
+                            <option value="Block 3">Block 3</option>
+                            <option value="Block 4">Block 4</option>
+                            <option value="Block 7">Block 7</option>
+                            <option value="Block 9">Block 9</option>
+                            <option value="Block 12">Block 12</option>
+                            <option value="Block 13">Block 13</option>
+                            <option value="Block 14">Block 14</option>
+                            <option value="Block 15">Block 15</option>
+                            <option value="Block 16">Block 16</option>
+                            <option value="Block 17">Block 17</option>
+                            <option value="Block 18">Block 18</option>
+                            <option value="Block 19">Block 19</option>
+                            <option value="Block 20">Block 20</option>
+                            <option value="Block 21">Block 21</option>
+                            <option value="Block 23">Block 23</option>
+                            <option value="Block 26">Block 26</option>
+                            <option value="Block 27">Block 27</option>
+                            <option value="Block 28">Block 28</option>
+                            <option value="Block 29">Block 29</option>
+                            <option value="Block 30">Block 30</option>
+                            <option value="Block 32">Block 32</option>
+                            <option value="Block 33">Block 33</option>
+                            <option value="Block 34">Block 34</option>
+                            <option value="Block 35">Block 35</option>
+                            <option value="Block 37">Block 37</option>
+                            <option value="Block 38">Block 38</option>
+                            <option value="Block 39">Block 39</option>
+                                                     
                             <!-- Add more locations here -->
                         </select>
+
                     </div>
+
+                    <div class="mb-3">
+                      <label for="hourFound" class="form-label">Hour Found</label>
+                          <select class="form-select" id="placeFound" placeholder="Select the Hour Range" name="hour_range" value="{{ form.hour_range.value }}">
+                            <option value="">Select hour</option>
+                            <option value="5:00-6:00">5:00-6:00</option>
+                            <option value="6:00-7:00">6:00-7:00</option>
+                            <option value="7:00-8:00">7:00-8:00</option>
+                            <option value="8:00-9:00">8:00-9:00</option>
+                            <option value="9:00-10:00">9:00-10:00</option>
+                            <option value="10:00-11:00">10:00-11:00</option>
+                            <option value="11:00-12:00">11:00-12:00</option>
+                            <option value="12:00-13:00">12:00-13:00</option>
+                            <option value="13:00-14:00">13:00-14:00</option>
+                            <option value="14:00-15:00">14:00-15:00</option>
+                            <option value="15:00-16:00">15:00-16:00</option>
+                            <option value="16:00-17:00">16:00-17:00</option>
+                            <option value="17:00-18:00">17:00-18:00</option>
+                            <option value="18:00-19:00">18:00-19:00</option>
+                            <option value="19:00-20:00">19:00-20:00</option>
+                            <option value="20:00-21:00">20:00-21:00</option>
+                            <option value="21:00-22:00">21:00-22:00</option>
+                            <option value="22:00-23:00">22:00-23:00</option>
+                            <option value="23:00-00:00">23:00-00:00</option>
+                        </select>
+    
                 </div>
+              </div>
                 <div class="col-md-6">
                     <h5 class="card-title mb-3">Guard Information</h5>
                     <div class="mb-3">
@@ -181,19 +215,19 @@
             <div class="row mb-3">
                 <div class="col-md-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="technology" id="categoryTech">
+                        <input class="form-check-input" type="checkbox" value="Technology" id="categoryTech" name="category">
                         <label class="form-check-label" for="categoryTech">Technology</label>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="accessories" id="categoryAccessories">
+                        <input class="form-check-input" type="checkbox" value="Accesories" id="categoryAccessories" name="category">
                         <label class="form-check-label" for="categoryAccessories">Accessories</label>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="books" id="categoryBooks">
+                        <input class="form-check-input" type="checkbox" value="Books" id="categoryBooks" name="category">
                         <label class="form-check-label" for="categoryBooks">Books</label>
                     </div>
                 </div>
@@ -202,7 +236,7 @@
                 <!-- Add more categories as needed -->
                 <div class="mb-3">
                   <label for="itemDescription" class="form-label">Additional Item Description</label>
-                  <textarea class="form-control" id="itemDescription" rows="4" placeholder="Describe the item or add details"></textarea>
+                  <textarea class="form-control" id="itemDescription" rows="4" placeholder="Describe the item or add details" name="description" value="{{ form.description.value }}"></textarea>
               </div>
             </div>
             
@@ -210,7 +244,7 @@
   
               <div class="float-end">
                 <button class="btn btn-light border">Cancel</button>
-                <button class="btn btn-success shadow-0 border">Publish Object</button>
+                <button type="submit" class="btn btn-success shadow-0 border">Publish Object</button>
               </form>
               </div>
             </div>

@@ -31,6 +31,7 @@ urlpatterns = [
     path('my_profile', seek_Uviews.my_profile, name='my_profile'),
     path('history', seek_Uviews.history, name='history'),
     path('publish_object', seek_Uviews.publish_object, name='publish_object'),
+    path('publish_object_', seek_Uviews.publish_object_, name='publish_object_'), # specific request when submitting an object to django admin
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

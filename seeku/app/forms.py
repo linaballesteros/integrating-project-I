@@ -18,7 +18,7 @@ class ClaimObject(forms.ModelForm):
             'date_found': forms.DateInput(attrs={'type': 'date'})
         }
         
-class PublishObjectForm(forms.ModelForm):
+class ObjectForm(forms.ModelForm):
     class Meta:
         model = Object
-        fields = ['title', 'description', 'image', 'place_found', 'hour_range', 'color', 'category']  # Add all fields here
+        fields = ['title', 'description', 'brands', 'image', 'date_found', 'place_found', 'hour_range', 'color', 'category']  # Add all fields here

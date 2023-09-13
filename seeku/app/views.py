@@ -17,7 +17,7 @@ import os
 from email.message import EmailMessage
 import ssl
 import smtplib
-from .forms import BlockFilterForm
+from .forms import ObjectForm
 from datetime import datetime
 
 #Connect to firebase data. 
@@ -379,14 +379,20 @@ def history(request):
 def publish_object(request):
     return render(request, "app\publish_object.html")
 
-def publish_object(request): # for publishing objects (vista vigilantes)
+def publish_object_(request): # for publishing objects (vista vigilantes)
     if request.method == 'POST':
-        form = Object(request.POST, request.FILES)
+        form = ObjectForm(request.POST, request.FILES)
+        print("posttt")
         if form.is_valid():
-            new_object = form.save()  # Save the form data to the database (in djangooo)x
+            new_object = form.save()  # Save the form data to the database
+        # Optionally, you can do additional processing here
+            print(form.errors)
+            print("pasó el valid")
             return redirect('success_page')  # Redirect to a success page
+        else:
+            print(form.errors)  # Print form errors to the console for debugging
     else:
-        form = Object()
+        form = ObjectForm()
 
     return render(request, 'app/publish_object.html', {'form': form})
 
@@ -448,6 +454,7 @@ class ClaimObjectView(View):
         return render(request,"app/claim_req.html",{'form':form})
     def post(self,request):
         pass
+    
 def filterObjects(request):
     place=request.GET.get('place_found','')
     date=request.GET.get('date_found','datetime')
