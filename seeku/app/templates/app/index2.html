@@ -36,9 +36,9 @@
         <div class="order-lg-last col-lg-10 col-sm-8 col-15">
           <div class="d-flex float-end">
             
-          <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">My Profile</p> </a>
-          <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-bars m-1 me-md-2"></i><p class="d-none d-md-block mb-0">History</p> </a>
-          <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-check-square m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Claim Requests</p> </a>
+            <a href="http://localhost:8000/my_profile" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">My Profile</p> </a>
+          <a href="http://localhost:8000/history" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-bars m-1 me-md-2"></i><p class="d-none d-md-block mb-0">History</p> </a>
+          <a href="http://localhost:8000/claim_request" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-check-square m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Claim Requests</p> </a>
         </div>
         </div>
         <!-- Center elements -->
@@ -356,11 +356,10 @@
                   <p class="card-text">{{ object.date_found }}</p>
                   <p class="card-text">{{ object.hour_range }}</p>
                   <p class="card-text">{{ object.category }}</p>
-                  {% if object.url %}
+
                   <a href="{{ object.url }}" class="btn btn-primary">
                     Claim Request
                   </a>
-                  {% endif %}
                 </div>
               </div>
             </div>

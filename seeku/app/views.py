@@ -8,6 +8,7 @@ from django.contrib import messages
 from firebase_admin._auth_utils import handle_auth_backend_error
 from django.urls import reverse
 from .models import Object
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Q # para hacer consultas
 from django.http import HttpResponse
 from functools import wraps
@@ -17,7 +18,7 @@ import os
 from email.message import EmailMessage
 import ssl
 import smtplib
-from .forms import ObjectForm
+from .forms import ObjectForm, ClaimObject
 from datetime import datetime
 
 #Connect to firebase data. 
@@ -379,24 +380,58 @@ def history(request):
 def publish_object(request):
     return render(request, "app\publish_object.html")
 
+def my_objects(request):
+    objects = Object.objects.all()  # Retrieve all objects from the database
+    return render(request, 'my_objects.html', {'objects': objects})
+
+def edit_object(request, object_id): # UPDATE OBJECT
+    object_to_edit = get_object_or_404(Object, pk=object_id)
+    if request.method == "POST":
+        print("holiss")
+        title = request.POST.get('title')
+        color = request.POST.get('color')
+        image = request.FILES.get('image')  
+        date_found = request.POST.get('date_found')
+        brands = request.POST.get('brands')
+        place_found = request.POST.get('place_found')
+        hour_range = request.POST.get('hour_range')
+        description = request.POST.get('description')
+        category = request.POST.getlist('category')  
+        
+        # updating data of objects in django admin
+        object_to_edit.title = title
+        object_to_edit.color = color
+        
+        if image:
+            object_to_edit.image = image
+            
+        object_to_edit.date_found = date_found
+        object_to_edit.brands = brands
+        object_to_edit.place_found = place_found
+        object_to_edit.hour_range = hour_range
+        object_to_edit.description = description
+        object_to_edit.category = category 
+        
+        
+        object_to_edit.save() # changes
+        
+    return render(request, 'edit_object.html', {'object_to_edit' : object_to_edit})
+
 def publish_object_(request): # for publishing objects (vista vigilantes)
     if request.method == 'POST':
         form = ObjectForm(request.POST, request.FILES)
         print("posttt")
         if form.is_valid():
             new_object = form.save()  # Save the form data to the database
-        # Optionally, you can do additional processing here
             print(form.errors)
             print("pasó el valid")
-            return redirect('app\index2.html')  # Redirect to a success page
+            return redirect('app\index2.html')  # Redirect 
         else:
             print(form.errors)  # Print form errors to the console for debugging
     else:
         form = ObjectForm()
 
     return render(request, 'app\index2.html', {'form': form})
-
-
 
 
 

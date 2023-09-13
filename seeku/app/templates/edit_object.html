@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Publish Object</title>
+    <title>Edit Object</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -60,13 +60,13 @@
   <!-- Heading -->
   <div class="bg-primary mb-4">
     <div class="container py-4">
-      <h3 class="text-white mt-2">Publish Object</h3>
+      <h3 class="text-white mt-2">Edit Object</h3>
       <!-- Breadcrumb -->
       <nav class="d-flex mb-2">
         <h6 class="mb-0">
           <a href="http://localhost:8000" class="text-white-50"><u>Home</u></a>
           <span class="text-white-50 mx-2"> > </span>
-          <a href="http://localhost:8000/my_profile" class="text-white"><u>Publish Object </u></a>
+          <a href="http://localhost:8000/my_profile" class="text-white"><u>Edit Object </u></a>
         </h6>
       </nav>
       <!-- Breadcrumb -->
@@ -74,7 +74,7 @@
   </div>
   <!-- Heading -->
 </header>
-<form method="POST" enctype="multipart/form-data" action="{% url 'publish_object' %}">
+<form method="POST" enctype="multipart/form-data" action="">
   <section class="bg-light py-5">
     <div class="container">
       <div class="row">
@@ -86,9 +86,9 @@
                 <p class="mb-0 text-wrap ">Add Object Details to Publish</p>
               </div>
               <div class="d-flex align-items-center justify-content-center flex-column flex-md-row">
-                <a href="#" class="btn btn-outline-primary me-0 me-md-2 mb-2 mb-md-0 w-100">Save Draft</a>
-                <a href="#" class="btn btn-primary shadow-0 text-nowrap w-100">See Drafts</a>
-              </div>
+                <a href="http://localhost:8000" class="btn btn-outline-primary me-0 me-md-2 mb-2 mb-md-0 w-100">Back to Home Page</a>
+                <a href="http://localhost:8000/publish_object" class="btn btn-primary shadow-0 text-nowrap w-100">Publish a new Object</a>
+                </div>
             </div>
           </div>
   
@@ -100,35 +100,35 @@
                 <div class="col-md-6">
 
                     {% csrf_token %}
-                    <h5 class="card-title mb-3">Object Details</h5>
+                    <h5 class="card-title mb-3"><h1>Editing Object: {{ object_to_edit.title }}</h1></h5>
                     <div class="mb-3">
                         <label for="objectName" class="form-label">Object Name</label>
-                        <input type="text" class="form-control" id="objectName" placeholder="Enter object name" name="title" value="{{ form.title.value }}">
+                        <input type="text" class="form-control" id="objectName" placeholder="Enter object name" name="title" value="{{ object_to_edit.title }}">
                         
                     </div>
                     <div class="mb-3">
                       <label for="objectColor" class="form-label">Object Color</label>
-                      <input type="text" class="form-control" id="objectColor" placeholder="Enter object color" name="color" value="{{ form.color.value }}">
+                      <input type="text" class="form-control" id="objectColor" placeholder="Enter object color" name="color" value="{{ object_to_edit.color }}">
                       
                   </div>
                     <div class="mb-3">
                         <label for="objectImage" class="form-label">Object Image</label>
-                        <input type="file" class="form-control" id="objectImage" placeholder="Enter object image" name="image" value="{{ form.image.value }}">
+                        <input type="file" class="form-control" id="objectImage" placeholder="Enter object image" name="image" value="{{ object_to_edit.image }}">
                        
                     </div>
                     <div class="mb-3">
                         <label for="dateFound" class="form-label">Date Found</label>
-                        <input type="date" class="form-control" id="dateFound" placeholder="Enter Date Found" name="date_found" value="{{ form.date_found.value }}">
+                        <input type="date" class="form-control" id="dateFound" placeholder="Enter Date Found" name="date_found" value="{{ object_to_edit.date_found }}">
                      
                     </div>
                     <div class="mb-3">
                       <label for="objectBrand" class="form-label">Object Brand</label>
-                      <input type="text" class="form-control" id="objectBrand" placeholder="Enter object name" name="brands" value="{{ form.brands.value }}">
+                      <input type="text" class="form-control" id="objectBrand" placeholder="Enter object name" name="brands" value="{{ object_to_edit.brands }}">
                       
                   </div>
                     <div class="mb-3">
                         <label for="placeFound" class="form-label">Place Found</label>
-                        <select class="form-select" id="placeFound" placeholder="Select the Place Found" name="place_found" value="{{ form.place_found.value }}">
+                        <select class="form-select" id="placeFound" placeholder="Select the Place Found" name="place_found" value="{{ object_to_edit.place_found }}">
                             <option value="Block 1">Block 1</option>
                             <option value="Block 3">Block 3</option>
                             <option value="Block 4">Block 4</option>
@@ -165,7 +165,7 @@
 
                     <div class="mb-3">
                       <label for="hourFound" class="form-label">Hour Found</label>
-                          <select class="form-select" id="placeFound" placeholder="Select the Hour Range" name="hour_range" value="{{ form.hour_range.value }}">
+                          <select class="form-select" id="placeFound" placeholder="Select the Hour Range" name="hour_range" value="{{ object_to_edit.hour_range }}">
                             <option value="">Select hour</option>
                             <option value="5:00-6:00">5:00-6:00</option>
                             <option value="6:00-7:00">6:00-7:00</option>
@@ -215,19 +215,19 @@
             <div class="row mb-3">
                 <div class="col-md-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="Technology" id="categoryTech" name="category">
+                        <input class="form-check-input" type="checkbox" value="Technology" id="categoryTech" name="category" {% if "Technology" in object_to_edit.category %}checked{% endif %}>
                         <label class="form-check-label" for="categoryTech">Technology</label>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="Accesories" id="categoryAccessories" name="category">
+                        <input class="form-check-input" type="checkbox" value="Accesories" id="categoryAccessories" name="category" {% if "Accesories" in object_to_edit.category %}checked{% endif %}>
                         <label class="form-check-label" for="categoryAccessories">Accessories</label>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="Books" id="categoryBooks" name="category">
+                        <input class="form-check-input" type="checkbox" value="Books" id="categoryBooks" name="category" {% if "Books" in object_to_edit.category %}checked{% endif %}>
                         <label class="form-check-label" for="categoryBooks">Books</label>
                     </div>
                 </div>
@@ -236,15 +236,15 @@
                 <!-- Add more categories as needed -->
                 <div class="mb-3">
                   <label for="itemDescription" class="form-label">Additional Item Description</label>
-                  <textarea class="form-control" id="itemDescription" rows="4" placeholder="Describe the item or add details" name="description" value="{{ form.description.value }}"></textarea>
+                  <textarea class="form-control" id="itemDescription" rows="4" placeholder="Describe the item or add details" name="description" value="{{ object_to_edit.description }}"></textarea>
               </div>
             </div>
             
               
   
               <div class="float-end">
-                <button class="btn btn-light border">Cancel</button>
-                <button type="submit" class="btn btn-success shadow-0 border">Publish Object</button>
+                <a href="http://localhost:8000/my_objects" class="btn btn-success shadow-0 border">Cancel</a>
+                <button type="submit" class="btn btn-success shadow-0 border">Save Changes</button>
               </form>
               </div>
             </div>
@@ -282,7 +282,7 @@
             </div>
             
           </div>
-          <a href="http://localhost:8000/my_objects"  class="btn btn-primary">View Published Objects</a>
+          <a href="" class="btn btn-primary">View Published Objects</a>
 
         </div>
         

@@ -20,8 +20,67 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"
     rel="stylesheet"
     />
-    <title>Inicio de seccion</title>
+    <title>Inicio de sesión</title>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+        <!-- Google Fonts Roboto -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+        <!-- MDB -->
+        <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" />
+        <!-- Custom styles -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.20.0/css/mdb.min.css" />
+        <!-- A link im testing-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+<header>
+  <!-- Jumbotron -->
+  <div class="p-3 text-center bg-white border-bottom">
+    <div class="container">
+      <div class="row gy-3">
+        <!-- Left elements -->
+        <div class="col-lg-2 col-sm-4 col-4">
+          <a href="https://github.com/linaballesteros/integrating-project-I" target="_blank" class="float-start">
+            <img src="https://github.com/linaballesteros/integrating-project-I/assets/140737132/8dc9fc23-9394-4101-82fd-faaf220de752" height="120" />
+          </a>
+        </div>
+        <!-- Left elements -->
+
+        <!-- Center elements -->
+        <div class="order-lg-last col-lg-10 col-sm-8 col-15">
+          <div class="d-flex float-end">
+            
+            <a href="http://localhost:8000/my_profile" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">My Profile</p> </a>
+          <a href="http://localhost:8000/history" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-bars m-1 me-md-2"></i><p class="d-none d-md-block mb-0">History</p> </a>
+          <a href="http://localhost:8000/claim_request" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-check-square m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Claim Requests</p> </a>
+        </div>
+        </div>
+        <!-- Center elements -->
+
+        <!-- Right elements -->
+      
+        <!-- Right elements -->
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+
+  <!-- Heading -->
+  <div class="bg-primary mb-4">
+    <div class="container py-4">
+      <h3 class="text-white mt-2">Log In</h3>
+      <!-- Breadcrumb -->
+      <nav class="d-flex mb-2">
+        <h6 class="mb-0">
+          <a href="http://localhost:8000" class="text-white-50"><u>Home</u></a>
+          <span class="text-white-50 mx-2"> > </span>
+          <a href="http://localhost:8000/login" class="text-white"><u>Log In</u></a>
+        </h6>
+      </nav>
+      <!-- Breadcrumb -->
+    </div>
+  </div>
+  <!-- Heading -->
+</header>
 <body>
     <section class="vh-100" style="background-color: #eee;">
         <div class="container h-100">
@@ -35,7 +94,7 @@
                       <div class="alert alert-info">{{ message }}</div>
                       {% endif %}
       
-                      <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Inicia seccion</p>
+                      <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Inicia sesión</p>
       
                       <form class="mx-1 mx-md-4" method="POST">
                         {% csrf_token %}
@@ -49,7 +108,7 @@
                         </div>
       
                         <div class="mb-4">
-                          <label for="password" class="form-label">Contrasena</label>
+                          <label for="password" class="form-label">Contraseña</label>
                           <input type="password" id="password" class="form-control" name="password" required>
                         </div>
 
@@ -58,11 +117,11 @@
                         </div>
       
                         <div class="d-flex justify-content-center">
-                          <button type="submit" class="btn btn-primary btn-lg">Incia seccion</button>
+                          <button type="submit" class="btn btn-primary btn-lg">Incia sesión</button>
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center mb-4 mt-4">
-                            <p class="mb-0">No tienes una cuenta aun? <a href="" class="text-white-50 fw-bold">Sign Up</a>
+                            <p class="mb-0">¿No tienes una cuenta aún? <a href="" class="text-white-50 fw-bold">Sign Up</a>
                         </div>
 
                       </form>

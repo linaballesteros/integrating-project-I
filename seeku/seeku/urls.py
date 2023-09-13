@@ -32,6 +32,11 @@ urlpatterns = [
     path('history', seek_Uviews.history, name='history'),
     path('publish_object', seek_Uviews.publish_object, name='publish_object'),
     path('publish_object_', seek_Uviews.publish_object_, name='publish_object_'), # specific request when submitting an object to django admin
+    path('my_objects', seek_Uviews.my_objects, name='my_objects'), 
+  #  path('edit_object', seek_Uviews.edit_object, name='edit_object'), 
+    path('edit_object/<int:object_id>/', seek_Uviews.edit_object, name='edit_object'),
+    path('claim/',seek_Uviews.ClaimObjectView.as_view(),name="claim_req"),
+    path('claim/filtered/',seek_Uviews.filterObjects, name='filter'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
