@@ -388,13 +388,13 @@ def publish_object_(request): # for publishing objects (vista vigilantes)
         # Optionally, you can do additional processing here
             print(form.errors)
             print("pasó el valid")
-            return redirect('success_page')  # Redirect to a success page
+            return redirect('app\index2.html')  # Redirect to a success page
         else:
             print(form.errors)  # Print form errors to the console for debugging
     else:
         form = ObjectForm()
 
-    return render(request, 'app/publish_object.html', {'form': form})
+    return render(request, 'app\index2.html', {'form': form})
 
 
 
