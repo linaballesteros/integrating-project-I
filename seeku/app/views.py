@@ -386,7 +386,7 @@ def my_objects(request):
 
 def edit_object(request, object_id): # UPDATE OBJECT
     object_to_edit = get_object_or_404(Object, pk=object_id)
-    if request.method == "POST":
+    if request.method == "POST" and 'save_changes' in request.POST:
         print("holiss")
         title = request.POST.get('title')
         color = request.POST.get('color')
@@ -414,8 +414,16 @@ def edit_object(request, object_id): # UPDATE OBJECT
         
         
         object_to_edit.save() # changes
-        
-    return render(request, 'edit_object.html', {'object_to_edit' : object_to_edit})
+        return render(request, 'edit_object.html', {'object_to_edit' : object_to_edit})
+    elif request.method == "POST" and 'delete_object' in request.POST:
+         obj_to_delete = get_object_or_404(Object, pk=object_id)
+         obj_to_delete.delete()
+         return render(request, 'my_objects.html', {'object_to_edit' : object_to_edit})   
+    else:
+        form = ObjectForm()
+        return render(request, 'edit_object.html', {'object_to_edit' : object_to_edit})
+
+  
 
 def publish_object_(request): # for publishing objects (vista vigilantes)
     if request.method == 'POST':
@@ -433,6 +441,12 @@ def publish_object_(request): # for publishing objects (vista vigilantes)
 
     return render(request, 'app\index2.html', {'form': form})
 
+def delete_object(request, object_id):
+  obj_to_delete = get_object_or_404(Object, pk=object_id)
+  if request.method == "GET":
+      print("gettt")
+      obj_to_delete.delete()
+  return render(request, 'app\edit_object.html')
 
 
 
@@ -498,3 +512,14 @@ def filterObjects(request):
     filtered_objects = Object.objects.filter(color=color, brands=brand,place_found=place,date_found__gte=date)
     print(filtered_objects)
     return render(request,"app/index2.html",{'objects': filtered_objects})
+
+def count_objects(request):
+    # Retrieve the counts of objects for each block from the database
+    block_counts = objects.values('place_found').annotate(count=Count('place_found'))
+    
+    # Pass the block-wise object counts as a context variable to the template
+    context = {
+        'block_counts': block_counts,
+    }
+    
+    return render(request, 'app/index2.html', context)

@@ -37,6 +37,7 @@ urlpatterns = [
     path('edit_object/<int:object_id>/', seek_Uviews.edit_object, name='edit_object'),
     path('claim/',seek_Uviews.ClaimObjectView.as_view(),name="claim_req"),
     path('claim/filtered/',seek_Uviews.filterObjects, name='filter'),
+    path('delete_object/<int:object_id>/', seek_Uviews.delete_object, name='delete_object'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

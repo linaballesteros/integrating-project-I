@@ -25,5 +25,6 @@ urlpatterns = [
     path('claim/',seek_Uviews.ClaimObjectView.as_view(),name="claim_req"),
     path('login', seek_Uviews.login, name='login'),
     path('claim/filtered/',seek_Uviews.filterObjects, name='filter'),
+    
 ]
 

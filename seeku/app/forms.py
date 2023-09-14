@@ -22,3 +22,6 @@ class ObjectForm(forms.ModelForm):
     class Meta:
         model = Object
         fields = ['title', 'description', 'brands', 'image', 'date_found', 'place_found', 'hour_range', 'color', 'category']  # Add all fields here
+
+class DeleteForm(forms.Form):
+  id = forms.IntegerField(required=True)

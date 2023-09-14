@@ -190,8 +190,13 @@
                                       <input href="?searchObject=&place_found=Block {{block_number}}"  class="form-check-input" type="checkbox" value="Block {{ block_number }}" id="blockCheckbox{{ block_number }}" name="blockCheckboxes" >
                                       <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Block {{ block_number }}</label>
                                       <span class="badge badge-secondary float-end">30</span>
+                                      {% for count in block_counts %}
+                                      {% if count.block_number == block_number %}
+                                        <span class="badge badge-secondary float-end">{{ count.count }}</span>
+                                      {% endif %}
+                                    {% endfor %}
                                   </div>
-                                  {% endfor %}
+                                {% endfor %}
                                   {% for block_number in "23456789" %}
                                   <div class="form-check">
                                       <input href="?searchObject=&place_found=Block 1{{block_number}}" class="form-check-input" type="checkbox" value="Block 1{{ block_number }}" id="blockCheckbox1{{ block_number }}" name="blockCheckboxes">
@@ -351,7 +356,6 @@
                 <img class="card-img-top" src="{{ object.image.url }}" style="object-fit: cover; height: 200px;">
                 <div class="card-body">
                   <h5 class="card-title fw-bold">{{ object.title }}</h5>
-                  <p class="card-text">{{ object.description }}</p>
                   <p class="card-text">{{ object.place_found }}</p>
                   <p class="card-text">{{ object.date_found }}</p>
                   <p class="card-text">{{ object.hour_range }}</p>
