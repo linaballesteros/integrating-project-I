@@ -367,7 +367,6 @@ def search(request):
     """
     return render(request, "app/index2.html", {'searchTerm': searchTerm, 'objects': objects, 'category': category})
 
-@login_required
 def claim_request(request):
     return render(request, "app\claim_request.html")
 
@@ -433,20 +432,19 @@ def publish_object_(request): # for publishing objects (vista vigilantes)
             new_object = form.save()  # Save the form data to the database
             print(form.errors)
             print("pasó el valid")
-            return redirect('app\index2.html')  # Redirect 
         else:
             print(form.errors)  # Print form errors to the console for debugging
     else:
         form = ObjectForm()
 
-    return render(request, 'app\index2.html', {'form': form})
+    return render(request, 'app\publish_object.html', {'form': form})
 
 def delete_object(request, object_id):
-  obj_to_delete = get_object_or_404(Object, pk=object_id)
-  if request.method == "GET":
-      print("gettt")
-      obj_to_delete.delete()
-  return render(request, 'app\edit_object.html')
+    obj_to_delete = get_object_or_404(Object, pk=object_id)
+    if request.method == "GET":
+        print("gettt")
+        obj_to_delete.delete()
+    return render(request, 'app\my_objects.html')
 
 
 
