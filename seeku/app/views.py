@@ -382,6 +382,13 @@ def my_profile(request):
 def edit_profile_view(request):
      return render(request, "app\edit_profile.html")
  
+def history(request):
+    print("entró a history")
+    # Consulta la base de datos para obtener los objetos con object_status igual a "Claimed" para mostrarlos en el historial
+    objetos_claimed = Object.objects.filter(object_status="Claimed")
+    print(objetos_claimed)
+    return render(request, 'app\history.html', {'objetos_claimed': objetos_claimed})
+ 
 def analytics(request):
     
     # por categorias
@@ -425,8 +432,6 @@ def analytics(request):
 
     return render(request, 'app\_analytics.html', {'labels': labels, 'counts': counts, 'months': months, 'counts2': counts2, 'places': places, 'counts3': counts3, 'hours': hours, 'counts4': counts4},)
 
-def history(request):
-    return render(request, "app\history.html")
 
 def publish_object(request):
     return render(request, "app\publish_object.html")
