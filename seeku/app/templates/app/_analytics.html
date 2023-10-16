@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <style>
+    .search-form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px; 
+    }
+  
+    .search-form input[type="text"] {
+      width: 300px;
+    }
+  </style>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>SeekU</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.20.0/css/mdb.min.css" />
+    <!-- A link im testing-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .button-container {
+            display: flex; /* Hace que los botones se alineen horizontalmente */
+            justify-content: center; /* Los centra horizontalmente dentro del contenedor */
+            margin-top: 10px; /* Espaciado superior */
+        }
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+        }
+        .header h1 {
+            font-size: 2em;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .chart-container {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .chart-title {
+            font-size: 1.5em;
+            text-align: center;
+        }
+    </style>
+    <style>
+        .chart-container canvas {
+            max-width: 500px;
+            width: 100%; 
+            height: auto; 
+        }
+    </style>
+    
+</head>
+<body>
+    <!--Main Navigation-->
+<header>
+  <!-- Jumbotron -->
+  <div class="p-3 text-center bg-white border-bottom">
+    <div class="container">
+      <div class="row gy-3">
+        <!-- Left elements -->
+        <div class="col-lg-2 col-sm-4 col-4">
+          <a href="https://mdbootstrap.com/" target="_blank" class="float-start">
+            <img src="https://github.com/linaballesteros/integrating-project-I/assets/140737132/8dc9fc23-9394-4101-82fd-faaf220de752" height="120" />
+          </a>
+        </div>
+        <!-- Left elements -->
+
+        <!-- Center elements -->
+        <div class="order-lg-last col-lg-10 col-sm-8 col-15">
+          <div class="d-flex float-end">
+            
+          <a href="http://localhost:8000/my_profile" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">My Profile</p> </a>
+          <a href="http://localhost:8000/history" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-bars m-1 me-md-2"></i><p class="d-none d-md-block mb-0">History</p> </a>
+          <a href="http://localhost:8000/claim_request" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-check-square m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Claim Requests</p> </a>
+          <a href="http://localhost:8000/analytics" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-check-square m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Analytics</p> </a>
+        </div>
+        </div>
+        <!-- Center elements -->
+
+        <!-- Right elements -->
+
+        <!-- sssssssssssssssss-->
+    
+        
+        <!-- Right elements -->
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- Jumbotron -->
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <!-- Container wrapper -->
+    <div class="container justify-content-center">
+      <!-- Toggle button -->
+      <button
+              class="navbar-toggler border py-2 text-dark"
+              type="button"
+              data-mdb-toggle="collapse"
+              data-mdb-target="#navbarLeftAlignExample"
+              aria-controls="navbarLeftAlignExample"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              >
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+  
+
+      <!--
+        <!-- Left links -->
+      </div>
+  
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+     
+      <!-- Heading -->
+      <div class="bg-primary mb-4">
+        <div class="container py-4">
+          <h3 class="text-white mt-2">Analytics</h3>
+          <!-- Breadcrumb -->
+          <nav class="d-flex mb-2">
+            <h6 class="mb-0">
+              <a href="http://localhost:8000" class="text-white-50"><u>Home</u></a>
+              <span class="text-white-50 mx-2"> > </span>
+              <a href="http://localhost:8000/my_profile" class="text-white"><u>Analytics</u></a>
+            </h6>
+          </nav>
+          <!-- Breadcrumb -->
+        </div>
+      </div>
+      <section>
+        <div class="container">
+            <div class="row">
+                <!-- -->
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Lost Objects By Category</h5>
+                            <div class="chart-container">
+                                <canvas id="myChart"></canvas>
+                                <div class="button-container">
+                                    <a href="#" id="downloadChartButton1" class="btn btn-primary">Download Chart as JPG</a>
+                                    <a href="#" id="downloadChartButton1_" class="btn btn-primary">Download Chart as PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                    <!-- -->
+            
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Lost Objects By Month</h5>
+                            <div class="chart-container">
+                                <canvas id="myChart2"></canvas>
+                                <div class="button-container">
+                                    <a href="#" id="downloadChartButton2" class="btn btn-primary">Download Chart as JPG</a>
+                                    <a href="#" id="downloadChartButton2_" class="btn btn-primary">Download Chart as PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+               <!-- -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title"> Top 10 places where objects are lost the most</h5>
+                    <div class="chart-container">
+                        <canvas id="myChart3"></canvas>
+                        <div class="button-container">
+                            <a href="#" id="downloadChartButton3" class="btn btn-primary">Download Chart as JPG</a>
+                            <a href="#" id="downloadChartButton3_" class="btn btn-primary">Download Chart as PDF</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Lost Objects By Hours</h5>
+                <div class="chart-container">
+                    <canvas id="myChart4"></canvas>
+                    <div class="button-container">
+                        <a href="#" id="downloadChartButton4" class="btn btn-primary">Download Chart as JPG</a>
+                        <a href="#" id="downloadChartButton4_" class="btn btn-primary">Download Chart as PDF</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    </section>
+
+    <!-- ... -->
+</body>
+</html>
+
+
+
+
+
+  
+      <!-- Heading -->
+      
+
+    
+    <script type="text/javascript" src="/static/app/js/script.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/mdbootstrap@4.20.0/js/mdb.min.js"></script>
+    <script>
+        document.getElementById("downloadChartButton1").addEventListener("click", function() {
+            var canvas = document.getElementById("myChart");
+            var image = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
+            this.href = image;
+            this.download = "chart.jpg";
+        });
+        
+    </script>
+
+    <script>
+        document.getElementById("downloadChartButton2").addEventListener("click", function() {
+            var canvas = document.getElementById("myChart2");
+            var image = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
+            this.href = image;
+            this.download = "chart.jpg";
+        });
+        
+    </script>
+
+    <script>
+        document.getElementById("downloadChartButton3").addEventListener("click", function() {
+            var canvas = document.getElementById("myChart3");
+            var image = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
+            this.href = image;
+            this.download = "chart.jpg";
+        });
+        
+    </script>
+
+    <script>
+        document.getElementById("downloadChartButton4").addEventListener("click", function() {
+            var canvas = document.getElementById("myChart4");
+            var image = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
+            this.href = image;
+            this.download = "chart.jpg";
+        });
+        
+    </script>
+
+    <script>
+        import jsPDF from 'jspdf';
+        document.getElementById("downloadChartButton1_").addEventListener("click", function() {
+            console.log("Button clicked");
+            var canvas = document.getElementById("myChart");
+            console.log(canvas);
+            var pdf = new jsPDF();
+            pdf.addImage(canvas.toDataURL("image/png"), "PNG", 10, 10, 90, 50);
+            pdf.save("chart.pdf");
+        });
+        
+        
+    </script>
+    
+    <script>
+        //line
+//line
+var ctxL = document.getElementById("myChart4").getContext('2d');
+var hours = {{ hours|safe }};
+var counts4 = {{ counts4|safe }};
+var myChart4 = new Chart(ctxL, {
+  type: 'line',
+  data: {
+    labels: hours,
+    datasets: [{
+      label: "Objects",
+      data: counts4,
+      backgroundColor: "rgba(0, 0, 255, 0.2)",
+      borderColor: "blue",
+      borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true
+  }
+});
+</script>
+    
+    
+    <script>
+        var ctxL = document.getElementById("myChart3").getContext('2d');
+        var places = {{ places|safe }};
+        var counts3 = {{ counts3|safe }};
+        var myChart3 = new Chart(ctxL, {
+            type: "horizontalBar",
+            data: {
+              labels: places,
+              datasets: [{
+                label: "Objects",
+                data: counts3,
+                fill: false,
+                backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360", "#5A5E6B", "#FF8C00", "#008080"],
+                hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774", "#676D7A", "#FFA500", "#008080"],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                xAxes: [{
+                  ticks: {
+                    beginAtZero: true
+                  }
+                }]
+              }
+            }
+          });
+    </script>
+
+
+    <script>
+            //line
+    //line
+    var ctxL = document.getElementById("myChart2").getContext('2d');
+    var months = {{ months|safe }};
+    var counts2 = {{ counts2|safe }};
+    var myChart2 = new Chart(ctxL, {
+      type: 'line',
+      data: {
+        labels: months,
+        datasets: [{
+          label: "Objects",
+          data: counts2,
+          backgroundColor: 'rgba(105, 0, 132, .2)',
+          borderColor: 'rgba(200, 99, 132, .7)',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true
+      }
+    });
+    </script>
+
+
+
+    <script>
+
+    
+    var ctxP = document.getElementById("myChart").getContext('2d');
+    var labels = {{ labels|safe }};
+    var counts = {{ counts|safe }};
+var myChart = new Chart(ctxP, {
+  plugins: [ChartDataLabels],
+  type: 'pie',
+  data: {
+    labels: labels,
+    datasets: [{
+      data: counts,
+      backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360", "#5A5E6B", "#FF8C00", "#800080", "#008080"],
+      hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774", "#676D7A", "#FFA500", "#9932CC", "#20B2AA"]
+    }]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'right',
+      labels: {
+        padding: 20,
+        boxWidth: 10
+      }
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          let sum = 0;
+          let dataArr = ctx.chart.data.datasets[0].data;
+          dataArr.map(data => {
+            sum += data;
+          });
+          let percentage = (value * 100 / sum).toFixed(2) + "%";
+          return percentage;
+        },
+        color: 'white',
+        labels: {
+          title: {
+            font: {
+              size: '16'
+            }
+          }
+        }
+      }
+    }
+  }
+});
+</script>
+
+
+    
+</body>
+
+</html>

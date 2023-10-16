@@ -4,7 +4,7 @@ from .forms import ObjectForm  # Import the ObjectForm from your forms.py file
 
 class ObjectAdmin(admin.ModelAdmin):
     form = ObjectForm  # Use the custom form for the Object model
-    list_display = ('title', 'description', 'image', 'place_found', 'hour_range', 'color', 'category')  # Customize displayed fields in the admin list
+    list_display = ('title', 'description', 'brands', 'image', 'date_found', 'place_found', 'hour_range', 'color', 'category', 'place_registered', 'object_status', 'object_recovered')  # Customize displayed fields in the admin list
 
     def save_model(self, request, obj, form, change):
         print("Enters save model function")

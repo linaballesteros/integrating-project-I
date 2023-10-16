@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Edit Profile</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"  />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.20.0/css/mdb.min.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"></script>
+
+
+    
+    
+</head>
+
+<body>
+    <!--Main Navigation-->
+    <header>
+      <!-- Jumbotron -->
+      <div class="p-3 text-center bg-white border-bottom">
+        <div class="container">
+          <div class="row gy-3">
+            <!-- Left elements -->
+            <div class="col-lg-2 col-sm-4 col-4">
+              <a href="https://github.com/linaballesteros/integrating-project-I" target="_blank" class="float-start">
+                <img src="https://github.com/linaballesteros/integrating-project-I/assets/140737132/8dc9fc23-9394-4101-82fd-faaf220de752" height="120" />
+              </a>
+            </div>
+            <!-- Left elements -->
+    
+            <!-- Center elements -->
+            <div class="order-lg-last col-lg-10 col-sm-8 col-15">
+              <div class="d-flex float-end">
+                
+                <a href="http://localhost:8000/my_profile" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">My Profile</p> </a>
+              <a href="http://localhost:8000/history" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-bars m-1 me-md-2"></i><p class="d-none d-md-block mb-0">History</p> </a>
+              <a href="http://localhost:8000/claim_request" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-check-square m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Claim Requests</p> </a>
+            </div>
+            </div>
+            <!-- Center elements -->
+    
+            <!-- Right elements -->
+          
+            <!-- Right elements -->
+          </div>
+        </div>
+      </div>
+      <!-- Jumbotron -->
+    
+      <!-- Heading -->
+      <div class="bg-primary mb-4">
+        <div class="container py-4">
+          <h3 class="text-white mt-2">Edit Profile</h3>
+          <!-- Breadcrumb -->
+          <nav class="d-flex mb-2">
+            <h6 class="mb-0">
+              <a href="http://localhost:8000" class="text-white-50"><u>Home</u></a>
+              <span class="text-white-50 mx-2"> > </span>
+              <a href="http://localhost:8000/my_profile" class="text-white"><u>Edit Profile</u></a>
+            </h6>
+          </nav>
+          <!-- Breadcrumb -->
+        </div>
+      </div>
+      <!-- Heading -->
+    </header>
+
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <!-- Add the user's profile picture here -->
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                            <h5 class="my-3">Juan Esteban García</h5>
+                            <p class="text-muted mb-1">Student</p>
+                            <p class="text-muted mb-4">Medellín, Antioquia</p>
+                            <!-- Add a form for editing the profile picture -->
+                            <form action="/update_profile_picture" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="file" name="profile_picture" accept="image/*">
+                                <button type="submit" class="btn btn-primary">Change Profile Picture</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Add additional user information here -->
+                </div>
+                <div class="col-lg-8">
+                    <!-- Add a form for editing user information here -->
+                    <form action="/update_profile" method="POST">
+                        {% csrf_token %}
+                        <!-- Full Name -->
+                        <div class="mb-3">
+                            <label for="full_name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="full_name" name="full_name" value="Juan Esteban García">
+                        </div>
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="juangarcia@eafit.edu.co">
+                        </div>
+                        <!-- Phone -->
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" value="(+57) 304 6568217">
+                        </div>
+                        <!-- Gender -->
+                        <div class="mb-3">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select class="form-select" id="gender" name="gender">
+                                <option value="male" selected>Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <!-- Add more fields as needed -->
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+<!-- Footer -->
+<footer class="text-center text-lg-start text-muted bg-primary mt-3">
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start pt-4 pb-4">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-12 col-lg-3 col-sm-12 mb-2">
+          <!-- Content -->
+          <a href="https://mdbootstrap.com/" target="_blank" class="text-white h2">
+            SeekU
+          </a>
+          <p class="mt-1 text-white">
+            © 2023 Copyright: Seeku 2023
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-6 col-sm-4 col-lg-2">
+          <!-- Links -->
+          <h6 class="text-uppercase text-white fw-bold mb-2">
+            Project
+          </h6>
+          <ul class="list-unstyled mb-4">
+            <li><a class="text-white-50" href="#">About us</a></li>
+            <li><a class="text-white-50" href="#">FAQ</a></li>
+            <li><a class="text-white-50" href="#">Categories</a></li>
+            <li><a class="text-white-50" href="#">Terms and Conditions</a></li>
+          </ul>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-6 col-sm-4 col-lg-2">
+          <!-- Links -->
+          <h6 class="text-uppercase text-white fw-bold mb-2">
+            Information
+          </h6>
+          <ul class="list-unstyled mb-4">
+            <li><a class="text-white-50" href="#">Help center</a></li>
+            <li><a class="text-white-50" href="#">About the Lost and Found Objects System in EAFIT</a></li>
+            <li><a class="text-white-50" href="#">Information</a></li>
+            <li><a class="text-white-50" href="#">Contribute</a></li>
+          </ul>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-6 col-sm-4 col-lg-2">
+          <!-- Links -->
+          <h6 class="text-uppercase text-white fw-bold mb-2">
+            Support
+          </h6>
+          <ul class="list-unstyled mb-4">
+            <li><a class="text-white-50" href="#">Help</a></li>
+            <li><a class="text-white-50" href="#">Documents</a></li>
+            <li><a class="text-white-50" href="#">Project Info</a></li>
+            <li><a class="text-white-50" href="#">My profile</a></li>
+          </ul>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-12 col-sm-12 col-lg-3">
+          <!-- Links -->
+          <h6 class="text-uppercase text-white fw-bold mb-2">Notifications</h6>
+          <p class="text-white">Get information about Seeku</p>
+          <div class="input-group mb-3">
+            <input type="email" class="form-control border" placeholder="Email" aria-label="Email" aria-describedby="button-addon2" />
+            <div class="input-group-append">
+              <button class="btn btn-light border shadow-0" type="button" id="button-addon2" data-mdb-ripple-color="dark">
+                Join
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <div class="">
+    <div class="container">
+      <div class="d-flex justify-content-between py-4 border-top">
+    
+        <!--- payment --->

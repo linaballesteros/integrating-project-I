@@ -142,7 +142,18 @@ blocks_list = [
     "Synthetic fields - North Parking Lot"
 ]
 
+OFFICE_CHOICES = [ ('Library', 'Library'),
+    ('Block 3', 'Block 3'),
+]
 
+STATUS_CHOICES = [ ('Claimed', 'Claimed'),
+    ('Not Claimed', 'Not Claimed'),
+    
+]
+RECOVERED_CHOICES = [ ('Recovered', 'Recovered'),
+    ('Not Recovered', 'Not Recovered'),
+    
+]
 
 class Object(models.Model):
     title = models.CharField(max_length=100)
@@ -151,19 +162,10 @@ class Object(models.Model):
     place_found = models.CharField(max_length=100, default='Block 1', choices=BLOCK_CHOICES)
     date_found = models.DateField(default=date.today)  #set default to today's date
     hour_range = models.CharField(max_length=11, default='05:00-06:00', choices=HOUR_CHOICES)
-    brands = models.CharField(max_length=100, default="Versage")
+    brands = models.CharField(max_length=100, default="Unkwown")
     color = models.CharField(max_length=100, default='Block 1', choices=COLOR_CHOICES)   
-    category = models.CharField(max_length=100, default='Technology', choices=CATEGORY_CHOICES)            
-
-
-    
-    """discounted_price = models.FloatField()
-    description = models.TextField()
-    composition = models.TextField(default='')
-    prodapp = models.TextField(default='')
-    # brand = models.CharField(max_length=100)
-    category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
-    product_image = models.ImageField(upload_to='product')
-    def __str__(self):
-        return self.title
-    """
+    category = models.CharField(max_length=100, default='Technology', choices=CATEGORY_CHOICES)   
+    place_registered = models.CharField(max_length=100, default='Block 3', choices=OFFICE_CHOICES) 
+    object_status = models.CharField(max_length=100, default='Not Claimed', choices=STATUS_CHOICES)    
+    object_recovered = models.CharField(max_length=100, default='Not Recovered', choices=RECOVERED_CHOICES)           
+# actualizar modeloooooooooooooo
