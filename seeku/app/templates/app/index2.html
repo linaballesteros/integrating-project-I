@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
   <style>
+    ::selection {
+      background-color: #ADD8E6 !important;
+      color: white;
+    }
+
+    input:focus {
+      border-color: #ADD8E6 !important; /* Cambia 'border-color' al color deseado, como el azul claro */
+    }
     .site-branding .site-title a {
       color: black; 
     }
@@ -198,6 +206,7 @@
           
         </header><!-- #masthead -->
         
+        
     
         
       
@@ -225,6 +234,7 @@
         
           </header><!-- .entry-header -->
           
+          
     
       <div class="entry-content clear" itemprop="text">
     
@@ -245,6 +255,21 @@
         </div>
                   </div>
         </section>
+            <div class="n2_clear"><ss3-force-full-width data-overflow-x="body" data-horizontal-selector="body" class="n2-ss-no-bga-fixed" style="transform: translate3d(44px, 0px, 0px); width: 820px; opacity: 1;"><div class="n2-section-smartslider fitvidsignore n2_clear" data-ssid="8" tabindex="0" role="region" aria-label="Slider"><div id="n2-ss-8-align" class="n2-ss-align n2-ss-align-visible"><div class="n2-padding"><div id="n2-ss-8" data-creator="Smart Slider 3" data-responsive="fullwidth" class="n2-ss-slider n2-ow n2-has-hover n2-ss-loaded n2-ss-mobilePortrait" data-device-mode="mobilePortrait"><div class="n2-ss-slider-wrapper-inside">
+            <div class="bg-primary mb-4">
+              <div class="container py-4">
+                <h3 class="text-white mt-2" style="margin-left: 60px;"> Search</h3>
+                <!-- Breadcrumb -->
+                <nav class="d-flex mb-2">
+                  <h6 class="mb-0">
+                    <a href="http://localhost:8000" class="text-white-50" style="margin-left: 60px;"><u>Home</u></a>
+                    <span class="text-white-50 mx-2"> > </span>
+                    <a href="http://localhost:8000/search" class="text-white" ><u>Search</u></a>
+                  </h6>
+                </nav>
+                <!-- Breadcrumb -->
+              </div>
+            </div>
             <section class="elementor-section elementor-top-section elementor-element elementor-element-e175b57 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="e175b57" data-element_type="section">
                 <div class="elementor-container elementor-column-gap-default">
               <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-af64ae5" data-id="af64ae5" data-element_type="column">
@@ -268,21 +293,8 @@
             
                       <div class="elementor-widget-container">
               
-          <div class="n2_clear"><ss3-force-full-width data-overflow-x="body" data-horizontal-selector="body" class="n2-ss-no-bga-fixed" style="transform: translate3d(44px, 0px, 0px); width: 820px; opacity: 1;"><div class="n2-section-smartslider fitvidsignore n2_clear" data-ssid="8" tabindex="0" role="region" aria-label="Slider"><div id="n2-ss-8-align" class="n2-ss-align n2-ss-align-visible"><div class="n2-padding"><div id="n2-ss-8" data-creator="Smart Slider 3" data-responsive="fullwidth" class="n2-ss-slider n2-ow n2-has-hover n2-ss-loaded n2-ss-mobilePortrait" data-device-mode="mobilePortrait"><div class="n2-ss-slider-wrapper-inside">
-            <div class="bg-primary mb-4">
-              <div class="container py-4">
-                <h3 class="text-white mt-2">Search</h3>
-                <!-- Breadcrumb -->
-                <nav class="d-flex mb-2">
-                  <h6 class="mb-0">
-                    <a href="http://localhost:8000" class="text-white-50"><u>Home</u></a>
-                    <span class="text-white-50 mx-2"> > </span>
-                    <a href="http://localhost:8000/search" class="text-white"><u>Search</u></a>
-                  </h6>
-                </nav>
-                <!-- Breadcrumb -->
-              </div>
-            </div>
+      
+            
             <!-- Heading -->
          
       
@@ -321,6 +333,7 @@
     <span id="elementor-device-mode" class="elementor-screen-only"></span></body>
     <!-- Container wrapper -->
   </nav>
+  
   <!-- Navbar -->
   <!-- Jumbotron -->
   
@@ -331,6 +344,7 @@
     <form method="POST" action="{% url 'search' %}">
       {% csrf_token %}
         <section class="">
+          
           <div class="container">
           <div class="row">
           <!-- sidebar -->
