@@ -85,6 +85,13 @@ You can navigate through the web application by indicating the specified path:
     http://localhost:8000/history
 
 ```
+## Usage
+
+- In order to use the application you need to create an account. Go to the Sign Up module or http://localhost:8000/register to do it.
+- Note: Only EAFIT accounts are allowed, an email will be sent to the account in order to verify the user's identity.
+- Log in to your account once verified.
+- Complete a Claim Request to find the object you want to claim.
+- 
 
 ## Contribute
 

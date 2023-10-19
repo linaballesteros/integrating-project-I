@@ -1,5 +1,11 @@
 #Librerias para manejar firebase, son firebase_admin y pyrebase
 from django.shortcuts import render
+from datetime import datetime, timedelta, date
+
+import folium # map library
+import webbrowser
+from django.utils import timezone
+from folium.plugins import MarkerCluster # markers
 from django.db.models.functions import TruncMonth
 from django.db.models import Count
 from django.db.models import F
@@ -17,8 +23,8 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Q # para hacer consultas
 from django.http import HttpResponse
 from functools import wraps
+import webbrowser
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
 #Librerias para mandar correos automaticos
 from dotenv import load_dotenv 
 import os
@@ -27,154 +33,19 @@ import ssl
 import smtplib
 from .forms import ObjectForm, ClaimObject
 from datetime import datetime
+from accounts.views import login_required
+
 
 #Connect to firebase data. 
 #-------------------------------------------------------------------------------------------
-config = {
-  'apiKey': "AIzaSyB01Ld99k0bH5nGA2QSo1IDYWwOMLyC0gc",
-  'authDomain': "seek-u-34bb1.firebaseapp.com",
-  'databaseURL': "https://seek-u-34bb1-default-rtdb.firebaseio.com",
-  'projectId': "seek-u-34bb1",
-  'storageBucket': "seek-u-34bb1.appspot.com",
-  'messagingSenderId': "160388318273",
-  'appId': "1:160388318273:web:cfbcc3a6fe271119c4b2c0",
-  'measurementId': "G-4PZTY17X6V"
-}
-
-cred = credentials.Certificate('seek-u-34bb1-firebase-adminsdk-qezx3-e8b002c1a6.json')
-
-
-initialize_app(cred)
-db = firestore.client()
-
-
-firebase = pyrebase.initialize_app(config)
-auth_pyrebase = firebase.auth()
 #--------------------------------------------------------------------------------------------------------
 
 #Start de functions for the page. 
 
-#Function that help to register and verificate ther user in the database
-def register_user(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
-        phone = request.POST['mobile_phone']
-        country_phone = request.POST['country_code']
-        name = request.POST['name']
-        phone_complete = country_phone+phone
 
-        try:
-            #Verifica que el dominio sea de @eafit.edu.co
-            if not email.endswith('@eafit.edu.co'):
-                error_message = "Por favor, use un correo electrónico válido de @eafit.edu.co"
-                return render(request, 'app/register.html', {'error_message': error_message})
-            
-            if len(password) < 6:
-                error_message = "La contrasena no es lo suficientemente larga"
-                return render(request, 'app/register.html', {'error_message': error_message})
-            
-            user = auth.create_user(email=email, password=password, phone_number=phone_complete)
-            # Crear usuario en Firebase Auth
-            print("Usuario creado:", user.email)
-            # Generar enlace de verificación y enviar correo
-            link = auth.generate_email_verification_link(email)
-            print("Correo de verificación enviado")
-            print("Enlace de verificación:", link)
-            send_email(user.email,link)
-            #Add to the collection the user with the role, "regular"
-            create_Collectio_User(user.email,user.phone_number,'regular',user.uid,password,name)
-            # Redirigir a la página de inicio de sesión u otra página deseada
-            return redirect(reverse('login')+'?email_verification=true') 
 
-        except Exception as e:
-            error_message = str(e)
-            if hasattr(e, 'error_info') and hasattr(e.error_info, 'message'):
-                error_message = str(e.error_info.message)
-            print('Error al registrar usuario:', error_message)
-            return render(request, 'app/register.html', {'error_message': error_message})
-
-    return render(request, 'app/register.html') 
  
-
-
-#Function that help to connect the user with the database, and depend of the user_role have some actions. 
-def login(request):
-    
-    #Show in the screen a message to the user for verificate de email. 
-     email_verification = request.GET.get('email_verification')
-     if email_verification == 'true':
-        message = "Por favor, verifica tu correo electrónico antes de iniciar sesión."
-     else:
-        message = ""
-
-     if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
-        try:
-            user = auth.get_user_by_email(email)
-            if user.email_verified:
-                auth_pyrebase.sign_in_with_email_and_password(email, password)
-                # Generar el token personalizado
-                # Obtener el uid del usuario autenticado (esto puede variar según cómo almacenes el uid en tu sesión)
-                user_uid = user.uid
-                # Almacenar el uid en la sesión para usarlo posteriormente
-                request.session['user_uid'] = user_uid
-                # Consultar Firestore para obtener el rol del usuario
-                user_doc = db.collection('usuario_eafit').document(user_uid).get()
-                user_role = user_doc.get('profile_role')
-                if user_role == 'admin':
-                    print("entro aqui")
-                    return redirect('publish_object')  # Cambia 'admin_dashboard' por la URL de la página del admin
-                elif user_role == 'regular':
-                    return redirect(reverse("home_aferlogin"))  # Cambia 'home' por la URL de la página del usuario regular
-            else:
-                error_message = "Por favor, verifica tu correo electronico"
-                return render(request, 'app/login.html', {'error_message': error_message})
-        except Exception as e:
-            error_message = str(e)
-            if hasattr(e, 'error_info') and hasattr(e.error_info, 'message'):
-                error_message = str(e.error_info.message)
-            print('Error al inicar sesion:', error_message)
-            #error_message = "Credenciales inválidas. Por favor, verifica tus datos."
-            return render(request, 'app/login.html', {'error_message': error_message})
-        
-     return render(request, 'app/login.html', {'message': message})
-
-def is_user_authenticated(request):
-    try:
-        # Verifica si existe un token de autenticación en la sesión del usuario
-        user_uid = request.session.get('user_uid')
-        if user_uid:
-            return True
-        else:
-            return False
-    except Exception as e:
-        # Manejar la excepción específica aquí, por ejemplo, imprimir un mensaje de registro
-        print(f"Error al verificar la autenticación del usuario: {str(e)}")
-        return False
-
-
-def login_required(view_func):
-    @wraps(view_func)
-    def _wrapped_view(request, *args, **kwargs):
-        if not is_user_authenticated(request):
-            print(request.session.get('user_uid'))
-            return redirect('login')  # Redirige a la página de inicio de sesión si el usuario no ha iniciado sesión
-        return view_func(request, *args, **kwargs)
-    return _wrapped_view
-
-
-def home(request):
-    searchTerm = request.GET.get('searchObject')
-    if searchTerm:
-        objects = Object.objects.filter(title__icontains=searchTerm)        
-    elif searchTerm == False:
-        objects = Object.objects.all()
-    else:
-        return render(request, "app\index.html")        
-    return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects})   
-
+@login_required
 def search(request):
     searchTerm = request.POST.get('searchObject')
     categories = request.POST.getlist('category')
@@ -371,162 +242,20 @@ def search(request):
         objects = objects.filter(category=place_found)
     """
     return render(request, "app/index2.html", {'searchTerm': searchTerm, 'objects': objects, 'category': category})
-
+@login_required
 def claim_request(request):
     return render(request, "app\claim_request.html")
 
-def my_profile(request):
-    return render(request, "app\profile.html")
-
-def edit_profile_view(request):
-     return render(request, "app\edit_profile.html")
- 
+@login_required
 def history(request):
     print("entró a history")
     # Consulta la base de datos para obtener los objetos con object_status igual a "Claimed" para mostrarlos en el historial
     objetos_claimed = Object.objects.filter(object_status="Claimed")
     print(objetos_claimed)
     return render(request, 'app\history.html', {'objetos_claimed': objetos_claimed})
- 
-def analytics(request):
-    
-    # por categorias
-    data = Object.objects.values('category').annotate(count=Count('category'))
-    
 
-    labels = [item['category'] for item in data]
-    counts = [item['count'] for item in data]
-
-    print("Labels:", labels)
-    print("Counts:", counts)
-
-    # meses 
-    data2 = Object.objects.annotate(month=TruncMonth('date_found'))
-    data2 = data2.values('month').annotate(count=Count('id'))
-
-    months = [item['month'].strftime('%B') for item in data2]
-    counts2 = [item['count'] for item in data2]
-    
-    print("Months:", months)
-    print("Counts2:", counts2)
-    
-    # Obtener los 10 lugares con la mayor cantidad de objetos perdidos
-    data_places = Object.objects.values('place_found').annotate(count=Count('id')).order_by('-count')[:10]
-
-    places = [item['place_found'] for item in data_places]
-    counts3 = [item['count'] for item in data_places]
-
-    print("Places:", places)
-    print("Counts Places:", counts3)
-    
-    # horarios 
-    data_hours = Object.objects.values('hour_range').annotate(count=Count('id'))
-
-    hours = [item['hour_range'] for item in data_hours]
-    counts4 = [item['count'] for item in data_hours]
-
-    print("Hours:", hours)
-    print("Counts Hours:", counts4)
-
-
-    return render(request, 'app\_analytics.html', {'labels': labels, 'counts': counts, 'months': months, 'counts2': counts2, 'places': places, 'counts3': counts3, 'hours': hours, 'counts4': counts4},)
-
-
-def publish_object(request):
-    return render(request, "app\publish_object.html")
-
-def  my_objects(request):
-    objects = Object.objects.all()  # Retrieve all objects from the database
-    return render(request, 'my_objects.html', {'objects': objects})
-
-def about(request):
-    return render(request, "app\_about.html")
 
 # analytics
-
-
-
-
-
-
-def edit_object(request, object_id): # UPDATE OBJECT
-    object_to_edit = get_object_or_404(Object, pk=object_id)
-    if request.method == "POST" and 'save_changes' in request.POST:
-        print("holiss")
-        title = request.POST.get('title')
-        color = request.POST.get('color')
-        image = request.FILES.get('image')  
-        date_found = request.POST.get('date_found')
-        brands = request.POST.get('brands')
-        place_found = request.POST.get('place_found')
-        hour_range = request.POST.get('hour_range')
-        description = request.POST.get('description')
-        category = request.POST.getlist('category')  
-        
-        # updating data of objects in django admin
-        object_to_edit.title = title
-        object_to_edit.color = color
-        
-        if image:
-            object_to_edit.image = image
-            
-        object_to_edit.date_found = date_found
-        object_to_edit.brands = brands
-        object_to_edit.place_found = place_found
-        object_to_edit.hour_range = hour_range
-        object_to_edit.description = description
-        object_to_edit.category = category 
-        
-        
-        object_to_edit.save() # changes
-        return render(request, 'edit_object.html', {'object_to_edit' : object_to_edit})
-    elif request.method == "POST" and 'delete_object' in request.POST:
-         obj_to_delete = get_object_or_404(Object, pk=object_id)
-         obj_to_delete.delete()
-         return render(request, 'my_objects.html', {'object_to_edit' : object_to_edit})   
-    else:
-        form = ObjectForm()
-        return render(request, 'edit_object.html', {'object_to_edit' : object_to_edit})
-
-  
-
-def publish_object_(request): # for publishing objects (vista vigilantes)
-    if request.method == 'POST':
-        form = ObjectForm(request.POST, request.FILES)
-        print("posttt")
-        if form.is_valid():
-            new_object = form.save()  # Save the form data to the database
-            mails=Noti.objects.filter(brands=new_object.brands,color=new_object.color,place_found=new_object.place_found)
-            subject="Object published"
-            link="http://127.0.0.1:8000"+reverse("claim_req")
-            description=f"""
-            <html>
-            <body>
-            <p>Seems like the object you searched for was found:</p>
-            <p>Color: {new_object.color}</p>
-            <p>Place: {new_object.place_found}</p>
-            <p>Brand: {new_object.brands}</p>
-            <p><span style="background-color: yellow ; color:black;">
-            If your object is not there you will have to select "notify me" option again.</span></p>
-            <a href="{link}">Claim Request</p>
-            
-            </body>
-            </html>"""
-            print("-->",len(mails))
-            for obj in mails:
-                email=obj.user_email
-                print(email)
-                send_email2(email,description,subject)
-            mails.delete()
-            print(form.errors)
-            print("pasó el valid")
-        else:
-            print(form.errors)  
-    else:
-        form = ObjectForm()
-
-    return render(request, 'app\publish_object.html', {'form': form})
-
 
 
 lost_object_names = [
@@ -697,7 +426,7 @@ class ClaimObjectView(View):
         return render(request,"app/claim_req.html",{'form':form})
     def post(self,request):
         pass
-    
+@login_required  
 def filterObjects(request):
     place=request.POST.get('place_found','')
     date=request.POST.get('date_found','datetime')
@@ -710,9 +439,10 @@ def filterObjects(request):
     print(filtered_objects)
     return render(request,"app/index2.html",{'objects': filtered_objects})
 
+@login_required
 def count_objects(request):
     # Retrieve the counts of objects for each block from the database
-    block_counts = objects.values('place_found').annotate(count=Count('place_found'))
+    block_counts = Object.objects.values('place_found').annotate(count=Count('place_found'))
     
     # Pass the block-wise object counts as a context variable to the template
     context = {
@@ -720,7 +450,7 @@ def count_objects(request):
     }
     
     return render(request, 'app/index2.html', context)
-def send_email2(email_user,description,subject_,parametro=True):
+def send_email2(email_user,description,subject_):
     load_dotenv()
     email_sender ="seek.ueafit@gmail.com"
     password = os.getenv("PASSWORD")
@@ -739,25 +469,27 @@ def send_email2(email_user,description,subject_,parametro=True):
         smtp.login(email_sender,password)
         smtp.sendmail(email_sender,email_reciver,em.as_string())
 
-#@login_required
+@login_required
 def NotifyMe(request):
     place=request.session.get('place_found')
     color=request.session.get('color')
     brand=request.session.get('brand')
-    #email=request.user.email
-    Noti.objects.create(brands=brand,color=color,place_found=place)
+    email=request.user.email
+    Noti.objects.create(brands=brand,color=color,place_found=place,user_email=email)
     print("hola",place,color,brand)
-    return redirect(reverse("home_aferlogin"))
+    return redirect(reverse("home"))
+@login_required
 def claiming(request,id):
     try:
         object_to_edit = get_object_or_404(Object, pk=id)
         print(id)
         object_to_edit.object_status="Claimed"
-        # subject="Confirm object claim"
-        # link = auth.generate_email_verification_link(email)
-        # description=f"""
-        # <p href={link}><a>Clik here to claim object</a></p>"""
+        subject="Object claimed"
+        description=f"""
+        <p>Your claimed object has an id {id}</p>
+        """
+        send_email2(request.user.email,description,subject)
         object_to_edit.save()
     except:
         pass
-    return redirect(reverse("home_aferlogin"))
+    return redirect(reverse("home"))

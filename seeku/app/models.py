@@ -131,16 +131,7 @@ BLOCK_CHOICES = [
     ('Synthetic fields - North Parking Lot', 'Synthetic fields - North Parking Lot') ]
 
 
-blocks_list = [
-    "Block 1", "Block 2", "Block 3", "Block 4", "Block 5", "Block 6", "Block 7", "Block 8", "Block 9", "Block 10",
-    "Block 12", "Block 13", "Block 14", "Block 15",
-    "Block 16", "Block 17", "Block 18", "Block 19", "Block 20", "Block 21",
-    "Block 23", "Block 26", "Block 27", "Block 28", "Block 29", "Block 30",
-    "Block 32", "Block 33", "Block 34", "Block 35", "Block 37", "Block 38",
-    "Block 39", "Argos Block", "Main Cafeteria", "Cafeteria 2", "North Parking Lot",
-    "South Parking Lot", "Guayabos Parking Lot", "Synthetic fields - Main Cafeteria",
-    "Synthetic fields - North Parking Lot"
-]
+
 
 OFFICE_CHOICES = [ ('Library', 'Library'),
     ('Block 3', 'Block 3'),
