@@ -1,5 +1,15 @@
 from django.shortcuts import render
 #Helps that the app work
+#Librerias para manejar firebase, son firebase_admin y pyrebase
+from django.shortcuts import render
+from datetime import datetime, timedelta, date
+
+import folium # map library
+import webbrowser
+from django.utils import timezone
+from folium.plugins import MarkerCluster # markers
+from django.db.models.functions import TruncMonth
+from django.db.models import Count
 from django.shortcuts import render
 from django.db.models.functions import TruncMonth
 from django.db.models import Count
@@ -90,14 +100,14 @@ def edit_object(request, object_id): # UPDATE OBJECT
         
         
         object_to_edit.save() # changes
-        return render(request, 'edit_object.html', {'object_to_edit' : object_to_edit})
+        return render(request, 'app\edit_object.html', {'object_to_edit' : object_to_edit})
     elif request.method == "POST" and 'delete_object' in request.POST:
          obj_to_delete = get_object_or_404(Object, pk=object_id)
          obj_to_delete.delete()
-         return render(request, 'my_objects.html', {'object_to_edit' : object_to_edit})   
+         return render(request, 'app\my_objects.html', {'object_to_edit' : object_to_edit})   
     else:
         form = ObjectForm()
-        return render(request, 'edit_object.html', {'object_to_edit' : object_to_edit})
+        return render(request, 'app\edit_object.html', {'object_to_edit' : object_to_edit})
 
 #Function that edit the object to the security
 @login_required
@@ -114,3 +124,19 @@ def  my_objects(request):
     return render(request, 'app\my_objects.html', {'objects': objects})
 
 
+@login_required
+def expired_objects(request):
+    current_date = date.today()
+    print("current date")
+    print(current_date)
+
+    # Calcula la fecha hace 2 meses
+    two_months_ago = current_date - timedelta(days=60)
+
+    # Realiza la consulta para obtener objetos encontrados en los últimos 2 meses
+    objects= Object.objects.exclude(date_found__range=(two_months_ago, current_date))
+
+    print("two-months")
+    print(two_months_ago)
+
+    return render(request, 'app\expired_objects.html', {'objects': objects, 'two_months_ago': two_months_ago})
