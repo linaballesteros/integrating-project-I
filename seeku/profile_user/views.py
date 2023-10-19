@@ -84,6 +84,21 @@ def edit_profile_view(request):
         name = request.POST['name']
         phone = request.POST['phone']
         
-        
         user_ref = db.collection('usuario_eafit').document(user_uid)
-    return render(request, "app\edit_profile.html")
+        user_data = user_ref.get()
+        user_dict = user_data.to_dict()
+        
+        nuevos_valores = {
+        'name': name,
+        'email': email,
+        'phone': phone,
+        }
+        
+        user_ref.update(nuevos_valores)
+        
+    user_ref = db.collection('usuario_eafit').document(user_uid)
+    # Obtiene los datos del usuario
+    user_data = user_ref.get()
+    user_dict = user_data.to_dict()
+        
+    return render(request, "app\edit_profile.html", {'user_data' : user_dict})

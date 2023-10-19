@@ -336,45 +336,39 @@
                             <!-- Add the user's profile picture  -->
                             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                                 alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                            <h5 class="my-3">Juan Esteban García</h5>
+                            <h5 class="my-3">{{ user_data.name }}</h5>
                             <p class="text-muted mb-1">Student</p>
                             <p class="text-muted mb-4">Medellín, Antioquia</p>
                             <!-- Add a form for editing the profile picture -->
+                            <!-- 
                             <form action="/update_profile_picture" method="POST" enctype="multipart/form-data">
-                                {% csrf_token %}
+                              {% csrf_token %}
                                 <input type="file" name="profile_picture" accept="image/*">
                                 <button type="submit" class="btn btn-primary">Change Profile Picture</button>
                             </form>
+                            -->
                         </div>
                     </div>
                     <!-- Add additional user information here -->
                 </div>
                 <div class="col-lg-8">
                     <!-- Add a form for editing user information here -->
-                    <form action="/update_profile" method="POST">
+                    <form action="/edit_profile_view/" method="POST">
                         {% csrf_token %}
                         <!-- Full Name -->
                         <div class="mb-3">
                             <label for="full_name" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="Juan Esteban García">
+                            <input type="text" class="form-control" id="name" name="name" value="{{ user_data.name }}">
                         </div>
                         <!-- Email -->
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="juangarcia@eafit.edu.co">
+                            <input type="email" class="form-control" id="email" name="email" value=" {{ user_data.email }} ">
                         </div>
                         <!-- Phone -->
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" value="(+57) 304 6568217">
-                        </div>
-                        <!-- Gender -->
-                        <div class="mb-3">
-                            <label for="gender" class="form-label">Gender</label>
-                            <select class="form-select" id="gender" name="gender">
-                                <option value="male" selected>Male</option>
-                                <option value="female">Female</option>
-                            </select>
+                            <input type="tel" class="form-control" id="phone" name="phone" value=" {{ user_data.mobile_phone }} ">
                         </div>
                         <!-- Add more fields as needed -->
                         <button type="submit" class="btn btn-primary">Save Changes</button>
