@@ -504,8 +504,8 @@
             <div class="mb-3">
               <label for="object_status" class="form-label">Object Current Status</label>
                   <select class="form-select" id="object_status" placeholder="Select current status" name="object_status" value="{{ form.object_status.value }}" required>
-                    <option value="Claimed">Claimed</option>
                     <option value="Not Claimed">Not Claimed</option>
+                    <option value="Claimed">Claimed</option>
                     
                 </select>
 
@@ -609,35 +609,7 @@
           </div>
           <!-- Checkout -->
         </div>
-        <div class="col-xl-4 col-lg-4 mb-4">
-          <div class="card mb-4 border shadow-0">
-            <div class="p-4">
-              <h5>Security Questions</h5>
-              <p class="mb-0 text-wrap">Answer security questions to verify ownership.</p>
-              <!-- Add your security questions here -->
-              <div class="mb-3">
-                <label for="securityQuestion1" class="form-label">Security Question 1</label>
-                <input type="text" class="form-control" id="securityQuestion1" placeholder="Enter your answer">
-              </div>
-              <div class="mb-3">
-                <label for="securityQuestion2" class="form-label">Security Question 2</label>
-                <input type="text" class="form-control" id="securityQuestion2" placeholder="Enter your answer">
-              </div>
-              <div class="mb-3">
-                <label for="securityQuestion2" class="form-label">Security Question 3</label>
-                <input type="text" class="form-control" id="securityQuestion2" placeholder="Enter your answer">
-              </div>
-              <div class="mb-3">
-                <label for="securityQuestion2" class="form-label">Security Question 4</label>
-                <input type="text" class="form-control" id="securityQuestion2" placeholder="Enter your answer">
-              </div>
-              <div class="mb-3">
-                <label for="securityQuestion2" class="form-label">Security Question 5</label>
-                <input type="text" class="form-control" id="securityQuestion2" placeholder="Enter your answer">
-              </div>
-
-              <!-- You can add more security questions as needed -->
-            </div>
+        
             
           </div>
           <a href="http://localhost:8000/my_objects"  class="btn btn-primary">View Published Objects</a>
