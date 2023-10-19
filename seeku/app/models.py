@@ -167,5 +167,10 @@ class Object(models.Model):
     category = models.CharField(max_length=100, default='Technology', choices=CATEGORY_CHOICES)   
     place_registered = models.CharField(max_length=100, default='Block 3', choices=OFFICE_CHOICES) 
     object_status = models.CharField(max_length=100, default='Not Claimed', choices=STATUS_CHOICES)    
-    object_recovered = models.CharField(max_length=100, default='Not Recovered', choices=RECOVERED_CHOICES)           
+    object_recovered = models.CharField(max_length=100, default='Not Recovered', choices=RECOVERED_CHOICES)          
 # actualizar modeloooooooooooooo
+class Noti(models.Model):
+    place_found = models.CharField(max_length=100, default='Block 1', choices=BLOCK_CHOICES)
+    brands = models.CharField(max_length=100, default="Unkwown")
+    color = models.CharField(max_length=100, default='Block 1', choices=COLOR_CHOICES)   
+    user_email=models.EmailField(max_length=254,default="_@eafit.edu.co")

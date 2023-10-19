@@ -24,7 +24,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', seek_Uviews.home, name = 'home_aferlogin'),
-    path('register', seek_Uviews.register_user),
+    path('register', seek_Uviews.register_user,name="register"),
     path("search/", seek_Uviews.search, name = 'search'),
     path("claim_request/", seek_Uviews.claim_request, name = 'claim_request'),
     path('login', seek_Uviews.login, name='login'),
@@ -41,6 +41,8 @@ urlpatterns = [
     path('claim/',seek_Uviews.ClaimObjectView.as_view(),name="claim_req"),
     path('claim/filtered/',seek_Uviews.filterObjects, name='filter'),
     path('delete_object/<int:object_id>/', seek_Uviews.delete_object, name='delete_object'),
+    path('noti/',seek_Uviews.NotifyMe,name='notify'),
+    path('claiming<id>/',seek_Uviews.claiming,name='claiming'),
     
 ]
 

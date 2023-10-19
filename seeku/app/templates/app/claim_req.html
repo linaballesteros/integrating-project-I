@@ -331,8 +331,8 @@
   <!-- Jumbotron -->
 </header>
 <body>
-    <form method="GET" action={% url 'filter'%}>
-        <!--{% csrf_token %}-->
+    <form method="POST" action={% url 'filter'%}>
+        {% csrf_token %}
 
         {%for field in form %}
             <div class="form-control {% if field.errors %} errors{% endif %}">

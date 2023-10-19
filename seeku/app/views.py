@@ -12,7 +12,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from firebase_admin._auth_utils import handle_auth_backend_error
 from django.urls import reverse
-from .models import Object
+from .models import Object, Noti
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q # para hacer consultas
 from django.http import HttpResponse
@@ -127,7 +127,7 @@ def login(request):
                     print("entro aqui")
                     return redirect('publish_object')  # Cambia 'admin_dashboard' por la URL de la página del admin
                 elif user_role == 'regular':
-                    return redirect('search')  # Cambia 'home' por la URL de la página del usuario regular
+                    return redirect(reverse("home_aferlogin"))  # Cambia 'home' por la URL de la página del usuario regular
             else:
                 error_message = "Por favor, verifica tu correo electronico"
                 return render(request, 'app/login.html', {'error_message': error_message})
@@ -175,7 +175,6 @@ def home(request):
         return render(request, "app\index.html")        
     return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects})   
 
-# @login_required
 def search(request):
     searchTerm = request.POST.get('searchObject')
     categories = request.POST.getlist('category')
@@ -497,6 +496,28 @@ def publish_object_(request): # for publishing objects (vista vigilantes)
         print("posttt")
         if form.is_valid():
             new_object = form.save()  # Save the form data to the database
+            mails=Noti.objects.filter(brands=new_object.brands,color=new_object.color,place_found=new_object.place_found)
+            subject="Object published"
+            link="http://127.0.0.1:8000"+reverse("claim_req")
+            description=f"""
+            <html>
+            <body>
+            <p>Seems like the object you searched for was found:</p>
+            <p>Color: {new_object.color}</p>
+            <p>Place: {new_object.place_found}</p>
+            <p>Brand: {new_object.brands}</p>
+            <p><span style="background-color: yellow ; color:black;">
+            If your object is not there you will have to select "notify me" option again.</span></p>
+            <a href="{link}">Claim Request</p>
+            
+            </body>
+            </html>"""
+            print("-->",len(mails))
+            for obj in mails:
+                email=obj.user_email
+                print(email)
+                send_email2(email,description,subject)
+            mails.delete()
             print(form.errors)
             print("pasó el valid")
         else:
@@ -678,10 +699,13 @@ class ClaimObjectView(View):
         pass
     
 def filterObjects(request):
-    place=request.GET.get('place_found','')
-    date=request.GET.get('date_found','datetime')
-    color = request.GET.get('color', '')
-    brand = request.GET.get('brands', '')
+    place=request.POST.get('place_found','')
+    date=request.POST.get('date_found','datetime')
+    color = request.POST.get('color', '')
+    brand = request.POST.get('brands', '')
+    request.session["place_found"]=place
+    request.session['color']=color
+    request.session['brand']=brand
     filtered_objects = Object.objects.filter(color=color, brands=brand,place_found=place,date_found__gte=date)
     print(filtered_objects)
     return render(request,"app/index2.html",{'objects': filtered_objects})
@@ -696,3 +720,44 @@ def count_objects(request):
     }
     
     return render(request, 'app/index2.html', context)
+def send_email2(email_user,description,subject_,parametro=True):
+    load_dotenv()
+    email_sender ="seek.ueafit@gmail.com"
+    password = os.getenv("PASSWORD")
+    email_reciver = email_user
+    subject = subject_
+    body= description
+    em = EmailMessage()
+    em["From"] = email_sender
+    em["To"] = email_reciver
+    em["Subject"] = subject
+    em.set_content(body,subtype="html")
+    
+    context = ssl.create_default_context()
+    
+    with smtplib.SMTP_SSL("smtp.gmail.com",465,context = context) as smtp:
+        smtp.login(email_sender,password)
+        smtp.sendmail(email_sender,email_reciver,em.as_string())
+
+#@login_required
+def NotifyMe(request):
+    place=request.session.get('place_found')
+    color=request.session.get('color')
+    brand=request.session.get('brand')
+    #email=request.user.email
+    Noti.objects.create(brands=brand,color=color,place_found=place)
+    print("hola",place,color,brand)
+    return redirect(reverse("home_aferlogin"))
+def claiming(request,id):
+    try:
+        object_to_edit = get_object_or_404(Object, pk=id)
+        print(id)
+        object_to_edit.object_status="Claimed"
+        # subject="Confirm object claim"
+        # link = auth.generate_email_verification_link(email)
+        # description=f"""
+        # <p href={link}><a>Clik here to claim object</a></p>"""
+        object_to_edit.save()
+    except:
+        pass
+    return redirect(reverse("home_aferlogin"))

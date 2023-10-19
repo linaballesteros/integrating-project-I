@@ -519,7 +519,6 @@
                                        
                                     </div>
                                     {% endfor %}    
-                                   
 
 
                                                       
@@ -663,16 +662,35 @@
                     <p class="card-text">{{ object.date_found }}</p>
                     <p class="card-text">{{ object.hour_range }}</p>
                     <p class="card-text">{{ object.category }}</p>
-
-                    <a href="{{ object.url }}" class="btn btn-primary">
-                      Claim Request
+                    {%if object.object_status == "Not Claimed" %}
+                    <a href={%url 'claiming' object.id%} class="btn btn-primary" role="button">
+                      Claim
                     </a>
+                    {% else %}
+                    {%if object.object_recovered == "Not Recovered"%}
+                    <a href="{{ object.url }}" class="btn btn-secondary disabled" role="button" aria-disabled="true">
+                    {{object.object_status}}
+                    </a>
+                    {%else%}
+                    <a href="{{ object.url }}" class="btn btn-secondary disabled" role="button" aria-disabled="true">
+                    {{object.object_recovered}}
+                    </a>
+                    {%endif%}
+                    {%endif%}
                   </div>
                 </div>
               </div>
               {% endfor %}
+              
             </div>
-
+            
+            <div style="text-align: center;">
+              <h3>It's not your object here?</h3>
+              <p>Click below to be notified</p>
+              <a href="{% url 'notify' %}" class="btn btn-primary" style="width: 200px; padding: 10px;">
+                  Notify me
+              </a>
+          </div>
       
 
           <hr />
