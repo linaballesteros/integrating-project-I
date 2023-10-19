@@ -435,8 +435,18 @@ def analytics(request):
     print("Hours:", hours)
     print("Counts Hours:", counts4)
     
+    # claim y not claimed
     
-    return render(request, 'app\_analytics.html', {'labels': labels, 'counts': counts, 'months': months, 'counts2': counts2, 'places': places, 'counts3': counts3, 'hours': hours, 'counts4': counts4})
+    data_status = Object.objects.values('object_status').annotate(count=Count('id'))
+
+    status = [item['object_status'] for item in data_status]
+    counts5 = [item['count'] for item in data_status]
+
+    print("Object Status:", status)
+    print("Counts Status:", counts5)
+    
+    
+    return render(request, 'app\_analytics.html', {'labels': labels, 'counts': counts, 'months': months, 'counts2': counts2, 'places': places, 'counts3': counts3, 'hours': hours, 'counts4': counts4, 'status': status, 'counts5': counts5})
 
 def map_view(request):
    # para mostrar el mapa:

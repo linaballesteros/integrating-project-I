@@ -196,7 +196,7 @@
         </div>
           <div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="ast-flex-grow-1 navigation-accessibility" id="site-navigation" aria-label="Navegación del sitio" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="primary-menu" class="main-header-menu ast-nav-menu ast-flex ast-justify-content-flex-end  submenu-with-border astra-menu-animation-fade " aria-expanded="false"><li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633"><a href="http://localhost:8000/my_profile" class="menu-link">My profile</a></li>
             
-    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">Claim Requests</a></li>
+    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">About Us</a></li>
     <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history" class="menu-link">History</a></li>
     <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/analytics" class="menu-link">Analytics</a></li>
           
@@ -357,7 +357,6 @@
                                 <canvas id="myChart"></canvas>
                                 <div class="button-container">
                                     <a href="#" id="downloadChartButton1" class="btn btn-primary">Download Chart as JPG</a>
-                                    <a href="#" id="downloadChartButton1_" class="btn btn-primary">Download Chart as PDF</a>
                                 </div>
                             </div>
                         </div>
@@ -374,7 +373,6 @@
                                 <canvas id="myChart2"></canvas>
                                 <div class="button-container">
                                     <a href="#" id="downloadChartButton2" class="btn btn-primary">Download Chart as JPG</a>
-                                    <a href="#" id="downloadChartButton2_" class="btn btn-primary">Download Chart as PDF</a>
                                 </div>
                             </div>
                         </div>
@@ -391,7 +389,6 @@
                         <canvas id="myChart3"></canvas>
                         <div class="button-container">
                             <a href="#" id="downloadChartButton3" class="btn btn-primary">Download Chart as JPG</a>
-                            <a href="#" id="downloadChartButton3_" class="btn btn-primary">Download Chart as PDF</a>
                         </div>
                     </div>
                 </div>
@@ -407,7 +404,6 @@
                     <canvas id="myChart4"></canvas>
                     <div class="button-container">
                         <a href="#" id="downloadChartButton4" class="btn btn-primary">Download Chart as JPG</a>
-                        <a href="#" id="downloadChartButton4_" class="btn btn-primary">Download Chart as PDF</a>
                     </div>
                 </div>
             </div>
@@ -417,16 +413,34 @@
 
     <div class="col-md-6">
       <div class="card mb-4">
-          <div class="card-body">
-              <h5 class="card-title bold-title">See Map</h5>
-              <div class="chart-container">
-                  <a href="javascript:void(0);" id="openMapLink">
-                    <img id="map-image" src="https://img.freepik.com/vector-premium/icono-mapa-navegacion_169241-1050.jpg" alt="See Map Data" class="img-fluid">
-                  </a>
-              </div>
+        <div class="card-body">
+          <h5 class="card-title bold-title">See Map</h5>
+          <div class="chart-container" style="text-align: center;"> <!-- Centro verticalmente -->
+            <a href="javascript:void(0);" id="openMapLink">
+              <img id="map-image" src="https://img.freepik.com/vector-premium/icono-mapa-navegacion_169241-1050.jpg" alt="See Map Data" class="img-fluid" style="width: 302px; height: auto; margin: 0 auto;"> <!-- Centro horizontalmente -->
+            </a>
           </div>
+        </div>
       </div>
-  </div>
+    </div>
+    
+    
+    
+
+  <div class="col-md-6">
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title bold-title"> Objects Claimed and Not Claimed </h5>
+            <div class="chart-container">
+              <canvas id="doughnutChart"></canvas>
+                <div class="button-container">
+                    <a href="#" id="downloadChartButton4" class="btn btn-primary">Download Chart as JPG</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
   
   
   
@@ -501,6 +515,25 @@
         });
         
         
+    </script>
+    <script>
+      //doughnut
+      var ctxD = document.getElementById("doughnutChart").getContext('2d');
+      var counts5 = {{ counts5|safe }};
+      var myLineChart = new Chart(ctxD, {
+        type: 'doughnut',
+        data: {
+          labels: ["Claimed", "Not Claimed"],
+          datasets: [{
+            data: counts5,
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+            hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+          }]
+        },
+        options: {
+          responsive: true
+        }
+      });
     </script>
     
     <script>
