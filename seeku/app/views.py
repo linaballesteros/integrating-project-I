@@ -1,5 +1,8 @@
 #Librerias para manejar firebase, son firebase_admin y pyrebase
 from django.shortcuts import render
+import folium # map library
+import webbrowser
+from folium.plugins import MarkerCluster # markers
 from django.db.models.functions import TruncMonth
 from django.db.models import Count
 from django.db.models import F
@@ -17,8 +20,8 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Q # para hacer consultas
 from django.http import HttpResponse
 from functools import wraps
+import webbrowser
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
 #Librerias para mandar correos automaticos
 from dotenv import load_dotenv 
 import os
@@ -27,70 +30,19 @@ import ssl
 import smtplib
 from .forms import ObjectForm, ClaimObject
 from datetime import datetime
+from accounts.views import login_required
+
 
 #Connect to firebase data. 
 #-------------------------------------------------------------------------------------------
-config = {
-  'apiKey': "AIzaSyB01Ld99k0bH5nGA2QSo1IDYWwOMLyC0gc",
-  'authDomain': "seek-u-34bb1.firebaseapp.com",
-  'databaseURL': "https://seek-u-34bb1-default-rtdb.firebaseio.com",
-  'projectId': "seek-u-34bb1",
-  'storageBucket': "seek-u-34bb1.appspot.com",
-  'messagingSenderId': "160388318273",
-  'appId': "1:160388318273:web:cfbcc3a6fe271119c4b2c0",
-  'measurementId': "G-4PZTY17X6V"
-}
-
-cred = credentials.Certificate('seek-u-34bb1-firebase-adminsdk-qezx3-e8b002c1a6.json')
-
-
-initialize_app(cred)
-db = firestore.client()
-
-
-firebase = pyrebase.initialize_app(config)
-auth_pyrebase = firebase.auth()
 #--------------------------------------------------------------------------------------------------------
 
 #Start de functions for the page. 
 
 
 
-def is_user_authenticated(request):
-    try:
-        # Verifica si existe un token de autenticación en la sesión del usuario
-        user_uid = request.session.get('user_uid')
-        if user_uid:
-            return True
-        else:
-            return False
-    except Exception as e:
-        # Manejar la excepción específica aquí, por ejemplo, imprimir un mensaje de registro
-        print(f"Error al verificar la autenticación del usuario: {str(e)}")
-        return False
-
-
-def login_required(view_func):
-    @wraps(view_func)
-    def _wrapped_view(request, *args, **kwargs):
-        if not is_user_authenticated(request):
-            print(request.session.get('user_uid'))
-            return redirect('login')  # Redirige a la página de inicio de sesión si el usuario no ha iniciado sesión
-        return view_func(request, *args, **kwargs)
-    return _wrapped_view
-
-
-def home(request):
-    searchTerm = request.GET.get('searchObject')
-    if searchTerm:
-        objects = Object.objects.filter(title__icontains=searchTerm)        
-    elif searchTerm == False:
-        objects = Object.objects.all()
-    else:
-        return render(request, "app\index.html")        
-    return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects})   
-
-# @login_required
+ 
+@login_required
 def search(request):
     searchTerm = request.POST.get('searchObject')
     categories = request.POST.getlist('category')
@@ -287,40 +239,20 @@ def search(request):
         objects = objects.filter(category=place_found)
     """
     return render(request, "app/index2.html", {'searchTerm': searchTerm, 'objects': objects, 'category': category})
-
+@login_required
 def claim_request(request):
     return render(request, "app\claim_request.html")
 
-def my_profile(request):
-    return render(request, "app\profile.html")
-
-def edit_profile_view(request):
-     return render(request, "app\edit_profile.html")
- 
+@login_required
 def history(request):
     print("entró a history")
     # Consulta la base de datos para obtener los objetos con object_status igual a "Claimed" para mostrarlos en el historial
     objetos_claimed = Object.objects.filter(object_status="Claimed")
     print(objetos_claimed)
     return render(request, 'app\history.html', {'objetos_claimed': objetos_claimed})
- 
 
-
-def  my_objects(request):
-    objects = Object.objects.all()  # Retrieve all objects from the database
-    return render(request, 'my_objects.html', {'objects': objects})
-
-def about(request):
-    return render(request, "app\_about.html")
 
 # analytics
-
-
-
-
-  
-
-
 
 
 lost_object_names = [
@@ -423,36 +355,6 @@ CATEGORY_CHOICES = [
     # ... continue adding categories
 ]
 
-
-
-
-
-
-
-
-#Function that show the history of the objects 
-def history(request):
-    print("entró a history")
-    # Consulta la base de datos para obtener los objetos con object_status igual a "Claimed" para mostrarlos en el historial
-    objetos_claimed = Object.objects.filter(object_status="Claimed")
-    print(objetos_claimed)
-    return render(request, 'app\history.html', {'objetos_claimed': objetos_claimed})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
     
 class ClaimObjectView(View):
     def get(self,request):
@@ -460,7 +362,7 @@ class ClaimObjectView(View):
         return render(request,"app/claim_req.html",{'form':form})
     def post(self,request):
         pass
-    
+@login_required  
 def filterObjects(request):
     place=request.GET.get('place_found','')
     date=request.GET.get('date_found','datetime')
@@ -470,9 +372,10 @@ def filterObjects(request):
     print(filtered_objects)
     return render(request,"app/index2.html",{'objects': filtered_objects})
 
+@login_required
 def count_objects(request):
     # Retrieve the counts of objects for each block from the database
-    block_counts = objects.values('place_found').annotate(count=Count('place_found'))
+    block_counts = Object.objects.values('place_found').annotate(count=Count('place_found'))
     
     # Pass the block-wise object counts as a context variable to the template
     context = {

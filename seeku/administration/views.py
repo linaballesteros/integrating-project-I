@@ -18,7 +18,6 @@ from django.db.models import Q # para hacer consultas
 from django.http import HttpResponse
 from functools import wraps
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
 #Send emails :)
 from dotenv import load_dotenv 
 import os
@@ -30,15 +29,18 @@ from datetime import datetime
 from app.models import Object
 from utils.choises import CATEGORY_CHOICES, HOUR_CHOICES, COLOR_CHOICES, BLOCK_CHOICES, OFFICE_CHOICES, STATUS_CHOICES, RECOVERED_CHOICES
 from utils.forms import ObjectForm, ClaimObject
+from accounts.views import login_required
 
 
 
 #View to publish the object with the security.
+@login_required
 def publish_object(request):
     return render(request, "app\publish_object.html")
 
 
 #Function to publish the object. 
+@login_required
 def publish_object_(request): # for publishing objects (vista vigilantes)
     if request.method == 'POST':
         form = ObjectForm(request.POST, request.FILES)
@@ -56,7 +58,8 @@ def publish_object_(request): # for publishing objects (vista vigilantes)
 
 
 
-#Function to edit the object by the security. 
+#Function to edit the object by the security.
+@login_required
 def edit_object(request, object_id): # UPDATE OBJECT
     object_to_edit = get_object_or_404(Object, pk=object_id)
     if request.method == "POST" and 'save_changes' in request.POST:
@@ -91,12 +94,13 @@ def edit_object(request, object_id): # UPDATE OBJECT
     elif request.method == "POST" and 'delete_object' in request.POST:
          obj_to_delete = get_object_or_404(Object, pk=object_id)
          obj_to_delete.delete()
-         return render(request, 'app\my_objects.html', {'object_to_edit' : object_to_edit})   
+         return render(request, 'my_objects.html', {'object_to_edit' : object_to_edit})   
     else:
         form = ObjectForm()
-        return render(request, 'app\edit_object.html', {'object_to_edit' : object_to_edit})
+        return render(request, 'edit_object.html', {'object_to_edit' : object_to_edit})
 
 #Function that edit the object to the security
+@login_required
 def delete_object(request, object_id):
     obj_to_delete = get_object_or_404(Object, pk=object_id)
     if request.method == "GET":
@@ -104,6 +108,7 @@ def delete_object(request, object_id):
         obj_to_delete.delete()
     return render(request, 'app\my_objects.html')
 
+@login_required
 def  my_objects(request):
     objects = Object.objects.all()  # Retrieve all objects from the database
     return render(request, 'app\my_objects.html', {'objects': objects})

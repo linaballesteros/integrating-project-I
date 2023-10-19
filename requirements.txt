@@ -6,3 +6,4 @@ dotenv
 firebase_admin
 smtplib
 pyrebase4
+folium

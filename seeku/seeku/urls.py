@@ -16,27 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app import views as seek_Uviews
-
+from menu import views as menu
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', seek_Uviews.home, name = 'home_aferlogin'),
-    path('', include('accounts.urls')),
+    path('', menu.home, name='home'),
     path('',include('administration.urls')),
     path('',include('analytics.urls')), 
-    path("search/", seek_Uviews.search, name = 'search'),
-    path("claim_request/", seek_Uviews.claim_request, name = 'claim_request'),
-    path('my_profile', seek_Uviews.my_profile, name='my_profile'),
-    path('history/', seek_Uviews.history, name='history'),
-    path('edit_profile_view/', seek_Uviews.edit_profile_view, name='edit_profile_view'),
-    path('about/', seek_Uviews.about, name='_about'),
-  #  path('edit_object', seek_Uviews.edit_object, name='edit_object'), 
-    path('claim/',seek_Uviews.ClaimObjectView.as_view(),name="claim_req"),
-    path('claim/filtered/',seek_Uviews.filterObjects, name='filter'),
-    
+    path('',include('app.urls')),
+    path('',include('menu.urls')),
+    path('',include('accounts.urls')),
+    path('',include('profile_user.urls')), 
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

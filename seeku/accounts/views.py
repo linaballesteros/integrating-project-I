@@ -18,7 +18,6 @@ from django.db.models import Q # para hacer consultas
 from django.http import HttpResponse
 from functools import wraps
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
 #Send emails :)
 from dotenv import load_dotenv 
 import os
@@ -26,6 +25,9 @@ from email.message import EmailMessage
 import ssl
 import smtplib
 from datetime import datetime
+
+from django.contrib.auth import login
+
 
 #Connect to firebase data. 
 #-------------------------------------------------------------------------------------------
@@ -43,10 +45,10 @@ config = {
 cred = credentials.Certificate('seek-u-34bb1-firebase-adminsdk-qezx3-e8b002c1a6.json')
 
 
+firebase = pyrebase.initialize_app(config)
 db = firestore.client()
 
 
-firebase = pyrebase.initialize_app(config)
 auth_pyrebase = firebase.auth()
 #--------------------------------------------------------------------------------------------------------
 
@@ -70,7 +72,7 @@ def register(request):
                 return render(request, 'app/register.html', {'error_message': error_message})
             
             if len(password) < 6:
-                error_message = "La contrasena no es lo suficientemente larga"
+                error_message = "La contrasena no es lo suficientemente larga, minimo de 6"
                 return render(request, 'app/register.html', {'error_message': error_message})
             
             user = auth.create_user(email=email, password=password, phone_number=phone_complete)
@@ -123,10 +125,13 @@ def login(request):
                 user_doc = db.collection('usuario_eafit').document(user_uid).get()
                 user_role = user_doc.get('profile_role')
                 if user_role == 'admin':
+                    request.session['user_uid'] = user_uid  # Almacena el UID del usuario en la sesión de Django
                     print("entro aqui")
-                    return redirect('publish_object')  # Cambia 'admin_dashboard' por la URL de la página del admin
+                    return redirect('publish_object')
                 elif user_role == 'regular':
-                    return redirect('search')  # Cambia 'home' por la URL de la página del usuario regular
+                    request.session['user_uid'] = user_uid  # Almacena el UID del usuario en la sesión de Django
+                    return redirect('search')  # Redirigir a la página del usuario regular
+
             else:
                 error_message = "Por favor, verifica tu correo electronico"
                 return render(request, 'app/login.html', {'error_message': error_message})
@@ -134,7 +139,7 @@ def login(request):
             error_message = str(e)
             if hasattr(e, 'error_info') and hasattr(e.error_info, 'message'):
                 error_message = str(e.error_info.message)
-            print('Error al inicar sesion:', error_message)
+            print('Error al inicar sesion,', error_message)
             #error_message = "Credenciales inválidas. Por favor, verifica tus datos."
             return render(request, 'app/login.html', {'error_message': error_message})
         
@@ -166,12 +171,29 @@ def send_email(email_user,verification_link):
 #Function that add to the collection a user
 def create_Collectio_User(email,mobile_phone,profile_role,user_uid,password,name):
     coleccion_ref = db.collection('usuario_eafit')
+    object_user = {}
     nuevo_documento = {
         'user_id':user_uid, 
         'email':email, 
         'name' : name,
         'mobile_phone': mobile_phone,
         'profile_role': profile_role,
-        'password': password
+        'password': password,
+        'objects': object_user, 
     }   
     coleccion_ref.document(user_uid).set(nuevo_documento)
+    
+def login_required(f):
+    @wraps(f)
+    def decorated_function(request, *args, **kwargs):
+        # Verificar si el user_uid está presente en la sesión
+        if 'user_uid' in request.session:
+            # El usuario ha iniciado sesión correctamente, puedes acceder a user_uid
+            user_uid = request.session['user_uid']
+            # Lógica adicional si es necesario
+            return f(request, *args, **kwargs)
+        else:
+            # El usuario no ha iniciado sesión, redirigir a la página de inicio de sesión
+            login_url = reverse('login')  # Obtiene la URL de inicio de sesión basada en el nombre
+            return redirect(login_url)  # Redirige al usuario a la página de inicio de sesión
+    return decorated_function

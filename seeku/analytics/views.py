@@ -21,7 +21,6 @@ from django.db.models import Q # para hacer consultas
 from django.http import HttpResponse
 from functools import wraps
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
 #Send emails :)
 from dotenv import load_dotenv 
 import os
@@ -33,12 +32,13 @@ from datetime import datetime
 from app.models import Object
 from utils.choises import CATEGORY_CHOICES, HOUR_CHOICES, COLOR_CHOICES, BLOCK_CHOICES, OFFICE_CHOICES, STATUS_CHOICES, RECOVERED_CHOICES
 from utils.forms import ObjectForm, ClaimObject
+from accounts.views import login_required
 
 # Create your views here.
 
 
 
-
+@login_required
 def analytics(request):
     
     # por categorias
@@ -81,7 +81,7 @@ def analytics(request):
 
 
     return render(request, 'app\_analytics.html', {'labels': labels, 'counts': counts, 'months': months, 'counts2': counts2, 'places': places, 'counts3': counts3, 'hours': hours, 'counts4': counts4},)
-
+@login_required
 def map_view(request):
    # para mostrar el mapa:
     
@@ -123,3 +123,6 @@ def map_view(request):
     webbrowser.open_new_tab('Path.html')
     
     return render(request, 'app\_analytics.html')
+
+def path(request):
+    return render(request, "app\Path.html")
