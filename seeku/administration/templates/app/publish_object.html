@@ -331,7 +331,6 @@
   <!-- Jumbotron -->
 </header>
 <form method="POST" enctype="multipart/form-data" action="{% url 'publish_object_' %}">
-  {% csrf_token %}
   <section class="bg-light py-5">
     <div class="container">
       <div class="row">
@@ -356,6 +355,7 @@
               <div class="row mb-3">
                 <div class="col-md-6">
 
+                    {% csrf_token %}
                     <h5 class="card-title mb-3">Object Details</h5>
                     <div class="mb-3">
                         <label for="objectName" class="form-label">Object Name</label>
