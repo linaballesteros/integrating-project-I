@@ -56,7 +56,7 @@ def publish_object_(request): # for publishing objects (vista vigilantes)
         form = ObjectForm(request.POST, request.FILES)
         print("posttt")
         if form.is_valid():
-            
+            new_object=form.save()
             mails=Noti.objects.filter(brands=new_object.brands,color=new_object.color,place_found=new_object.place_found)
             subject="Object published"
             link="http://127.0.0.1:8000"+reverse("claim_req")
