@@ -89,9 +89,9 @@
   <script src="https://hamstersmedellin.com/wp-includes/js/wp-emoji-release.min.js?ver=6.3.2" defer=""></script></head>
   
   <body itemtype="https://schema.org/WebPage" itemscope="itemscope" class="home page-template-default page page-id-340 wp-custom-logo theme-astra woocommerce-js ehf-footer ehf-template-astra ehf-stylesheet-astra ast-page-builder-template ast-no-sidebar astra-2.5.5 ast-header-custom-item-inside ast-single-post ast-mobile-inherit-site-logo ast-woocommerce-cart-menu ast-inherit-site-logo-transparent ast-theme-transparent-header elementor-default elementor-kit-958 elementor-page elementor-page-340 e--ua-blink e--ua-opera e--ua-webkit ast-mouse-clicked ast-header-break-point" style="" data-elementor-device-mode="mobile">
-  
+    {% load i18n %}
   <div class="hfeed site" id="page">
-    <a class="skip-link screen-reader-text" href="#content">Ir al contenido</a>
+    <a class="skip-link screen-reader-text" href="#content">Go to main content</a>
   
     
     
@@ -123,18 +123,20 @@
             
                 <div class="ast-button-wrap">
             <button type="button" class="menu-toggle main-header-menu-toggle ast-mobile-menu-buttons-minimal" aria-controls="primary-menu" aria-expanded="false" data-index="0">
-              <span class="screen-reader-text">Main Menu</span>
+              <span class="screen-reader-text">{% trans "Main Menu" %}</span>
               <span class="menu-toggle-icon"></span>
                     </button>
           </div>
             
             
           </div>
-            <div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="ast-flex-grow-1 navigation-accessibility" id="site-navigation" aria-label="Navegación del sitio" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="primary-menu" class="main-header-menu ast-nav-menu ast-flex ast-justify-content-flex-end  submenu-with-border astra-menu-animation-fade " aria-expanded="false"><li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633"><a href="http://localhost:8000/my_profile" class="menu-link">Log In</a></li>
+            <div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="ast-flex-grow-1 navigation-accessibility" id="site-navigation" aria-label="Navegación del sitio" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="primary-menu" class="main-header-menu ast-nav-menu ast-flex ast-justify-content-flex-end  submenu-with-border astra-menu-animation-fade " aria-expanded="false"><li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633"><a href="http://localhost:8000/login" class="menu-link">Log In</a></li>
               
       <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">About Us</a></li>
       <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="https://github.com/linaballesteros/integrating-project-I" class="menu-link">Project</a></li>
       <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="https://github.com/linaballesteros/integrating-project-I" class="menu-link">Contact Us</a></li>
+      <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/my_objects" class="menu-link">Objects</a></li>
+
   <br></br>
             
     </div></div>				</div>
@@ -565,6 +567,10 @@
   <!-- Jumbotron -->
   
   <!-- Jumbotron -->
+  <br></br>
+  <div style="text-align: center;">
+    <h1 style="font-style: italic; font-size: 24px; color: #3498DB;">"Reinventing the Lost and Found Experience"</h1>
+  </div>
 </header>
 
 <!-- Products -->
@@ -581,6 +587,13 @@
         <button type="submit" class="btn btn-primary">Search</button>
       </form>
     </header>
+    
+    
+    
+    
+    
+    
+    
 
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
@@ -822,13 +835,12 @@
         <div class="col-6 col-sm-4 col-lg-2">
           <!-- Links -->
           <h6 class="text-uppercase text-white fw-bold mb-2">
-            Support
+            Language
           </h6>
           <ul class="list-unstyled mb-4">
-            <li><a class="text-white-50" href="#">Help</a></li>
+            <li><a class="text-white-50" href="#">English</a></li>
             <li><a class="text-white-50" href="#">Documents</a></li>
-            <li><a class="text-white-50" href="#">Project Info</a></li>
-            <li><a class="text-white-50" href="#">My profile</a></li>
+    
           </ul>
         </div>
         <!-- Grid column -->
@@ -852,54 +864,30 @@
       </div>
       <!-- Grid row -->
     </div>
-  </section>
+  
   <!-- Section: Links  -->
 
-  <div class="">
-    <div class="container">
-      <div class="d-flex justify-content-between py-4 border-top">
-    
-        <!--- payment --->
-
-        <!--- language selector --->
-        <div class="dropdown dropup">
-          <a class="dropdown-toggle text-dark" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false"> <i class="flag-united-kingdom flag m-0 me-1"></i>English </a>
-
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="Dropdown">
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English <i class="fa fa-check text-success ms-2"></i></a>
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
-            </li>
-          </ul>
-        </div>
-        <!--- language selector --->
-      </div>
-    </div>
+  <div class="btn-group dropup">
+    <button type="button" class="btn dropdown-toggle text-dark" data-toggle="dropdown" aria-expanded="false">
+      <i class="flag-united-kingdom flag m-0 me-1"></i>
+      Language
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li>
+        <a class="dropdown-item" href="#" data-lang="en">
+          <i class="flag-united-kingdom flag"></i>English
+          <i class="fa fa-check text-success ms-2 d-none"></i>
+        </a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="#" data-lang="es">
+          <i class="flag-spain flag"></i>Español
+          <i class="fa fa-check text-success ms-2 d-none"></i>
+        </a>
+      </li>
+    </ul>
   </div>
+</section>
 </footer>
 <!-- Footer -->
     <!-- MDB -->
@@ -908,5 +896,27 @@
     
     <script type="text/javascript" src="/static/app/js/script.js"></script>
     <script type="text/javascript" src="https://unpkg.com/mdbootstrap@4.20.0/js/mdb.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('.dropdown-item').click(function(e) {
+    e.preventDefault();
+    var selectedLang = $(this).data('lang');
+    if (selectedLang === 'en') {
+      // Cambia el idioma a inglés
+      // Puedes usar Django para establecer el idioma
+      // por ejemplo, mediante una cookie o variable en la sesión
+    } else if (selectedLang === 'es') {
+      // Cambia el idioma a español
+      // Puedes usar Django para establecer el idioma
+      // por ejemplo, mediante una cookie o variable en la sesión
+    }
+    // Oculta el marcador de verificación de la opción seleccionada
+    $('.fa-check').addClass('d-none');
+    $(this).find('.fa-check').removeClass('d-none');
+  });
+});
+</script>
+
 </body>
 </html>

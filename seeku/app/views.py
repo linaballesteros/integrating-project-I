@@ -1,7 +1,10 @@
 #Librerias para manejar firebase, son firebase_admin y pyrebase
 from django.shortcuts import render
+from datetime import datetime, timedelta, date
+
 import folium # map library
 import webbrowser
+from django.utils import timezone
 from folium.plugins import MarkerCluster # markers
 from django.db.models.functions import TruncMonth
 from django.db.models import Count
@@ -355,7 +358,68 @@ CATEGORY_CHOICES = [
     # ... continue adding categories
 ]
 
+
+
+
+
+
+def delete_object(request, object_id):
+    obj_to_delete = get_object_or_404(Object, pk=object_id)
+    if request.method == "GET":
+        print("gettt")
+        obj_to_delete.delete()
+    return render(request, 'app\my_objects.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Funcion para mandar los correos con los links de verificacion de la cuenta. 
+def send_email(email_user,verification_link):
+    load_dotenv()
+    email_sender ="seek.ueafit@gmail.com"
+    password = os.getenv("PASSWORD")
+    email_reciver = email_user
+    subject = "VERIFICATION ACCOUNT SEEK-U"
+    body= "Hello\n"+"You registered an account on [Seek-U], before being able to\nuse your account you need to verify that this is your email address by clicking here: ["+verification_link+"]" 
     
+    em = EmailMessage()
+    em["From"] = email_sender
+    em["To"] = email_reciver
+    em["Subject"] = subject
+    em.set_content(body)
+    
+    context = ssl.create_default_context()
+    
+    with smtplib.SMTP_SSL("smtp.gmail.com",465,context = context) as smtp:
+        smtp.login(email_sender,password)
+        smtp.sendmail(email_sender,email_reciver,em.as_string())
+        
+#Function that add to the collection a user
+def create_Collectio_User(email,mobile_phone,profile_role,user_uid,password,name):
+    coleccion_ref = db.collection('usuario_eafit')
+    nuevo_documento = {
+        'user_id':user_uid, 
+        'email':email, 
+        'name' : name,
+        'mobile_phone': mobile_phone,
+        'profile_role': profile_role,
+        'password': password
+    }   
+    coleccion_ref.document(user_uid).set(nuevo_documento)
 class ClaimObjectView(View):
     def get(self,request):
         form=ClaimObject()
