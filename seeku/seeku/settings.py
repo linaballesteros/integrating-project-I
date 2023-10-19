@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 import os
+import firebase_admin
+from firebase_admin import credentials
+
+cred = credentials.Certificate('seek-u-34bb1-firebase-adminsdk-qezx3-e8b002c1a6.json')
+firebase_admin.initialize_app(cred)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app'
+    'app',
+    'administration',
+    'utils',
+    'analytics',
+    'menu',
+    'profile_user',
+    'accounts', 
 ]
 
 MIDDLEWARE = [
@@ -57,8 +68,7 @@ ROOT_URLCONF = 'seeku.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Ruta a tus plantillas
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +80,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'seeku.wsgi.application'
 
@@ -138,3 +149,7 @@ MEDIA_ROOT = BASE_DIR/'media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+LOGIN_URL = 'accounts:login'
