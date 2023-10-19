@@ -1,7 +1,10 @@
 #Librerias para manejar firebase, son firebase_admin y pyrebase
 from django.shortcuts import render
+from datetime import datetime, timedelta, date
+
 import folium # map library
 import webbrowser
+from django.utils import timezone
 from folium.plugins import MarkerCluster # markers
 from django.db.models.functions import TruncMonth
 from django.db.models import Count
@@ -500,6 +503,23 @@ def  my_objects(request):
     objects = Object.objects.all()  # Retrieve all objects from the database
     return render(request, 'my_objects.html', {'objects': objects})
 
+
+def expired_objects(request):
+    current_date = date.today()
+    print("current date")
+    print(current_date)
+
+    # Calcula la fecha hace 2 meses
+    two_months_ago = current_date - timedelta(days=60)
+
+    # Realiza la consulta para obtener objetos encontrados en los últimos 2 meses
+    objects= Object.objects.exclude(date_found__range=(two_months_ago, current_date))
+    
+    print("two-months")
+    print(two_months_ago)
+   
+    return render(request, 'app\expired_objects.html', {'objects': objects, 'two_months_ago': two_months_ago})
+
 def about(request):
     return render(request, "app\_about.html")
 
@@ -682,7 +702,7 @@ def delete_object(request, object_id):
     if request.method == "GET":
         print("gettt")
         obj_to_delete.delete()
-    return render(request, 'app\my_objects.html')
+    return render(request, 'my_objects.html')
 
 
 

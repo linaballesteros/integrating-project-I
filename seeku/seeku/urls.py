@@ -36,6 +36,7 @@ urlpatterns = [
     path('publish_object', seek_Uviews.publish_object, name='publish_object'), # html, 
     path('publish_object_', seek_Uviews.publish_object_, name='publish_object_'), # specific request when submitting an object to django admin
     path('my_objects', seek_Uviews.my_objects, name='my_objects'), 
+    path('expired_objects', seek_Uviews.expired_objects, name='expired_objects'), 
   #  path('edit_object', seek_Uviews.edit_object, name='edit_object'), 
     path('edit_object/<int:object_id>/', seek_Uviews.edit_object, name='edit_object'),
     path('claim/',seek_Uviews.ClaimObjectView.as_view(),name="claim_req"),
