@@ -91,7 +91,9 @@ You can navigate through the web application by indicating the specified path:
 - Note: Only EAFIT accounts are allowed, an email will be sent to the account in order to verify the user's identity.
 - Log in to your account once verified.
 - Complete a Claim Request to find the object you want to claim.
-- 
+- Navigate through the objects and filter them by using the search function after you log in.
+- Update your profile info if needed.
+- Interact with pages like About Us to know more about the project
 
 ## Contribute
 
