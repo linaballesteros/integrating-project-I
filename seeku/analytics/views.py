@@ -81,6 +81,7 @@ def analytics(request):
 
 
     return render(request, 'app\_analytics.html', {'labels': labels, 'counts': counts, 'months': months, 'counts2': counts2, 'places': places, 'counts3': counts3, 'hours': hours, 'counts4': counts4},)
+
 @login_required
 def map_view(request):
    # para mostrar el mapa:

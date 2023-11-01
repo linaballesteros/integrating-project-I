@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Object,Noti  # Import the Object model from your models.py file
-from .forms import ObjectForm  # Import the ObjectForm from your forms.py file
+from .forms import ObjectForm
+3 # Import the ObjectForm from your forms.py file
 
 class ObjectAdmin(admin.ModelAdmin):
     form = ObjectForm  # Use the custom form for the Object model
