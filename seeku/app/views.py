@@ -486,7 +486,7 @@ def claiming(request,id):
         object_to_edit.object_status="Claimed"
         subject="Object claimed"
         description=f"""
-        <p>Your claimed object has an id {id}</p>
+        <p>Your claimed object has an ID {id}</p>
         """
         send_email2(request.user.email,description,subject)
         object_to_edit.save()
