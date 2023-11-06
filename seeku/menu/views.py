@@ -30,10 +30,12 @@ import ssl
 import smtplib
 from utils.forms import ObjectForm, ClaimObject
 from datetime import datetime
-# Create your views here.
+from profile_user.views import get_user_data
 
 
 def home(request):
+    data = get_user_data(request)
+    user_role = data['profile_role']
     searchTerm = request.GET.get('searchObject')
     if searchTerm:
         objects = Object.objects.filter(title__icontains=searchTerm)        
@@ -41,7 +43,9 @@ def home(request):
         objects = Object.objects.all()
     else:
         return render(request, "app\index.html")        
-    return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects}) 
+    return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects, 'user_role': user_role}) 
 
 def about(request):
-    return render(request, "app\_about.html")
+    data = get_user_data(request)
+    user_role = data['profile_role']
+    return render(request, "app\_about.html", {'user_role': user_role})

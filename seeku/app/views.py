@@ -34,7 +34,7 @@ import smtplib
 from .forms import ObjectForm, ClaimObject
 from datetime import datetime
 from accounts.views import login_required
-
+from profile_user.views import get_user_data
 
 #Connect to firebase data. 
 #-------------------------------------------------------------------------------------------
@@ -47,6 +47,8 @@ from accounts.views import login_required
  
 @login_required
 def search(request):
+    data = get_user_data(request)
+    user_role = data['profile_role']
     searchTerm = request.POST.get('searchObject')
     categories = request.POST.getlist('category')
     selected_blocks = request.POST.getlist('blockCheckboxes')
@@ -201,58 +203,25 @@ def search(request):
    # if selected_blocks:
        # objects = objects.filter(place_found=selected_blocks)
 
-    return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects})
+    return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects, 'user_role': user_role})
 
-    
-    """
-    searchTerm = request.GET.get('searchObject')
-    category = request.GET.get('category') 
-    # place_found = request.GET.get('place')
-    
-    objects = Object.objects.all()
-    # Filter objects based on search term and category
-    if searchTerm:
-        objects = Object.objects.filter(title__icontains=searchTerm)   
-    elif searchTerm == False:
-        objects = Object.objects.all()
-    else:
-        return render(request, "app\index2.html")     
-    # Apply category filter 
-    if category:
-        objects = objects.filter(category=category)
-    """
-    """
-    
-    if place_found == "Blocks 1-10":
-        objects = objects.filter(category=place_found[0])
-        
-    elif place_found == "Blocks 11-15":
-        objects = objects.filter(category=place_found[1])
-        
-    elif place_found == "Blocks 16-21":
-        objects = objects.filter(category=place_found[2])
-    
-    elif place_found == "Blocks 22-30":
-        objects = objects.filter(category=place_found[3])
-        
-    elif place_found == "Blocks 31-38":
-        objects = objects.filter(category=place_found[4])
-        
-    else:
-        objects = objects.filter(category=place_found)
-    """
-    return render(request, "app/index2.html", {'searchTerm': searchTerm, 'objects': objects, 'category': category})
+   
+   
 @login_required
 def claim_request(request):
-    return render(request, "app\claim_request.html")
+    data = get_user_data(request)
+    user_role = data['profile_role']
+    return render(request, "app\claim_request.html", {'user_role': user_role})
 
 @login_required
 def history(request):
+    data = get_user_data(request)
+    user_role = data['profile_role']
     print("entró a history")
     # Consulta la base de datos para obtener los objetos con object_status igual a "Claimed" para mostrarlos en el historial
     objetos_claimed = Object.objects.filter(object_status="Claimed")
     print(objetos_claimed)
-    return render(request, 'app\history.html', {'objetos_claimed': objetos_claimed})
+    return render(request, 'app\history.html', {'objetos_claimed': objetos_claimed, 'user_role': user_role})
 
 
 # analytics
@@ -364,11 +333,13 @@ CATEGORY_CHOICES = [
 
 
 def delete_object(request, object_id):
+    data = get_user_data(request)
+    user_role = data['profile_role']
     obj_to_delete = get_object_or_404(Object, pk=object_id)
     if request.method == "GET":
         print("gettt")
         obj_to_delete.delete()
-    return render(request, 'app\my_objects.html')
+    return render(request, 'app\my_objects.html', {'user_role': user_role})
 
 
 
