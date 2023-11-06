@@ -33,14 +33,15 @@ from app.models import Object
 from utils.choises import CATEGORY_CHOICES, HOUR_CHOICES, COLOR_CHOICES, BLOCK_CHOICES, OFFICE_CHOICES, STATUS_CHOICES, RECOVERED_CHOICES
 from utils.forms import ObjectForm, ClaimObject
 from accounts.views import login_required
-
+from profile_user.views import get_user_data
 # Create your views here.
 
 
 
 @login_required
 def analytics(request):
-    
+    data = get_user_data(request)
+    user_role = data['profile_role']
     # por categorias
     data = Object.objects.values('category').annotate(count=Count('category'))
     
@@ -78,12 +79,25 @@ def analytics(request):
 
     print("Hours:", hours)
     print("Counts Hours:", counts4)
+    
+    # claimed o not claimed
+    
+    data3 = Object.objects.values('object_status').annotate(count=Count('category'))
+    
+
+    status = [item['object_status'] for item in data3]
+    counts5 = [item['count'] for item in data3]
+
+    print("Status:", status)
+    print("Counts:", counts5)
 
 
-    return render(request, 'app\_analytics.html', {'labels': labels, 'counts': counts, 'months': months, 'counts2': counts2, 'places': places, 'counts3': counts3, 'hours': hours, 'counts4': counts4},)
+    return render(request, 'app\_analytics.html', {'labels': labels, 'counts': counts, 'months': months, 'counts2': counts2, 'places': places, 'counts3': counts3, 'hours': hours, 'counts4': counts4, 'status': status, 'counts5': counts5, 'user_role': user_role})
 
 @login_required
 def map_view(request):
+    data = get_user_data(request)
+    user_role = data['profile_role']
    # para mostrar el mapa:
     
     m = folium.Map(location=[6.20020215, -75.5784848084993], # generates map 
@@ -123,7 +137,7 @@ def map_view(request):
     
     webbrowser.open_new_tab('Path.html')
     
-    return render(request, 'app\_analytics.html')
+    return render(request, 'app\_analytics.html', {'user_role': user_role})
 
 def path(request):
     return render(request, "app\Path.html")

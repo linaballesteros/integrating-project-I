@@ -195,13 +195,16 @@
           
         </div>
           <div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="ast-flex-grow-1 navigation-accessibility" id="site-navigation" aria-label="Navegación del sitio" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="primary-menu" class="main-header-menu ast-nav-menu ast-flex ast-justify-content-flex-end  submenu-with-border astra-menu-animation-fade " aria-expanded="false"><li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633"><a href="http://localhost:8000/my_profile" class="menu-link">My profile</a></li>
-            
+    {% if user_role == "admin" %}    
     <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">About Us</a></li>
     <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history" class="menu-link">History</a></li>
     <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/analytics" class="menu-link">Analytics</a></li>
     <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/my_objects" class="menu-link">Objects</a></li>
-     
-          </ul></div></nav></div></div>			</div><!-- Main Header Container -->
+    {% else %}
+    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">About Us</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history" class="menu-link">History</a></li>
+    {% endif %}
+  </ul></div></nav></div></div>			</div><!-- Main Header Container -->
         </div><!-- ast-row -->
           </div> <!-- Main Header Bar -->
     </div> <!-- Main Header Bar Wrap -->
@@ -329,21 +332,21 @@
 <section>
     <div class="container my-5">
       <header>
-        <h2>About This Project</h2>
+        <h2 style="color: black; line-height: 1.5">About This Project</h2>
       </header>
-      <p>
+      <p style="color: black; line-height: 1.5">
         SeekU is a dedicated team of individuals who want to help people find their lost items. We understand the frustration that comes with losing something valuable, and we're here to make the process of recovery easier and more efficient.
       </p>
-      <h1 style="font-style: italic; font-size: 24px;">"Reinventing the Lost and Found Experience"</h1>
+      <h1 style="font-style: italic; font-size: 24px; color: black; ">"Reinventing the Lost and Found Experience"</h1>
 
-      <p>
+      <p style="color: black; line-height: 1.5">
         Is a service for EAFIT users who have lost their objects in campus. It is called Seeku and it is a web page that will allow users to find their objects and reclaim them from a device connected to the internet. Unlike looking for the object in person at the lost objects place, our service saves time and effort for users to find their lost objects since they can use the web page to find out if their object was found.
 
 Project for the fourth-semester course "Integrating Project I" (ST0251) taught at EAFIT University by prof Paola Vallejo.
 
       </p>
 
-      <p>
+      <p style="color: black; line-height: 1.5">
         Lost and found objects represent a significant issue in universities due to the dynamic and bustling nature of these institutions. With a large and diverse population of students, faculty, staff, and visitors constantly moving within the campus, the likelihood of misplacing or forgetting personal belongings increases substantially. The fast-paced academic environment, coupled with the myriad of activities and events taking place daily, makes it easy for individuals to unintentionally leave behind items in various locations, such as classrooms, libraries, cafeterias, or communal areas.
 
 Given the significant volume of lost and found items, universities must allocate valuable resources to address this issue effectively. Staff members responsible for managing lost and found departments may find themselves overwhelmed by the sheer quantity of items, leading to potential errors and mishandling of possessions, making it even more challenging to reunite them with their owners.

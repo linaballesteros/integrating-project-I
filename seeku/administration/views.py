@@ -41,17 +41,22 @@ from utils.choises import CATEGORY_CHOICES, HOUR_CHOICES, COLOR_CHOICES, BLOCK_C
 from utils.forms import ObjectForm, ClaimObject
 from accounts.views import login_required
 from app import views
+from profile_user.views import get_user_data
 
 
 #View to publish the object with the security.
 @login_required
 def publish_object(request):
-    return render(request, "app\publish_object.html")
+    data = get_user_data(request)
+    user_role = data['profile_role']
+    return render(request, "app\publish_object.html", {'user_role': user_role})
 
 
 #Function to publish the object. 
 @login_required
 def publish_object_(request): # for publishing objects (vista vigilantes)
+    data = get_user_data(request)
+    user_role = data['profile_role']
     if request.method == 'POST':
         form = ObjectForm(request.POST, request.FILES)
         print("posttt")
@@ -86,7 +91,7 @@ def publish_object_(request): # for publishing objects (vista vigilantes)
     else:
         form = ObjectForm()
 
-    return render(request, 'app\publish_object.html', {'form': form})
+    return render(request, 'app\publish_object.html', {'form': form, 'user_role': user_role})
 
 
 
@@ -94,6 +99,8 @@ def publish_object_(request): # for publishing objects (vista vigilantes)
 @login_required
 def edit_object(request, object_id): # UPDATE OBJECT
     object_to_edit = get_object_or_404(Object, pk=object_id)
+    data = get_user_data(request)
+    user_role = data['profile_role']
     if request.method == "POST" and 'save_changes' in request.POST:
         print("holiss")
         title = request.POST.get('title')
@@ -122,32 +129,38 @@ def edit_object(request, object_id): # UPDATE OBJECT
         
         
         object_to_edit.save() # changes
-        return render(request, 'app\edit_object.html', {'object_to_edit' : object_to_edit})
+        return render(request, 'app\edit_object.html', {'object_to_edit' : object_to_edit, 'user_role': user_role})
     elif request.method == "POST" and 'delete_object' in request.POST:
          obj_to_delete = get_object_or_404(Object, pk=object_id)
          obj_to_delete.delete()
-         return render(request, 'app\my_objects.html', {'object_to_edit' : object_to_edit})   
+         return render(request, 'app\my_objects.html', {'object_to_edit' : object_to_edit, 'user_role': user_role})   
     else:
         form = ObjectForm()
-        return render(request, 'app\edit_object.html', {'object_to_edit' : object_to_edit})
+        return render(request, 'app\edit_object.html', {'object_to_edit' : object_to_edit, 'user_role': user_role})
 
 #Function that edit the object to the security
 @login_required
 def delete_object(request, object_id):
+    data = get_user_data(request)
+    user_role = data['profile_role']
     obj_to_delete = get_object_or_404(Object, pk=object_id)
     if request.method == "GET":
         print("gettt")
         obj_to_delete.delete()
-    return render(request, 'app\my_objects.html')
+    return render(request, 'app\my_objects.html', {'user_role': user_role})
 
 @login_required
 def  my_objects(request):
     objects = Object.objects.all()  # Retrieve all objects from the database
-    return render(request, 'app\my_objects.html', {'objects': objects})
+    data = get_user_data(request)
+    user_role = data['profile_role']
+    return render(request, 'app\my_objects.html', {'objects': objects, 'user_role': user_role})
 
 
 @login_required
 def expired_objects(request):
+    data = get_user_data(request)
+    user_role = data['profile_role']
     current_date = date.today()
     print("current date")
     print(current_date)
@@ -161,4 +174,4 @@ def expired_objects(request):
     print("two-months")
     print(two_months_ago)
 
-    return render(request, 'app\expired_objects.html', {'objects': objects, 'two_months_ago': two_months_ago})
+    return render(request, 'app\expired_objects.html', {'objects': objects, 'two_months_ago': two_months_ago, 'user_role': user_role})

@@ -32,6 +32,12 @@ from datetime import datetime
 from firebase_admin import credentials, auth, firestore, initialize_app
 from accounts.views import login_required
 
+def get_user_data(request):
+    user_uid = request.session.get('user_uid', None)
+    user_ref = db.collection('usuario_eafit').document(user_uid)
+    user_data = user_ref.get()
+    user_dict = user_data.to_dict()
+    return user_dict
 #Connect to firebase data. 
 #-------------------------------------------------------------------------------------------
 config = {
@@ -59,6 +65,8 @@ auth_pyrebase = firebase.auth()
 
 @login_required
 def my_profile(request):
+    data = get_user_data(request)
+    user_role = data['profile_role']
     user_uid = request.session.get('user_uid', None)
     if request.method == 'POST':
         # Limpiar la sesión de Django (eliminar el UID del usuario)
@@ -72,12 +80,15 @@ def my_profile(request):
     # Obtiene los datos del usuario
     user_data = user_ref.get()
     user_dict = user_data.to_dict()
-    return render(request, 'app\profile.html', {'user_data': user_dict})
+    return render(request, 'app\profile.html', {'user_data': user_dict, 'user_role': user_role})
   
 
 
 @login_required
 def edit_profile_view(request):
+    data = get_user_data(request)
+    user_role = data['profile_role']
+    
     user_uid = request.session.get('user_uid', None)
     if request.method == 'POST':
         email = request.POST['email']
@@ -87,6 +98,7 @@ def edit_profile_view(request):
         user_ref = db.collection('usuario_eafit').document(user_uid)
         user_data = user_ref.get()
         user_dict = user_data.to_dict()
+        print(user_dict)
         
         nuevos_valores = {
         'name': name,
@@ -101,4 +113,5 @@ def edit_profile_view(request):
     user_data = user_ref.get()
     user_dict = user_data.to_dict()
         
-    return render(request, "app\edit_profile.html", {'user_data' : user_dict})
+    return render(request, "app\edit_profile.html", {'user_data' : user_dict, 'user_role': user_role})
+

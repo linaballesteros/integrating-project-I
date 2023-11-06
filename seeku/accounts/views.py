@@ -52,7 +52,6 @@ db = firestore.client()
 auth_pyrebase = firebase.auth()
 #--------------------------------------------------------------------------------------------------------
 
-#Start de functions for the page. 
 
 
 #Function that help to register and verificate ther user in the database
@@ -133,13 +132,13 @@ def login(request):
                     return redirect('search')  # Redirigir a la página del usuario regular
 
             else:
-                error_message = "Por favor, verifica tu correo electronico"
+                error_message = "Please, verify your email"
                 return render(request, 'app/login.html', {'error_message': error_message})
         except Exception as e:
             error_message = str(e)
             if hasattr(e, 'error_info') and hasattr(e.error_info, 'message'):
                 error_message = str(e.error_info.message)
-            print('Error al inicar sesion,', error_message)
+            print('Error Trying to Log In,', error_message)
             #error_message = "Credenciales inválidas. Por favor, verifica tus datos."
             return render(request, 'app/login.html', {'error_message': error_message})
         
@@ -197,3 +196,5 @@ def login_required(f):
             login_url = reverse('login')  # Obtiene la URL de inicio de sesión basada en el nombre
             return redirect(login_url)  # Redirige al usuario a la página de inicio de sesión
     return decorated_function
+
+
