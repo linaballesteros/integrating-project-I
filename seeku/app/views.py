@@ -18,7 +18,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from firebase_admin._auth_utils import handle_auth_backend_error
 from django.urls import reverse
-from .models import Object, Noti
+from .models import Object, Noti,Claim_Complaint
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q # para hacer consultas
 from django.http import HttpResponse
@@ -31,11 +31,11 @@ import os
 from email.message import EmailMessage
 import ssl
 import smtplib
-from .forms import ObjectForm, ClaimObject
+from .forms import ObjectForm, ClaimObject, ClaimComplaint
 from datetime import datetime
 from accounts.views import login_required
 from profile_user.views import get_user_data
-
+from django.core.mail import send_mail
 #Connect to firebase data. 
 #-------------------------------------------------------------------------------------------
 #--------------------------------------------------------------------------------------------------------
@@ -403,12 +403,17 @@ def filterObjects(request):
     date=request.POST.get('date_found','datetime')
     color = request.POST.get('color', '')
     brand = request.POST.get('brands', '')
+    description=request.POST.get('user_comment','')
     request.session["place_found"]=place
     request.session['color']=color
     request.session['brand']=brand
+    request.session['date']=date
+    request.session['description']=description
     filtered_objects = Object.objects.filter(color=color, brands=brand,place_found=place,date_found__gte=date)
-    print(filtered_objects)
-    return render(request,"app/index2.html",{'objects': filtered_objects})
+    not_allowed_objects=filtered_objects.filter(user_claimer=request.user.email).values_list('id',flat=True)
+    not_allowed_objects2=Claim_Complaint.objects.filter(user_email=request.user.email).values_list('object_related',flat=True)
+    print(list(not_allowed_objects2))
+    return render(request,"app/index2.html",{'objects': filtered_objects,'unallowed':list(not_allowed_objects),'unallowed2':list(not_allowed_objects2)})
 
 @login_required
 def count_objects(request):
@@ -421,7 +426,7 @@ def count_objects(request):
     }
     
     return render(request, 'app/index2.html', context)
-def send_email2(email_user,description,subject_):
+def send_email2(email_user,description,subject_,parametro=True):
     load_dotenv()
     email_sender ="seek.ueafit@gmail.com"
     password = os.getenv("PASSWORD")
@@ -432,8 +437,8 @@ def send_email2(email_user,description,subject_):
     em["From"] = email_sender
     em["To"] = email_reciver
     em["Subject"] = subject
-    em.set_content(body,subtype="html")
-    
+    if parametro:
+        em.set_content(body,subtype="html")
     context = ssl.create_default_context()
     
     with smtplib.SMTP_SSL("smtp.gmail.com",465,context = context) as smtp:
@@ -455,6 +460,7 @@ def claiming(request,id):
         object_to_edit = get_object_or_404(Object, pk=id)
         print(id)
         object_to_edit.object_status="Claimed"
+        object_to_edit.user_claimer=request.user.email
         subject="Object claimed"
         description=f"""
         <p>Your claimed object has an ID {id}</p>
@@ -464,3 +470,51 @@ def claiming(request,id):
     except:
         pass
     return redirect(reverse("home"))
+@login_required
+def claim_complaint(request,id,method=2):
+    lost_object=get_object_or_404(Object,id=id)
+    if request.method=="POST":
+        form=ClaimComplaint(request.POST)
+        if form.is_valid():
+            cd=form.cleaned_data
+            Claim_Complaint.objects.create(time_initial=cd['time_initial'],
+                                          time_final=cd['time_final'],
+                                          date_lost=request.session['date'],
+                                          extra_data=request.session['description']+'\n'+cd['extra_data'],
+                                          object_related=lost_object,
+                                          user_email=request.user.email,
+                                          
+                                          )
+            print("object created")
+            if method==2:
+                return redirect(reverse("home"))
+            else:
+                return redirect(reverse('claiming',args=(id,)))
+    else:
+        form=ClaimComplaint()
+        return render(request, 'app/claim_complaint.html',{'form':form})
+def claim_complaints_views(request):
+    emails=Object.objects.exclude(user_claimer__isnull=True).values_list('user_claimer',flat=True)
+    list_ids=Claim_Complaint.objects.all().exclude(user_email__in=emails).values_list('object_related',flat=True).distinct()
+    objects=Object.objects.filter(id__in=list_ids)
+    return render(request, 'app/complaints.html',{'objects':objects})
+def claim_complaint_detail_view(request,id):
+    objects=Claim_Complaint.objects.filter(object_related=id)
+    if objects:
+        return render(request, 'app/complaint_claimers.html',{'objects':objects, 'length':len(list(objects))})
+    else:
+        return redirect(reverse('claim_complaints_view'))
+def claim_complaint_script(request, id, user_email,parametro):
+    object=Claim_Complaint.objects.get(object_related=id,user_email=user_email)
+    object.delete()
+    thing=Object.objects.get(id=id)
+    description=f"""
+    Color: {thing.color}\n
+    Brand: {thing.brands}\n
+    Place found: {thing.place_found}"""
+    if parametro:
+        description="Your claim request was rejected because the entered data was false\n"+ description
+    else:
+        description=f"Your claim request was accepted, you can claim your object with the id {thing.id}\n"+description
+    send_email2(user_email,description,"Claim complaint",False)
+    return redirect(reverse('claim_complaint_detail', args=(id,)))

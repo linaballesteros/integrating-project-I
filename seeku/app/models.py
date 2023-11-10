@@ -159,9 +159,20 @@ class Object(models.Model):
     place_registered = models.CharField(max_length=100, default='Block 3', choices=OFFICE_CHOICES) 
     object_status = models.CharField(max_length=100, default='Not Claimed', choices=STATUS_CHOICES)    
     object_recovered = models.CharField(max_length=100, default='Not Recovered', choices=RECOVERED_CHOICES)          
+    user_claimer=models.EmailField(max_length=254,blank=True)
 # actualizar modeloooooooooooooo
 class Noti(models.Model):
     place_found = models.CharField(max_length=100, default='Block 1', choices=BLOCK_CHOICES)
     brands = models.CharField(max_length=100, default="Unkwown")
     color = models.CharField(max_length=100, default='Block 1', choices=COLOR_CHOICES)   
     user_email=models.EmailField(max_length=254,default="_@eafit.edu.co")
+
+class Claim_Complaint(models.Model):
+    class Meta:
+        unique_together=(('user_email','object_related'))
+    user_email=models.EmailField(max_length=254,default="_@eafit.edu.co")
+    object_related=models.ForeignKey(Object,on_delete=models.CASCADE)
+    time_initial=models.TimeField()
+    time_final=models.TimeField()
+    date_lost=models.DateField()
+    extra_data=models.TextField(blank=True)

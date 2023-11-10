@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{%block bootstrap%}
+
+{%endblock%}
+{%block main-content%}
+{%if objects%}
+{%for object in objects%}
+<div class="card" style="width: 18rem;">
+    <img src="{{object.image.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{object.title}}</h5>
+      <a href="{%url 'claim_complaint_detail' object.id%} " class="btn btn-primary">Claim complaints</a>
+    </div>
+  </div>
+{%endfor%}
+{%else%}
+<h1>The are not claim complaints</h1>
+{%endif%}
+{%endblock%}

@@ -683,18 +683,24 @@
                     <p class="card-text">{{ object.hour_range }}</p>
                     <p class="card-text">{{ object.category }}</p>
                     {%if object.object_status == "Not Claimed" %}
-                    <a href={%url 'claiming' object.id%} class="btn btn-primary" role="button">
+                    <a href={%url 'complaint' object.id 1%} class="btn btn-primary" role="button">
                       Claim
                     </a>
                     {% else %}
-                    {%if object.object_recovered == "Not Recovered"%}
+                    {%if object.id in unallowed%}
                     <a href="{{ object.url }}" class="btn btn-secondary disabled" role="button" aria-disabled="true">
-                    {{object.object_status}}
-                    </a>
+                      You have claimed this
+                      </a>
                     {%else%}
+                    {%if object.id in unallowed2%}
                     <a href="{{ object.url }}" class="btn btn-secondary disabled" role="button" aria-disabled="true">
-                    {{object.object_recovered}}
+                      Complaint already done
+                      </a>
+                    {%else%}
+                    <a href={% url 'complaint' object.id 2%} class= "btn btn-primary role" role="button">
+                      Complaint
                     </a>
+                    {%endif%}
                     {%endif%}
                     {%endif%}
                   </div>
