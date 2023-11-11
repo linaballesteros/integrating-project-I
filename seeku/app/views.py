@@ -517,3 +517,4 @@ def claim_complaint_script(request, id, user_email,parametro):
         description=f"Your claim request was accepted, you can claim your object with the id {thing.id}\n"+description
     send_email2(user_email,description,"Claim complaint",False)
     return redirect(reverse('claim_complaint_detail', args=(id,)))
+

@@ -176,3 +176,4 @@ class Claim_Complaint(models.Model):
     time_final=models.TimeField()
     date_lost=models.DateField()
     extra_data=models.TextField(blank=True)
+
