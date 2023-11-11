@@ -43,8 +43,6 @@ from django.core.mail import send_mail
 #Start de functions for the page. 
 
 
-
- 
 @login_required
 def search(request):
     data = get_user_data(request)
@@ -397,7 +395,7 @@ class ClaimObjectView(View):
         return render(request,"app/claim_req.html",{'form':form})
     def post(self,request):
         pass
-@login_required  
+@login_required
 def filterObjects(request):
     place=request.POST.get('place_found','')
     date=request.POST.get('date_found','datetime')
@@ -409,10 +407,11 @@ def filterObjects(request):
     request.session['brand']=brand
     request.session['date']=date
     request.session['description']=description
+    email=request.user.email
     filtered_objects = Object.objects.filter(color=color, brands=brand,place_found=place,date_found__gte=date)
-    not_allowed_objects=filtered_objects.filter(user_claimer=request.user.email).values_list('id',flat=True)
-    not_allowed_objects2=Claim_Complaint.objects.filter(user_email=request.user.email).values_list('object_related',flat=True)
-    print(list(not_allowed_objects2))
+    not_allowed_objects=filtered_objects.filter(user_claimer=email).values_list('id',flat=True)
+    not_allowed_objects2=Claim_Complaint.objects.filter(user_email=email).values_list('object_related',flat=True)
+    print(list(not_allowed_objects))
     return render(request,"app/index2.html",{'objects': filtered_objects,'unallowed':list(not_allowed_objects),'unallowed2':list(not_allowed_objects2)})
 
 @login_required
