@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Object,Noti,Claim_Complaint  # Import the Object model from your models.py file
+from .models import Object,Noti,Claim_Complaint,Search,HistorySearches  # Import the Object model from your models.py file
 from .forms import ObjectForm
 3 # Import the ObjectForm from your forms.py file
 
@@ -16,3 +16,5 @@ class ObjectAdmin(admin.ModelAdmin):
 admin.site.register(Object) #,ObjectAdmin)
 admin.site.register(Noti)
 admin.site.register(Claim_Complaint)
+admin.site.register(Search)
+admin.site.register(HistorySearches)

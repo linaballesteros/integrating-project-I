@@ -18,7 +18,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from firebase_admin._auth_utils import handle_auth_backend_error
 from django.urls import reverse
-from .models import Object, Noti,Claim_Complaint
+from .models import Object, Noti,Claim_Complaint,Search,HistorySearches
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q # para hacer consultas
 from django.http import HttpResponse
@@ -408,6 +408,19 @@ def filterObjects(request):
     request.session['date']=date
     request.session['description']=description
     email=request.user.email
+    try:
+        searched=Search.objects.get(place_found=place, date_found=date, color=color, brands=brand)
+    except:
+        searched=Search.objects.create(place_found=place, date_found=date, color=color, brands=brand)
+    try:
+        history_search=HistorySearches.objects.get(object_related=searched,user_email=email)
+        history_search.quantity+=1
+        history_search.save()
+    except:
+        history_search=HistorySearches.objects.create(object_related=searched,user_email=email,quantity=1)
+    seven_days_ago = datetime.now().date() - timedelta(days=7)
+    if len(list(HistorySearches.objects.filter(user_email=email,date_searched__gte=seven_days_ago)))>2:
+        print("Suspicious behavior")
     filtered_objects = Object.objects.filter(color=color, brands=brand,place_found=place,date_found__gte=date)
     not_allowed_objects=filtered_objects.filter(user_claimer=email).values_list('id',flat=True)
     not_allowed_objects2=Claim_Complaint.objects.filter(user_email=email).values_list('object_related',flat=True)

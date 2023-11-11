@@ -146,6 +146,8 @@ RECOVERED_CHOICES = [ ('Recovered', 'Recovered'),
     
 ]
 
+
+
 class Object(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
@@ -176,4 +178,15 @@ class Claim_Complaint(models.Model):
     time_final=models.TimeField()
     date_lost=models.DateField()
     extra_data=models.TextField(blank=True)
-
+    
+class Search(models.Model):
+    place_found = models.CharField(max_length=100, default='Block 1', choices=BLOCK_CHOICES)
+    date_found = models.DateField(default=date.today)  #set default to today's date
+    brands = models.CharField(max_length=100, default="Unkwown")
+    color = models.CharField(max_length=100, default='Block 1', choices=COLOR_CHOICES)
+class HistorySearches(models.Model):
+    object_related=models.ForeignKey(Search, on_delete=models.CASCADE)
+    user_email=models.EmailField(max_length=254,default="_@eafit.edu.co")
+    date_searched=models.DateField(default=date.today())
+    quantity=models.IntegerField()
+    

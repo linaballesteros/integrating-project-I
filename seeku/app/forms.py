@@ -43,4 +43,3 @@ class ClaimComplaint(forms.ModelForm):
             'extra_data':forms.Textarea(attrs={'placeholder':'Plase specify us the place, like the floor, did you lose it in a bathroom, etc.'})
           #'date_lost': forms.DateInput(attrs={'type': 'date'})
         }
-        
