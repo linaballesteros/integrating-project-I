@@ -68,7 +68,7 @@ ROOT_URLCONF = 'seeku.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Ruta a tus plantillas
+        'DIRS': [os.path.join(BASE_DIR, 'app/templates/app/')],  # Ruta a tus plantillas
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
