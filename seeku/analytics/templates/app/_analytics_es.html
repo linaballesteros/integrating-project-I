@@ -48,7 +48,7 @@
     .main-header-menu .menu-link {
       color: black !important;
     }
-
+   
     .notification-popup {
       display: flex; /*  flexbox para alinear elementos horizontalmente */
       align-items: center; /* Centra verticalmente los elementos dentro de la notificación */
@@ -92,7 +92,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Expired Objects - SeekU</title>
+    <title>Analítica - SeekU</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -237,21 +237,21 @@
           
           
         </div>
-          <div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="ast-flex-grow-1 navigation-accessibility" id="site-navigation" aria-label="Navegación del sitio" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="primary-menu" class="main-header-menu ast-nav-menu ast-flex ast-justify-content-flex-end  submenu-with-border astra-menu-animation-fade " aria-expanded="false"><li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633"><a href="http://localhost:8000/my_profile" class="menu-link">My profile</a></li>
+          <div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="ast-flex-grow-1 navigation-accessibility" id="site-navigation" aria-label="Navegación del sitio" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="primary-menu" class="main-header-menu ast-nav-menu ast-flex ast-justify-content-flex-end  submenu-with-border astra-menu-animation-fade " aria-expanded="false"><li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633"><a href="http://localhost:8000/my_profile_es" class="menu-link">Mi perfil</a></li>
     {% if user_role == "admin" %}    
-    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">About Us</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history" class="menu-link">History</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/analytics" class="menu-link">Analytics</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/my_objects" class="menu-link">Objects</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="#" class="menu-link" id="notification-btn">Notification Center</a></li>
+    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about_es" class="menu-link">Sobre Nosotros</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history_es" class="menu-link">Historial</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/analytics_es" class="menu-link">Analítica</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/my_objects_es" class="menu-link">Objetos</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="#" class="menu-link" id="notification-btn">Centro de Notificaciones</a></li>
     <div id="notification-popup" class="notification-popup">
-      <h2 style="color: black;">Notification Center</h2>
+      <h2 style="color: black;">Centro de Notificaciones</h2>
       <hr style="margin: 10px 0; border: none; height: 1px; background-color: #000">
     
       {% for object in objects_complaints %}
           <div class="notification notification-item">
               <div class="notification-content">
-                  <div class="notification-icon">🔔 <strong style="color: black;">Notification:</strong> <span style="color: blue;">{{ object.title }}</span> <span style="margin-top: -5px;">has more than 3 claim complaints.</span></div>
+                  <div class="notification-icon">🔔 <strong style="color: black;">Notificación:</strong> <span style="color: blue;">{{ object.title }}</span> <span style="margin-top: -5px;">tiene más de 3 solicitudes de queja.</span></div>
               </div>
           </div>
           <hr style="margin: 10px 0; border: none; height: 1px; background-color: #000">
@@ -265,19 +265,19 @@
   
   
     {% else %}
-    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">About Us</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history" class="menu-link">History</a></li>
+    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about_es" class="menu-link">Sobre Nosotros</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history_es" class="menu-link">Historial</a></li>
     {% endif %}
     <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
-      <a href="http://localhost:8000/expired_objects" class="menu-link" onclick="changeLanguage('en')">
-          <img src="https://img.freepik.com/vector-premium/gran-bretana-bandera-bandera-inglaterra-vector-icono-reino-unido-bandera-gran-bretana-10-eps_800531-104.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
+        <a href="http://localhost:8000/analytics" class="menu-link" onclick="changeLanguage('en')">
+            <img src="https://img.freepik.com/vector-premium/gran-bretana-bandera-bandera-inglaterra-vector-icono-reino-unido-bandera-gran-bretana-10-eps_800531-104.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
+        </a>
+    </li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
+      <a href="http://localhost:8000/analytics_es" class="menu-link" onclick="changeLanguage('en')">
+          <img src="https://img.freepik.com/vector-premium/bandera-espana-nacion-europea_395514-14.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
       </a>
   </li>
-  <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
-    <a href="http://localhost:8000/expired_objects_es" class="menu-link" onclick="changeLanguage('en')">
-        <img src="https://img.freepik.com/vector-premium/bandera-espana-nacion-europea_395514-14.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
-    </a>
-</li>
   </ul></div></nav></div></div>			</div><!-- Main Header Container -->
         </div><!-- ast-row -->
           </div> <!-- Main Header Bar -->
@@ -287,339 +287,479 @@
           
         </header><!-- #masthead -->
         
-
+        
+    
         
       
       
-        <div id="content" class="site-content">
+      <div id="content" class="site-content">
     
-          <div class="ast-container">
-      
-          
-      
-        <div id="primary" class="content-area primary">
-      
-          
-                <main id="main" class="site-main">
-      
+        <div class="ast-container">
+    
+        
+    
+      <div id="primary" class="content-area primary">
+    
+        
+              <main id="main" class="site-main">
+    
+            
               
-                
-                
-      
-      <article class="post-340 page type-page status-publish ast-article-single" id="post-340" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
-      
-        
-        <header class="entry-header ast-header-without-markup">
-      
-          
-            </header><!-- .entry-header -->
-            
-            
-      
-        <div class="entry-content clear" itemprop="text">
-      
-          
-              <div data-elementor-type="wp-post" data-elementor-id="340" class="elementor elementor-340">
-                        <section class="elementor-section elementor-top-section elementor-element elementor-element-8bdb646 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="8bdb646" data-element_type="section">
-                  <div class="elementor-container elementor-column-gap-default">
-                <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-e76c859" data-id="e76c859" data-element_type="column">
-            <div class="elementor-widget-wrap elementor-element-populated">
-                      <div class="elementor-element elementor-element-2c262e8 elementor-widget elementor-widget-spacer" data-id="2c262e8" data-element_type="widget" data-widget_type="spacer.default">
-              <div class="elementor-widget-container">
-                <div class="elementor-spacer">
-            <div class="elementor-spacer-inner"></div>
-          </div>
-              </div>
-              </div>
-                </div>
-          </div>
-                    </div>
-          </section>
-              <div class="n2_clear"><ss3-force-full-width data-overflow-x="body" data-horizontal-selector="body" class="n2-ss-no-bga-fixed" style="transform: translate3d(44px, 0px, 0px); width: 820px; opacity: 1;"><div class="n2-section-smartslider fitvidsignore n2_clear" data-ssid="8" tabindex="0" role="region" aria-label="Slider"><div id="n2-ss-8-align" class="n2-ss-align n2-ss-align-visible"><div class="n2-padding"><div id="n2-ss-8" data-creator="Smart Slider 3" data-responsive="fullwidth" class="n2-ss-slider n2-ow n2-has-hover n2-ss-loaded n2-ss-mobilePortrait" data-device-mode="mobilePortrait"><div class="n2-ss-slider-wrapper-inside">
-              <div class="bg-primary mb-4">
-                <div class="container py-4">
-                  <h3 class="text-white mt-2" style="margin-left: 60px;"> Expired Objects </h3>
-                  <!-- Breadcrumb -->
-                  <nav class="d-flex mb-2">
-                    <h6 class="mb-0">
-                      <a href="http://localhost:8000" class="text-white-50" style="margin-left: 60px;"><u>Home</u></a>
-                      <span class="text-white-50 mx-2"> > </span>
-                      <a href="http://localhost:8000/expired_objects" class="text-white" ><u> Expired Objects</u></a>
-                    </h6>
-                  </nav>
-                  <!-- Breadcrumb -->
-                </div>
-              </div>
-
+              
     
-<div id="content" class="site-content">
-  
-  <div class="ast-container">
-
-  
-
-<div id="primary" class="content-area primary">
-
-  
-        <main id="main" class="site-main">
-
+    <article class="post-340 page type-page status-publish ast-article-single" id="post-340" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
+    
       
+      <header class="entry-header ast-header-without-markup">
+    
         
-        
-
-<article class="post-340 page type-page status-publish ast-article-single" id="post-340" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
-
-
-<header class="entry-header ast-header-without-markup">
-
-  
-    </header><!-- .entry-header -->
-
-<div class="entry-content clear" itemprop="text">
-
-  
-      <div data-elementor-type="wp-post" data-elementor-id="340" class="elementor elementor-340">
-
-   
-   
-  
-            
-      
-        
-      </div>
-      
-     
-      <!-- #page -->          
+          </header><!-- .entry-header -->
           
+          
+    
+      <div class="entry-content clear" itemprop="text">
+    
+        
+            <div data-elementor-type="wp-post" data-elementor-id="340" class="elementor elementor-340">
+                      <section class="elementor-section elementor-top-section elementor-element elementor-element-8bdb646 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="8bdb646" data-element_type="section">
+                <div class="elementor-container elementor-column-gap-default">
+              <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-e76c859" data-id="e76c859" data-element_type="column">
+          <div class="elementor-widget-wrap elementor-element-populated">
+                    <div class="elementor-element elementor-element-2c262e8 elementor-widget elementor-widget-spacer" data-id="2c262e8" data-element_type="widget" data-widget_type="spacer.default">
+            <div class="elementor-widget-container">
+              <div class="elementor-spacer">
+          <div class="elementor-spacer-inner"></div>
+        </div>
+            </div>
+            </div>
+              </div>
+        </div>
+                  </div>
+        </section>
+            <div class="n2_clear"><ss3-force-full-width data-overflow-x="body" data-horizontal-selector="body" class="n2-ss-no-bga-fixed" style="transform: translate3d(44px, 0px, 0px); width: 820px; opacity: 1;"><div class="n2-section-smartslider fitvidsignore n2_clear" data-ssid="8" tabindex="0" role="region" aria-label="Slider"><div id="n2-ss-8-align" class="n2-ss-align n2-ss-align-visible"><div class="n2-padding"><div id="n2-ss-8" data-creator="Smart Slider 3" data-responsive="fullwidth" class="n2-ss-slider n2-ow n2-has-hover n2-ss-loaded n2-ss-mobilePortrait" data-device-mode="mobilePortrait"><div class="n2-ss-slider-wrapper-inside">
+            <div class="bg-primary mb-4">
+              <div class="container py-4">
+                <h3 class="text-white mt-2" style="margin-left: 60px;"> Analítica</h3>
+                <!-- Breadcrumb -->
+                <nav class="d-flex mb-2">
+                  <h6 class="mb-0">
+                    <a href="http://localhost:8000/index_es" class="text-white-50" style="margin-left: 60px;"><u>Inicio</u></a>
+                    <span class="text-white-50 mx-2"> > </span>
+                    <a href="http://localhost:8000/analytics_es" class="text-white" ><u>Analítica</u></a>
+                  </h6>
+                </nav>
+                <!-- Breadcrumb -->
+              </div>
+            </div>
+            <section class="elementor-section elementor-top-section elementor-element elementor-element-e175b57 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="e175b57" data-element_type="section">
+                <div class="elementor-container elementor-column-gap-default">
+              <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-af64ae5" data-id="af64ae5" data-element_type="column">
+          <div class="elementor-widget-wrap elementor-element-populated">
+                    <div class="elementor-element elementor-element-b91885e elementor-widget elementor-widget-spacer" data-id="b91885e" data-element_type="widget" data-widget_type="spacer.default">
+            <div class="elementor-widget-container">
+              <div class="elementor-spacer">
+          <div class="elementor-spacer-inner"></div>
+        </div>
+            </div>
+            </div>
+              </div>
+        </div>
+                  </div>
+        </section>
+            <section class="elementor-section elementor-top-section elementor-element elementor-element-13dfca8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="13dfca8" data-element_type="section">
+                <div class="elementor-container elementor-column-gap-default">
+              <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-6057901" data-id="6057901" data-element_type="column">
+          <div class="elementor-widget-wrap elementor-element-populated">
+                    <div class="elementor-element elementor-element-15a3366 elementor-widget elementor-widget-smartslider" data-id="15a3366" data-element_type="widget" data-widget_type="smartslider.default">
+            
+                      <div class="elementor-widget-container">
+              
+      
+            
+            <!-- Heading -->
+         
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+          
+
       <script defer="" src="https://hamstersmedellin.com/wp-content/cache/autoptimize/js/autoptimize_fe127728d89c24ee60f327f42012b67d.js"></script>
     
     
-    <span id="elementor-device-mode" class="elementor-screen-only"></span>
+    
+    
+    
+    <span id="elementor-device-mode" class="elementor-screen-only"></span></body>
     <!-- Container wrapper -->
   </nav>
+  
   <!-- Navbar -->
   <!-- Jumbotron -->
   
   <!-- Jumbotron -->
 </header>
-<form method="POST" enctype="multipart/form-data">
-  <section class="bg-light py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-12 col-lg-15 mb-4"> <!-- Change from col-xl-8 to col-xl-12 -->
-            <div class="card mb-4 border shadow-0">
-                <div class="p-4 d-flex justify-content-between">
-                    <div class="">
-                        <h5>Expired Objects</h5>
-                        <p class="mb-0 text-wrap ">Delete and view Expired Objects</p>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center flex-column flex-md-row">
-                        <a href="http://localhost:8000" class="btn btn-outline-primary me-0 me-md-2 mb-2 mb-md-0 w-100">Back to Home Page</a>
-                        <a href="http://localhost:8000/publish_object" class="btn btn-primary shadow-0 text-nowrap w-100">Publish a new Object</a>
-                    </div>
-            </div>
-          </div>
-  
-        <!-- Checkout -->
-       
-          <!-- Checkout -->
-          <div class="card shadow-0 border">
-            <div class="p-4">
-            
-              <div class="row mb-7">
-                <div class="col-md-15">
-
-                    {% csrf_token %}
-                    <h5 class="card-title mb-4" style="font-size: 24px; color: #333; margin-bottom: 20px;">Expired Objects</h5>
-
-                    <div class="row row-cols-1 row-cols-md-4 g-4">
-                      {% for object in objects %}
-                      <div class="col">
-                        <div class="card" style="height: 100%;">
-                          <img class="card-img-top" src="{{ object.image.url }}" style="object-fit: cover; height: 200px;">
-                          <div class="card-body">
-                            <h5 class="card-title fw-bold">{{ object.title }}</h5>
-                            <p class="card-text">{{ object.description }}</p>
-                            <p class="card-text">{{ object.place_found }}</p>
-                            <p class="card-text">{{ object.date_found }}</p>
-                            <p class="card-text">{{ object.hour_range }}</p>
-                            <p class="card-text">{{ object.category }}</p>
-                            {% if object.id %}
-                            <a href="{% url 'delete_object' object_id=object.id %}" class="btn btn-primary" style="background-color: red !important;">
-                              Delete Object
-                          </a>
-                          
-                          
-                            {% endif %}
-
-                          </div>
+          <!-- Breadcrumb -->
+        </div>
+      </div>
+      <section>
+        <div class="container">
+            <div class="row">
+                <!-- -->
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title bold-title">Objetos Perdidos Por Categoría </h5>
+                            <div class="chart-container">
+                                <canvas id="myChart"></canvas>
+                                <div class="button-container">
+                                    <a href="#" id="downloadChartButton1" class="btn btn-primary">Descargar Gráfico como JPG</a>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                      {% endfor %}
+                        
                     </div>
-        <!-- Checkout -->
-      </div>
-      
-        
-        
-<!-- Checkout -->
+                </div>
+                    <!-- -->
+            
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title bold-title"> Objetos Perdidos Mensualmente</h5>
+                            <div class="chart-container">
+                                <canvas id="myChart2"></canvas>
+                                <div class="button-container">
+                                    <a href="#" id="downloadChartButton2" class="btn btn-primary">Descargar Gráfico como JPG</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
 
-        
+               <!-- -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title bold-title"> Top 10 lugares donde más se pierden objetos </h5>
+                    <div class="chart-container">
+                        <canvas id="myChart3"></canvas>
+                        <div class="button-container">
+                            <a href="#" id="downloadChartButton3" class="btn btn-primary">Descargar Gráfico como JPG</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
 
-              <!-- You can add more security questions as needed -->
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title bold-title"> Objetos Perdidos por Horas</h5>
+                <div class="chart-container">
+                    <canvas id="myChart4"></canvas>
+                    <div class="button-container">
+                        <a href="#" id="downloadChartButton4" class="btn btn-primary">Descargar Gráfico como JPG</a>
+                    </div>
+                </div>
             </div>
             
+        </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title bold-title">Ver Mapa</h5>
+          <div class="chart-container" style="text-align: center;"> <!-- Centro verticalmente -->
+            <a href="javascript:void(0);" id="openMapLink">
+              <img id="map-image" src="https://img.freepik.com/vector-premium/icono-mapa-navegacion_169241-1050.jpg" alt="See Map Data" class="img-fluid" style="width: 302px; height: auto; margin: 0 auto;"> <!-- Centro horizontalmente -->
+            </a>
           </div>
-       
         </div>
       </div>
     </div>
-        </div>
-        
-        
-  <!-- Footer -->
-  
-<!-- Footer -->
+    
+    
+    
 
-<!-- Footer -->
-<footer class="text-center text-lg-start text-muted bg-primary mt-3">
-  <!-- Section: Links  -->
-  <section class="">
-    <div class="container text-center text-md-start pt-4 pb-4">
-      <!-- Grid row -->
-      <div class="row mt-3">
-        <!-- Grid column -->
-        <div class="col-12 col-lg-3 col-sm-12 mb-2">
-          <!-- Content -->
-          <a href="https://mdbootstrap.com/" target="_blank" class="text-white h2">
-            SeekU
-          </a>
-          <p class="mt-1 text-white">
-            © 2023 Copyright: Seeku 2023
-          </p>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-6 col-sm-4 col-lg-2">
-          <!-- Links -->
-          <h6 class="text-uppercase text-white fw-bold mb-2">
-            Project
-          </h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="text-white-50" href="http://localhost:8000/about">About us</a></li>
-            <li><a class="text-white-50" href="#">FAQ</a></li>
-            <li><a class="text-white-50" href="#">Categories</a></li>
-            <li><a class="text-white-50" href="#">Terms and Conditions</a></li>
-          </ul>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-6 col-sm-4 col-lg-2">
-          <!-- Links -->
-          <h6 class="text-uppercase text-white fw-bold mb-2">
-            Information
-          </h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="text-white-50" href="#">Help center</a></li>
-            <li><a class="text-white-50" href="#">About the Lost and Found Objects System in EAFIT</a></li>
-            <li><a class="text-white-50" href="#">Information</a></li>
-            <li><a class="text-white-50" href="#">Contribute</a></li>
-          </ul>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-6 col-sm-4 col-lg-2">
-          <!-- Links -->
-          <h6 class="text-uppercase text-white fw-bold mb-2">
-            Support
-          </h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="text-white-50" href="#">Help</a></li>
-            <li><a class="text-white-50" href="#">Documents</a></li>
-            <li><a class="text-white-50" href="#">Project Info</a></li>
-            <li><a class="text-white-50" href="#">My profile</a></li>
-          </ul>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-12 col-sm-12 col-lg-3">
-          <!-- Links -->
-          <h6 class="text-uppercase text-white fw-bold mb-2">Notifications</h6>
-          <p class="text-white">Get information about Seeku</p>
-          <div class="input-group mb-3">
-            <input type="email" class="form-control border" placeholder="Email" aria-label="Email" aria-describedby="button-addon2" />
-            <div class="input-group-append">
-              <button class="btn btn-light border shadow-0" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-                Join
-              </button>
+  <div class="col-md-6">
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title bold-title"> Objetos Reclamados y no Reclamados </h5>
+            <div class="chart-container">
+              <canvas id="doughnutChart"></canvas>
+                <div class="button-container">
+                    <a href="#" id="downloadChartButton4" class="btn btn-primary">Descargar Gráfico como JPG</a>
+                </div>
             </div>
-          </div>
         </div>
         
-        <!-- Grid column -->
-      </div>
-      <!-- Grid row -->
     </div>
-  </section>
-  <!-- Section: Links  -->
+</div>
+  
+  
+  
+  
+  
 
-  <div class="">
-    <div class="container">
-      <div class="d-flex justify-content-between py-4 border-top">
     
-        <!--- payment --->
+    </section>
 
-        <!--- language selector --->
-        <div class="dropdown dropup">
-          <a class="dropdown-toggle text-dark" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false"> <i class="flag-united-kingdom flag m-0 me-1"></i>English </a>
 
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="Dropdown">
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English <i class="fa fa-check text-success ms-2"></i></a>
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
-            </li>
-          </ul>
-        </div>
-        <!--- language selector --->
-      </div>
-    </div>
-  </div>
-</footer>
-<!-- Footer -->
-    <!-- MDB -->
-    
-    <!-- Custom scripts -->
+
+
+
+
+
+  
+      <!-- Heading -->
+      
+
     
     <script type="text/javascript" src="/static/app/js/script.js"></script>
     <script type="text/javascript" src="https://unpkg.com/mdbootstrap@4.20.0/js/mdb.min.js"></script>
-</body>
-</html>
+    <script>
+        document.getElementById("downloadChartButton1").addEventListener("click", function() {
+            var canvas = document.getElementById("myChart");
+            var image = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
+            this.href = image;
+            this.download = "chart.jpg";
+        });
+        
+    </script>
 
+    <script>
+        document.getElementById("downloadChartButton2").addEventListener("click", function() {
+            var canvas = document.getElementById("myChart2");
+            var image = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
+            this.href = image;
+            this.download = "chart.jpg";
+        });
+        
+    </script>
+
+    <script>
+        document.getElementById("downloadChartButton3").addEventListener("click", function() {
+            var canvas = document.getElementById("myChart3");
+            var image = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
+            this.href = image;
+            this.download = "chart.jpg";
+        });
+        
+    </script>
+
+    <script>
+        document.getElementById("downloadChartButton4").addEventListener("click", function() {
+            var canvas = document.getElementById("myChart4");
+            var image = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
+            this.href = image;
+            this.download = "chart.jpg";
+        });
+        
+    </script>
+
+    <script>
+        import jsPDF from 'jspdf';
+        document.getElementById("downloadChartButton1_").addEventListener("click", function() {
+            console.log("Button clicked");
+            var canvas = document.getElementById("myChart");
+            console.log(canvas);
+            var pdf = new jsPDF();
+            pdf.addImage(canvas.toDataURL("image/png"), "PNG", 10, 10, 90, 50);
+            pdf.save("chart.pdf");
+        });
+        
+        
+    </script>
+    <script>
+      //doughnut
+      var ctxD = document.getElementById("doughnutChart").getContext('2d');
+      var counts5 = {{ counts5|safe }};
+      var myLineChart = new Chart(ctxD, {
+        type: 'doughnut',
+        data: {
+          labels: ["Claimed", "Not Claimed"],
+          datasets: [{
+            data: counts5,
+            backgroundColor: ["#F7464A", "#46BFBD"],
+            hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+          }]
+        },
+        options: {
+          responsive: true
+        }
+      });
+    </script>
+    
+    <script>
+        //line
+//line
+var ctxL = document.getElementById("myChart4").getContext('2d');
+var hours = {{ hours|safe }};
+var counts4 = {{ counts4|safe }};
+var myChart4 = new Chart(ctxL, {
+  type: 'line',
+  data: {
+    labels: hours,
+    datasets: [{
+      label: "Objects",
+      data: counts4,
+      backgroundColor: "rgba(0, 0, 255, 0.2)",
+      borderColor: "blue",
+      borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true
+  }
+});
+</script>
+    
+    
+    <script>
+        var ctxL = document.getElementById("myChart3").getContext('2d');
+        var places = {{ places|safe }};
+        var counts3 = {{ counts3|safe }};
+        var myChart3 = new Chart(ctxL, {
+            type: "horizontalBar",
+            data: {
+              labels: places,
+              datasets: [{
+                label: "Objects",
+                data: counts3,
+                fill: false,
+                backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360", "#5A5E6B", "#FF8C00", "#008080"],
+                hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774", "#676D7A", "#FFA500", "#008080"],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                xAxes: [{
+                  ticks: {
+                    beginAtZero: true
+                  }
+                }]
+              }
+            }
+          });
+    </script>
+
+
+    <script>
+            //line
+    //line
+    var ctxL = document.getElementById("myChart2").getContext('2d');
+    var months = {{ months|safe }};
+    var counts2 = {{ counts2|safe }};
+    var myChart2 = new Chart(ctxL, {
+      type: 'line',
+      data: {
+        labels: months,
+        datasets: [{
+          label: "Objects",
+          data: counts2,
+          backgroundColor: 'rgba(105, 0, 132, .2)',
+          borderColor: 'rgba(200, 99, 132, .7)',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true
+      }
+    });
+    </script>
+
+
+
+    <script>
+
+    
+    var ctxP = document.getElementById("myChart").getContext('2d');
+    var labels = {{ labels|safe }};
+    var counts = {{ counts|safe }};
+var myChart = new Chart(ctxP, {
+  plugins: [ChartDataLabels],
+  type: 'pie',
+  data: {
+    labels: labels,
+    datasets: [{
+      data: counts,
+      backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360", "#5A5E6B", "#FF8C00", "#800080", "#008080"],
+      hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774", "#676D7A", "#FFA500", "#9932CC", "#20B2AA"]
+    }]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'right',
+      labels: {
+        padding: 20,
+        boxWidth: 10
+      }
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          let sum = 0;
+          let dataArr = ctx.chart.data.datasets[0].data;
+          dataArr.map(data => {
+            sum += data;
+          });
+          let percentage = (value * 100 / sum).toFixed(2) + "%";
+          return percentage;
+        },
+        color: 'white',
+        labels: {
+          title: {
+            font: {
+              size: '16'
+            }
+          }
+        }
+      }
+    }
+  }
+});
+</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const mapImage = document.getElementById('map-image');
+        
+        mapImage.addEventListener('click', function () {
+            // Cuando la imagen se hace clic, redirige a la URL de generación del mapa
+            window.location.href = '{% url "map_view" %}';
+        });
+    });
+    </script>
+    
+
+
+    
+</body>
+
+</html>

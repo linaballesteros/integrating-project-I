@@ -30,9 +30,6 @@
       .main-header-menu .menu-link {
         color: black !important;
 
-        li.menu-item:hover .menu-link {
-          color: blue !important;;
-      }
     }
   </style>
 
@@ -49,11 +46,46 @@
     }
     .main-header-menu .menu-link {
       color: black !important;
+    }
 
-      li.menu-item:hover .menu-link {
-        color: blue !important;;
-    }
-    }
+    .notification-popup {
+      display: flex; /*  flexbox para alinear elementos horizontalmente */
+      align-items: center; /* Centra verticalmente los elementos dentro de la notificación */
+      justify-content: space-between;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      display: none;
+      margin: 10px 0;
+      margin-right: 10px;
+      position: absolute;
+      height: 1000px;
+      top: 30px; /* Ajusta la posición vertical */
+      right: 10px; /* Ajusta la posición horizontal */
+      width: 500px; /* Ajusta el ancho de la ventana emergente */
+      background-color: #fff;
+      border: 1px solid #333;
+      padding: 10px;
+      max-height: 300px; /* Ajusta la altura máxima con scroll */
+      overflow-y: auto;
+  }
+  .notification hr {
+    margin: 10px 0; /* Espacio entre las divisiones y las notificaciones */
+    border-width: 5px; /* Aumenta el grosor de la línea divisoria */
+    margin: 10px 0; /* Espacio entre las divisiones y las notificaciones */
+    border: 2px solid #000;
+
+    .notification-item {
+      margin-bottom: 5px; 
+    
+  }
+  .notification-content {
+    line-height: 1; /* Ajusta el valor según tu preferencia */
+}
+  
+}
+
+  
   </style>
 
     <meta charset="UTF-8" />
@@ -72,19 +104,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <head>
+          <script>
+            $(document).ready(function() {
+                $("#notification-btn").click(function(e) {
+                    e.preventDefault(); // Evita que se active el enlace
+                    $("#notification-popup").slideToggle(); // Muestra u oculta la ventana emergente
+                });
+            });
+        </script>
           <style>
             .menu-link {
               color: black;
-
+            }
               .main-header-menu .menu-link {
                 color: black !important;
-              }
-              }
+              
+              
             }
           </style>
           <meta charset="UTF-8">
@@ -200,10 +242,41 @@
     <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history" class="menu-link">History</a></li>
     <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/analytics" class="menu-link">Analytics</a></li>
     <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/my_objects" class="menu-link">Objects</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="#" class="menu-link" id="notification-btn">Notification Center</a></li>
+    <div id="notification-popup" class="notification-popup">
+      <h2 style="color: black;">Notification Center</h2>
+      <hr style="margin: 10px 0; border: none; height: 1px; background-color: #000">
+    
+      {% for object in objects_complaints %}
+          <div class="notification notification-item">
+              <div class="notification-content">
+                  <div class="notification-icon">🔔 <strong style="color: black;">Notification:</strong> <span style="color: blue;">{{ object.title }}</span> <span style="margin-top: -5px;">has more than 3 claim complaints.</span></div>
+              </div>
+          </div>
+          <hr style="margin: 10px 0; border: none; height: 1px; background-color: #000">
+      {% endfor %}
+  </div>
+  
+  
+  
+  
+  
+  
+  
     {% else %}
     <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">About Us</a></li>
     <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history" class="menu-link">History</a></li>
     {% endif %}
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
+      <a href="http://localhost:8000/about" class="menu-link" onclick="changeLanguage('en')">
+          <img src="https://img.freepik.com/vector-premium/gran-bretana-bandera-bandera-inglaterra-vector-icono-reino-unido-bandera-gran-bretana-10-eps_800531-104.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
+      </a>
+  </li>
+  <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
+    <a href="http://localhost:8000/about_es" class="menu-link" onclick="changeLanguage('en')">
+        <img src="https://img.freepik.com/vector-premium/bandera-espana-nacion-europea_395514-14.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
+    </a>
+</li>
   </ul></div></nav></div></div>			</div><!-- Main Header Container -->
         </div><!-- ast-row -->
           </div> <!-- Main Header Bar -->
@@ -497,6 +570,7 @@ The team proposes the creation of a platform where articles can be searched more
     
     <script type="text/javascript" src="/static/app/js/script.js"></script>
     <script type="text/javascript" src="https://unpkg.com/mdbootstrap@4.20.0/js/mdb.min.js"></script>
-</body>
+
+  </body>
 </html>
 

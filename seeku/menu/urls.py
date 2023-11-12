@@ -6,6 +6,8 @@ from menu import views
 
 urlpatterns = [
     path('about/', views.about, name='_about'),
+    path('index_es', views.index_es, name='index_es'),
+    path('about_es', views.about_es, name='about_es'),
     path('',include('accounts.urls')), 
 ]
 

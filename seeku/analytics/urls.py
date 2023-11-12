@@ -5,6 +5,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('analytics/', views.analytics, name='_analytics'),
+    path('analytics_es/', views.analytics_es, name='_analytics_es'),
     #path('',include('accounts.urls')),
     path('Path.html', views.map_view, name='map_view'),
 ]

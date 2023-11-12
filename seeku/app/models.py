@@ -158,7 +158,8 @@ class Object(models.Model):
     category = models.CharField(max_length=100, default='Technology', choices=CATEGORY_CHOICES)   
     place_registered = models.CharField(max_length=100, default='Block 3', choices=OFFICE_CHOICES) 
     object_status = models.CharField(max_length=100, default='Not Claimed', choices=STATUS_CHOICES)    
-    object_recovered = models.CharField(max_length=100, default='Not Recovered', choices=RECOVERED_CHOICES)          
+    object_recovered = models.CharField(max_length=100, default='Not Recovered', choices=RECOVERED_CHOICES) 
+    complaints_amount = models.IntegerField(default=0)         
 # actualizar modeloooooooooooooo
 class Noti(models.Model):
     place_found = models.CharField(max_length=100, default='Block 1', choices=BLOCK_CHOICES)

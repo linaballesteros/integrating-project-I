@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" class=" mkbbhj idc0_348"><head>
   <style>
-
     ::selection {
       background-color: #ADD8E6 !important;
       color: white;
@@ -26,11 +25,13 @@
  
     .menu-link {
       color: black;
-    }
+
       .main-header-menu .menu-link {
         color: black !important;
 
-    
+        li.menu-item:hover .menu-link {
+          color: blue !important;;
+      }
     }
   </style>
 
@@ -47,52 +48,17 @@
     }
     .main-header-menu .menu-link {
       color: black !important;
+
+      li.menu-item:hover .menu-link {
+        color: blue !important;;
     }
-
-    .notification-popup {
-      display: flex; /*  flexbox para alinear elementos horizontalmente */
-      align-items: center; /* Centra verticalmente los elementos dentro de la notificación */
-      justify-content: space-between;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      display: none;
-      margin: 10px 0;
-      margin-right: 10px;
-      position: absolute;
-      height: 1000px;
-      top: 30px; /* Ajusta la posición vertical */
-      right: 10px; /* Ajusta la posición horizontal */
-      width: 500px; /* Ajusta el ancho de la ventana emergente */
-      background-color: #fff;
-      border: 1px solid #333;
-      padding: 10px;
-      max-height: 300px; /* Ajusta la altura máxima con scroll */
-      overflow-y: auto;
-  }
-  .notification hr {
-    margin: 10px 0; /* Espacio entre las divisiones y las notificaciones */
-    border-width: 5px; /* Aumenta el grosor de la línea divisoria */
-    margin: 10px 0; /* Espacio entre las divisiones y las notificaciones */
-    border: 2px solid #000;
-
-    .notification-item {
-      margin-bottom: 5px; 
-    
-  }
-  .notification-content {
-    line-height: 1; /* Ajusta el valor según tu preferencia */
-}
-  
-}
-
-  
+    }
   </style>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Expired Objects - SeekU</title>
+    <title>Acceder - SeekU</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -105,29 +71,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <head>
-          <script>
-            $(document).ready(function() {
-                $("#notification-btn").click(function(e) {
-                    e.preventDefault(); // Evita que se active el enlace
-                    $("#notification-popup").slideToggle(); // Muestra u oculta la ventana emergente
-                });
-            });
-        </script>
           <style>
             .menu-link {
               color: black;
-            }
+
               .main-header-menu .menu-link {
                 color: black !important;
-              
-              
+              }
+              }
             }
           </style>
           <meta charset="UTF-8">
@@ -237,48 +193,11 @@
           
           
         </div>
-          <div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="ast-flex-grow-1 navigation-accessibility" id="site-navigation" aria-label="Navegación del sitio" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="primary-menu" class="main-header-menu ast-nav-menu ast-flex ast-justify-content-flex-end  submenu-with-border astra-menu-animation-fade " aria-expanded="false"><li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633"><a href="http://localhost:8000/my_profile" class="menu-link">My profile</a></li>
-    {% if user_role == "admin" %}    
-    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">About Us</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history" class="menu-link">History</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/analytics" class="menu-link">Analytics</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/my_objects" class="menu-link">Objects</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="#" class="menu-link" id="notification-btn">Notification Center</a></li>
-    <div id="notification-popup" class="notification-popup">
-      <h2 style="color: black;">Notification Center</h2>
-      <hr style="margin: 10px 0; border: none; height: 1px; background-color: #000">
-    
-      {% for object in objects_complaints %}
-          <div class="notification notification-item">
-              <div class="notification-content">
-                  <div class="notification-icon">🔔 <strong style="color: black;">Notification:</strong> <span style="color: blue;">{{ object.title }}</span> <span style="margin-top: -5px;">has more than 3 claim complaints.</span></div>
-              </div>
-          </div>
-          <hr style="margin: 10px 0; border: none; height: 1px; background-color: #000">
-      {% endfor %}
-  </div>
-  
-  
-  
-  
-  
-  
-  
-    {% else %}
-    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">About Us</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history" class="menu-link">History</a></li>
-    {% endif %}
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
-      <a href="http://localhost:8000/expired_objects" class="menu-link" onclick="changeLanguage('en')">
-          <img src="https://img.freepik.com/vector-premium/gran-bretana-bandera-bandera-inglaterra-vector-icono-reino-unido-bandera-gran-bretana-10-eps_800531-104.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
-      </a>
-  </li>
-  <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
-    <a href="http://localhost:8000/expired_objects_es" class="menu-link" onclick="changeLanguage('en')">
-        <img src="https://img.freepik.com/vector-premium/bandera-espana-nacion-europea_395514-14.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
-    </a>
-</li>
-  </ul></div></nav></div></div>			</div><!-- Main Header Container -->
+            
+
+
+          
+          </ul></div></nav></div></div>			</div><!-- Main Header Container -->
         </div><!-- ast-row -->
           </div> <!-- Main Header Bar -->
     </div> <!-- Main Header Bar Wrap -->
@@ -338,13 +257,14 @@
               <div class="n2_clear"><ss3-force-full-width data-overflow-x="body" data-horizontal-selector="body" class="n2-ss-no-bga-fixed" style="transform: translate3d(44px, 0px, 0px); width: 820px; opacity: 1;"><div class="n2-section-smartslider fitvidsignore n2_clear" data-ssid="8" tabindex="0" role="region" aria-label="Slider"><div id="n2-ss-8-align" class="n2-ss-align n2-ss-align-visible"><div class="n2-padding"><div id="n2-ss-8" data-creator="Smart Slider 3" data-responsive="fullwidth" class="n2-ss-slider n2-ow n2-has-hover n2-ss-loaded n2-ss-mobilePortrait" data-device-mode="mobilePortrait"><div class="n2-ss-slider-wrapper-inside">
               <div class="bg-primary mb-4">
                 <div class="container py-4">
-                  <h3 class="text-white mt-2" style="margin-left: 60px;"> Expired Objects </h3>
+                  
+                  <h3 class="text-white mt-2" style="margin-left: 60px;">Acceder </h3>
                   <!-- Breadcrumb -->
                   <nav class="d-flex mb-2">
                     <h6 class="mb-0">
-                      <a href="http://localhost:8000" class="text-white-50" style="margin-left: 60px;"><u>Home</u></a>
+                      <a href="http://localhost:8000/index_es" class="text-white-50" style="margin-left: 60px;"><u>Inicio</u></a>
                       <span class="text-white-50 mx-2"> > </span>
-                      <a href="http://localhost:8000/expired_objects" class="text-white" ><u> Expired Objects</u></a>
+                      <a href="http://localhost:8000/login_es" class="text-white" ><u>Acceder</u></a>
                     </h6>
                   </nav>
                   <!-- Breadcrumb -->
@@ -402,224 +322,219 @@
   
   <!-- Jumbotron -->
 </header>
-<form method="POST" enctype="multipart/form-data">
-  <section class="bg-light py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-12 col-lg-15 mb-4"> <!-- Change from col-xl-8 to col-xl-12 -->
-            <div class="card mb-4 border shadow-0">
-                <div class="p-4 d-flex justify-content-between">
-                    <div class="">
-                        <h5>Expired Objects</h5>
-                        <p class="mb-0 text-wrap ">Delete and view Expired Objects</p>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center flex-column flex-md-row">
-                        <a href="http://localhost:8000" class="btn btn-outline-primary me-0 me-md-2 mb-2 mb-md-0 w-100">Back to Home Page</a>
-                        <a href="http://localhost:8000/publish_object" class="btn btn-primary shadow-0 text-nowrap w-100">Publish a new Object</a>
-                    </div>
-            </div>
-          </div>
-  
-        <!-- Checkout -->
-       
-          <!-- Checkout -->
-          <div class="card shadow-0 border">
-            <div class="p-4">
-            
-              <div class="row mb-7">
-                <div class="col-md-15">
 
-                    {% csrf_token %}
-                    <h5 class="card-title mb-4" style="font-size: 24px; color: #333; margin-bottom: 20px;">Expired Objects</h5>
 
-                    <div class="row row-cols-1 row-cols-md-4 g-4">
-                      {% for object in objects %}
-                      <div class="col">
-                        <div class="card" style="height: 100%;">
-                          <img class="card-img-top" src="{{ object.image.url }}" style="object-fit: cover; height: 200px;">
-                          <div class="card-body">
-                            <h5 class="card-title fw-bold">{{ object.title }}</h5>
-                            <p class="card-text">{{ object.description }}</p>
-                            <p class="card-text">{{ object.place_found }}</p>
-                            <p class="card-text">{{ object.date_found }}</p>
-                            <p class="card-text">{{ object.hour_range }}</p>
-                            <p class="card-text">{{ object.category }}</p>
-                            {% if object.id %}
-                            <a href="{% url 'delete_object' object_id=object.id %}" class="btn btn-primary" style="background-color: red !important;">
-                              Delete Object
-                          </a>
-                          
-                          
-                            {% endif %}
+<body>
+    <section class="vh-100" style="background-color: #eee;">
+        <div class="container h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+              <div class="card text-black" style="border-radius: 25px;">
+                <div class="card-body p-md-5">
+                  <div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                      {% if message %}
+                      <div class="alert alert-info">{{ message }}</div>
+                      {% endif %}
 
-                          </div>
-                        </div>
-                      </div>
-                      {% endfor %}
-                    </div>
-        <!-- Checkout -->
-      </div>
+                      <a href="http://localhost:8000/publish_object" class="menu-link" onclick="changeLanguage('en')">
+                        <img src="https://img.freepik.com/vector-premium/gran-bretana-bandera-bandera-inglaterra-vector-icono-reino-unido-bandera-gran-bretana-10-eps_800531-104.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
+                    </a>
+              
+                      <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Iniciar Sesión </p>
       
-        
-        
-<!-- Checkout -->
+                      <form class="mx-1 mx-md-4" method="POST">
+                        {% csrf_token %}
+                        {% if error_message %}
+                        <p style="color: red">{{ error_message }}</p>
+                        {% endif %}
+                        
+                        <div class="mb-4">
+                          <label for="email" class="form-label">Correo Electrónico</label>
+                          <input type="email" id="email" class="form-control" name="email" required>
+                        </div>
+      
+                        <div class="mb-4">
+                          <label for="password" class="form-label">Contraseña</label>
+                          <input type="password" id="password" class="form-control" name="password" required>
+                        </div>
 
-        
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <a href="#!">¿Olvidaste tu Contraseña?</a>
+                        </div>
 
-              <!-- You can add more security questions as needed -->
+                        <div class="d-flex justify-content-between align-items-center mb-4 mt-4">
+                            <a href="http://localhost:8000/register_es">¿No tienes una cuenta?</a>
+                          </div>
+      
+                        <div class="d-flex justify-content-center">
+                          <button type="submit" class="btn btn-primary btn-lg">Iniciar Sesión</button>
+                        </div>
+
+
+
+                      </form>
+      
+                    </div>
+                    <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+      
+                      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                        class="img-fluid" alt="Sample image">
+      
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            
           </div>
-       
         </div>
-      </div>
-    </div>
-        </div>
-        
-        
-  <!-- Footer -->
-  
-<!-- Footer -->
+      </section>
+</body>
 
 <!-- Footer -->
 <footer class="text-center text-lg-start text-muted bg-primary mt-3">
-  <!-- Section: Links  -->
-  <section class="">
-    <div class="container text-center text-md-start pt-4 pb-4">
-      <!-- Grid row -->
-      <div class="row mt-3">
-        <!-- Grid column -->
-        <div class="col-12 col-lg-3 col-sm-12 mb-2">
-          <!-- Content -->
-          <a href="https://mdbootstrap.com/" target="_blank" class="text-white h2">
-            SeekU
-          </a>
-          <p class="mt-1 text-white">
-            © 2023 Copyright: Seeku 2023
-          </p>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-6 col-sm-4 col-lg-2">
-          <!-- Links -->
-          <h6 class="text-uppercase text-white fw-bold mb-2">
-            Project
-          </h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="text-white-50" href="http://localhost:8000/about">About us</a></li>
-            <li><a class="text-white-50" href="#">FAQ</a></li>
-            <li><a class="text-white-50" href="#">Categories</a></li>
-            <li><a class="text-white-50" href="#">Terms and Conditions</a></li>
-          </ul>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-6 col-sm-4 col-lg-2">
-          <!-- Links -->
-          <h6 class="text-uppercase text-white fw-bold mb-2">
-            Information
-          </h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="text-white-50" href="#">Help center</a></li>
-            <li><a class="text-white-50" href="#">About the Lost and Found Objects System in EAFIT</a></li>
-            <li><a class="text-white-50" href="#">Information</a></li>
-            <li><a class="text-white-50" href="#">Contribute</a></li>
-          </ul>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-6 col-sm-4 col-lg-2">
-          <!-- Links -->
-          <h6 class="text-uppercase text-white fw-bold mb-2">
-            Support
-          </h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="text-white-50" href="#">Help</a></li>
-            <li><a class="text-white-50" href="#">Documents</a></li>
-            <li><a class="text-white-50" href="#">Project Info</a></li>
-            <li><a class="text-white-50" href="#">My profile</a></li>
-          </ul>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-12 col-sm-12 col-lg-3">
-          <!-- Links -->
-          <h6 class="text-uppercase text-white fw-bold mb-2">Notifications</h6>
-          <p class="text-white">Get information about Seeku</p>
-          <div class="input-group mb-3">
-            <input type="email" class="form-control border" placeholder="Email" aria-label="Email" aria-describedby="button-addon2" />
-            <div class="input-group-append">
-              <button class="btn btn-light border shadow-0" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-                Join
-              </button>
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start pt-4 pb-4">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-12 col-lg-3 col-sm-12 mb-2">
+            <!-- Content -->
+            <a href="https://mdbootstrap.com/" target="_blank" class="text-white h2">
+              SeekU
+            </a>
+            <p class="mt-1 text-white">
+              © 2023 Copyright: Seeku 2023
+            </p>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-6 col-sm-4 col-lg-2">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-2">
+              Project
+            </h6>
+            <ul class="list-unstyled mb-4">
+              <li><a class="text-white-50" href="http://localhost:8000/about">Sobre Nosotros</a></li>
+              <li><a class="text-white-50" href="#">FAQ</a></li>
+              <li><a class="text-white-50" href="#">Categorias</a></li>
+              <li><a class="text-white-50" href="#">Términos y Condiciones</a></li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-6 col-sm-4 col-lg-2">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-2">
+              Information
+            </h6>
+            <ul class="list-unstyled mb-4">
+              <li><a class="text-white-50" href="#">Centro de Ayuda</a></li>
+              <li><a class="text-white-50" href="#">Sobre el sistema de objetos perdidos en EAFIT</a></li>
+              <li><a class="text-white-50" href="#">Información</a></li>
+              <li><a class="text-white-50" href="#">Contribuir</a></li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-6 col-sm-4 col-lg-2">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-2">
+              Soporte
+            </h6>
+            <ul class="list-unstyled mb-4">
+              <li><a class="text-white-50" href="#">Ayuda</a></li>
+              <li><a class="text-white-50" href="#">Documentos</a></li>
+              <li><a class="text-white-50" href="#">Información del Proyecto</a></li>
+              <li><a class="text-white-50" href="#">Mi perfil</a></li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-12 col-sm-12 col-lg-3">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-2">Notificaciones</h6>
+            <p class="text-white">Obtener Información Sobre Seeku</p>
+            <div class="input-group mb-3">
+              <input type="email" class="form-control border" placeholder="Email" aria-label="Email" aria-describedby="button-addon2" />
+              <div class="input-group-append">
+                <button class="btn btn-light border shadow-0" type="button" id="button-addon2" data-mdb-ripple-color="dark">
+                  Únete
+                </button>
+              </div>
             </div>
           </div>
+          
+          <!-- Grid column -->
         </div>
-        
-        <!-- Grid column -->
+        <!-- Grid row -->
       </div>
-      <!-- Grid row -->
-    </div>
-  </section>
-  <!-- Section: Links  -->
-
-  <div class="">
-    <div class="container">
-      <div class="d-flex justify-content-between py-4 border-top">
-    
-        <!--- payment --->
-
-        <!--- language selector --->
-        <div class="dropdown dropup">
-          <a class="dropdown-toggle text-dark" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false"> <i class="flag-united-kingdom flag m-0 me-1"></i>English </a>
-
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="Dropdown">
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English <i class="fa fa-check text-success ms-2"></i></a>
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
-            </li>
-          </ul>
+    </section>
+    <!-- Section: Links  -->
+  
+    <div class="">
+      <div class="container">
+        <div class="d-flex justify-content-between py-4 border-top">
+      
+          <!--- payment --->
+  
+          <!--- language selector --->
+          <div class="dropdown dropup">
+  
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="Dropdown">
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English <i class="fa fa-check text-success ms-2"></i></a>
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
+              </li>
+            </ul>
+          </div>
+          <!--- language selector --->
         </div>
-        <!--- language selector --->
       </div>
     </div>
-  </div>
-</footer>
-<!-- Footer -->
-    <!-- MDB -->
-    
-    <!-- Custom scripts -->
-    
-    <script type="text/javascript" src="/static/app/js/script.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/mdbootstrap@4.20.0/js/mdb.min.js"></script>
-</body>
-</html>
-
+  </footer>
+  <!-- Footer -->
+      <!-- MDB -->
+      
+      <!-- Custom scripts -->
+      
+      <script type="text/javascript" src="/static/app/js/script.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script type="text/javascript" src="https://unpkg.com/mdbootstrap@4.20.0/js/mdb.min.js"></script>
+      <script>
+        function myFunction() {
+          var element = document.body;
+          element.classList.toggle("dark-mode");
+        }
+      </script>
+  </body>
+  </html>

@@ -65,6 +65,8 @@ auth_pyrebase = firebase.auth()
 
 @login_required
 def my_profile(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
     data = get_user_data(request)
     user_role = data['profile_role']
     user_uid = request.session.get('user_uid', None)
@@ -80,12 +82,33 @@ def my_profile(request):
     # Obtiene los datos del usuario
     user_data = user_ref.get()
     user_dict = user_data.to_dict()
-    return render(request, 'app\profile.html', {'user_data': user_dict, 'user_role': user_role})
+    return render(request, 'app\profile.html', {'user_data': user_dict, 'user_role': user_role, 'objects_complaints': objects_complaints})
   
+@login_required
+def my_profile_es(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
 
+    data = get_user_data(request)
+    user_role = data['profile_role']
+    user_uid = request.session.get('user_uid', None)
+    if request.method == 'POST':
+        # Limpiar la sesión de Django (eliminar el UID del usuario)
+        del request.session['user_uid']
+
+        log_out = reverse('home')  # Obtiene la URL de inicio de sesión basada en el nombre
+        return redirect(log_out)  # Redirige al usuario a la página de inicio de sesión
+    
+    
+    user_ref = db.collection('usuario_eafit').document(user_uid)
+    # Obtiene los datos del usuario
+    user_data = user_ref.get()
+    user_dict = user_data.to_dict()
+    return render(request, 'app\profile_es.html', {'user_data': user_dict, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 @login_required
 def edit_profile_view(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
     data = get_user_data(request)
     user_role = data['profile_role']
     
@@ -113,5 +136,39 @@ def edit_profile_view(request):
     user_data = user_ref.get()
     user_dict = user_data.to_dict()
         
-    return render(request, "app\edit_profile.html", {'user_data' : user_dict, 'user_role': user_role})
+    return render(request, "app\edit_profile.html", {'user_data' : user_dict, 'user_role': user_role, 'objects_complaints': objects_complaints})
+
+
+@login_required
+def edit_profile_view_es(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
+    data = get_user_data(request)
+    user_role = data['profile_role']
+    
+    user_uid = request.session.get('user_uid', None)
+    if request.method == 'POST':
+        email = request.POST['email']
+        name = request.POST['name']
+        phone = request.POST['phone']
+        
+        user_ref = db.collection('usuario_eafit').document(user_uid)
+        user_data = user_ref.get()
+        user_dict = user_data.to_dict()
+        print(user_dict)
+        
+        nuevos_valores = {
+        'name': name,
+        'email': email,
+        'phone': phone,
+        }
+        
+        user_ref.update(nuevos_valores)
+        
+    user_ref = db.collection('usuario_eafit').document(user_uid)
+    # Obtiene los datos del usuario
+    user_data = user_ref.get()
+    user_dict = user_data.to_dict()
+        
+    return render(request, "app\edit_profile_es.html", {'user_data' : user_dict, 'user_role': user_role, 'objects_complaints': objects_complaints})
 

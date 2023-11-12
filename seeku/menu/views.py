@@ -32,20 +32,63 @@ from utils.forms import ObjectForm, ClaimObject
 from datetime import datetime
 from profile_user.views import get_user_data
 
-
+@login_required
 def home(request):
+
     data = get_user_data(request)
-    user_role = data['profile_role']
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
     searchTerm = request.GET.get('searchObject')
-    if searchTerm:
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+    
+    if searchTerm and user_role != 'guest':
+        objects = Object.objects.filter(title__icontains=searchTerm)        
+    elif searchTerm == False:
+        objects = Object.objects.all()
+    
+    else:
+        return render(request, "app\index.html")   
+    
+    
+    return render(request, "app\index2.html", {'user_role': user_role, 'searchTerm': searchTerm, 'objects': objects, 'objects_complaints': objects_complaints}) 
+
+@login_required
+def index_es(request):
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    searchTerm = request.GET.get('searchObject')
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+    
+    if searchTerm and user_role != 'guest':
         objects = Object.objects.filter(title__icontains=searchTerm)        
     elif searchTerm == False:
         objects = Object.objects.all()
     else:
-        return render(request, "app\index.html")        
-    return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects, 'user_role': user_role}) 
+        return render(request, "app\index_es.html")   
+    
+
+    return render(request, "app\index2_es.html", {'user_role': user_role, 'searchTerm': searchTerm, 'objects': objects, 'objects_complaints': objects_complaints}) 
 
 def about(request):
     data = get_user_data(request)
-    user_role = data['profile_role']
-    return render(request, "app\_about.html", {'user_role': user_role})
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'student'
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+    return render(request, "app\_about.html", {'user_role': user_role, 'objects_complaints': objects_complaints})
+
+
+def about_es(request):
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+    return render(request, "app\_about_es.html", {'user_role': user_role, 'objects_complaints': objects_complaints})

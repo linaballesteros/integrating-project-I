@@ -29,6 +29,7 @@
 
       .main-header-menu .menu-link {
         color: black !important;
+
     }
   </style>
 
@@ -46,7 +47,7 @@
     .main-header-menu .menu-link {
       color: black !important;
     }
-
+  
     .notification-popup {
       display: flex; /*  flexbox para alinear elementos horizontalmente */
       align-items: center; /* Centra verticalmente los elementos dentro de la notificación */
@@ -90,7 +91,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>About Us - SeekU</title>
+    <title>Buscar - SeekU</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -235,21 +236,21 @@
           
           
         </div>
-          <div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="ast-flex-grow-1 navigation-accessibility" id="site-navigation" aria-label="Navegación del sitio" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="primary-menu" class="main-header-menu ast-nav-menu ast-flex ast-justify-content-flex-end  submenu-with-border astra-menu-animation-fade " aria-expanded="false"><li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633"><a href="http://localhost:8000/my_profile" class="menu-link">My profile</a></li>
+          <div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="ast-flex-grow-1 navigation-accessibility" id="site-navigation" aria-label="Navegación del sitio" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="primary-menu" class="main-header-menu ast-nav-menu ast-flex ast-justify-content-flex-end  submenu-with-border astra-menu-animation-fade " aria-expanded="false"><li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633"><a href="http://localhost:8000/my_profile_es" class="menu-link">Mi perfil</a></li>
     {% if user_role == "admin" %}    
-    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">About Us</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history" class="menu-link">History</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/analytics" class="menu-link">Analytics</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/my_objects" class="menu-link">Objects</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="#" class="menu-link" id="notification-btn">Notification Center</a></li>
+    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about_es" class="menu-link">Sobre Nosotros</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history_es" class="menu-link">Historial</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/analytics_es" class="menu-link">Analítica</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/my_objects_es" class="menu-link">Objetos</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="#" class="menu-link" id="notification-btn">Centro de Notificaciones</a></li>
     <div id="notification-popup" class="notification-popup">
-      <h2 style="color: black;">Notification Center</h2>
+      <h2 style="color: black;">Centro de Notificaciones</h2>
       <hr style="margin: 10px 0; border: none; height: 1px; background-color: #000">
     
       {% for object in objects_complaints %}
           <div class="notification notification-item">
               <div class="notification-content">
-                  <div class="notification-icon">🔔 <strong style="color: black;">Notification:</strong> <span style="color: blue;">{{ object.title }}</span> <span style="margin-top: -5px;">has more than 3 claim complaints.</span></div>
+                  <div class="notification-icon">🔔 <strong style="color: black;">Notificación:</strong> <span style="color: blue;">{{ object.title }}</span> <span style="margin-top: -5px;">tiene más de 3 solicitudes de queja.</span></div>
               </div>
           </div>
           <hr style="margin: 10px 0; border: none; height: 1px; background-color: #000">
@@ -263,19 +264,19 @@
   
   
     {% else %}
-    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">About Us</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history" class="menu-link">History</a></li>
+    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about_es" class="menu-link">Sobre Nosotros</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history_es" class="menu-link">Historial</a></li>
     {% endif %}
     <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
-      <a href="http://localhost:8000/search" class="menu-link" onclick="changeLanguage('en')">
-          <img src="https://img.freepik.com/vector-premium/gran-bretana-bandera-bandera-inglaterra-vector-icono-reino-unido-bandera-gran-bretana-10-eps_800531-104.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
+        <a href="http://localhost:8000/search" class="menu-link" onclick="changeLanguage('en')">
+            <img src="https://img.freepik.com/vector-premium/gran-bretana-bandera-bandera-inglaterra-vector-icono-reino-unido-bandera-gran-bretana-10-eps_800531-104.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
+        </a>
+    </li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
+      <a href="http://localhost:8000/search_es" class="menu-link" onclick="changeLanguage('en')">
+          <img src="https://img.freepik.com/vector-premium/bandera-espana-nacion-europea_395514-14.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
       </a>
   </li>
-  <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
-    <a href="http://localhost:8000/search_es" class="menu-link" onclick="changeLanguage('en')">
-        <img src="https://img.freepik.com/vector-premium/bandera-espana-nacion-europea_395514-14.jpg" alt="Bandera de España" style="width: 25px; height: 25px;">
-    </a>
-</li>
   </ul></div></nav></div></div>			</div><!-- Main Header Container -->
         </div><!-- ast-row -->
           </div> <!-- Main Header Bar -->
@@ -337,13 +338,13 @@
             <div class="n2_clear"><ss3-force-full-width data-overflow-x="body" data-horizontal-selector="body" class="n2-ss-no-bga-fixed" style="transform: translate3d(44px, 0px, 0px); width: 820px; opacity: 1;"><div class="n2-section-smartslider fitvidsignore n2_clear" data-ssid="8" tabindex="0" role="region" aria-label="Slider"><div id="n2-ss-8-align" class="n2-ss-align n2-ss-align-visible"><div class="n2-padding"><div id="n2-ss-8" data-creator="Smart Slider 3" data-responsive="fullwidth" class="n2-ss-slider n2-ow n2-has-hover n2-ss-loaded n2-ss-mobilePortrait" data-device-mode="mobilePortrait"><div class="n2-ss-slider-wrapper-inside">
             <div class="bg-primary mb-4">
               <div class="container py-4">
-                <h3 class="text-white mt-2" style="margin-left: 60px;"> Search</h3>
+                <h3 class="text-white mt-2" style="margin-left: 60px;"> Buscar</h3>
                 <!-- Breadcrumb -->
                 <nav class="d-flex mb-2">
                   <h6 class="mb-0">
-                    <a href="http://localhost:8000" class="text-white-50" style="margin-left: 60px;"><u>Home</u></a>
+                    <a href="http://localhost:8000/index_es" class="text-white-50" style="margin-left: 60px;"><u>Inicio</u></a>
                     <span class="text-white-50 mx-2"> > </span>
-                    <a href="http://localhost:8000/search" class="text-white" ><u>Search</u></a>
+                    <a href="http://localhost:8000/search_es" class="text-white" ><u>Buscar</u></a>
                   </h6>
                 </nav>
                 <!-- Breadcrumb -->
@@ -453,7 +454,7 @@
                           aria-expanded="true"
                           aria-controls="panelsStayOpen-collapseOne"
                           >
-                    Categories
+                    Categoríass
                   </button>
                 </h2>
                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
@@ -462,49 +463,49 @@
                           <li>
                               <div class="form-check">
                                   <input class="form-check-input" type="checkbox" name="category" value="Technology" id="categoryTechnology">
-                                  <label class="form-check-label" for="categoryTechnology">Technology</label>
+                                  <label class="form-check-label" for="categoryTechnology">Tecnología</label>
                               </div>
                           </li>
                           <li>
                               <div class="form-check">
                                   <input class="form-check-input" type="checkbox" name="category" value="Keys" id="categoryKeys">
-                                  <label class="form-check-label" for="categoryKeys">Keys</label>
+                                  <label class="form-check-label" for="categoryKeys">Llaves</label>
                               </div>
                           </li>
                           <li>
                               <div class="form-check">
                                   <input class="form-check-input" type="checkbox" name="category" value="Books" id="categoryBooks">
-                                  <label class="form-check-label" for="categoryBooks">Books</label>
+                                  <label class="form-check-label" for="categoryBooks">Libros</label>
                               </div>
                           </li>
                           <li>
                               <div class="form-check">
                                   <input class="form-check-input" type="checkbox" name="category" value="Water Bottles" id="categoryWaterBottles">
-                                  <label class="form-check-label" for="categoryWaterBottles">Water Bottles</label>
+                                  <label class="form-check-label" for="categoryWaterBottles">Botellas</label>
                               </div>
                           </li>
                           <li>
                               <div class="form-check">
                                   <input class="form-check-input category-button" type="checkbox" name="category" value="Headphones" id="categoryHeadphones">
-                                  <label class="form-check-label" for="categoryHeadphones">Headphones</label>
+                                  <label class="form-check-label" for="categoryHeadphones">Audífonos</label>
                               </div>
                           </li>
                           <li>
                               <div class="form-check">
                                   <input class="form-check-input category-button" type="checkbox" name="category" value="Lunchboxes" id="categoryLunchboxes">
-                                  <label class="form-check-label" for="categoryLunchboxes">Lunchboxes</label>
+                                  <label class="form-check-label" for="categoryLunchboxes">Bolsos</label>
                               </div>
                           </li>
                           <li>
                               <div class="form-check">
                                   <input class="form-check-input category-button" type="checkbox" name="category" value="Clothes" id="categoryClothes">
-                                  <label class="form-check-label" for="categoryClothes">Clothes</label>
+                                  <label class="form-check-label" for="categoryClothes">Ropa</label>
                               </div>
                           </li>
                           <li>
                               <div class="form-check">
                                   <input class="form-check-input category-button" type="checkbox" name="category" value="Accessories" id="categoryAccessories">
-                                  <label class="form-check-label" for="categoryAccessories">Accessories</label>
+                                  <label class="form-check-label" for="categoryAccessories">Accesorios</label>
                               </div>
                           </li>
                       </ul>
@@ -527,7 +528,7 @@
                       aria-expanded="true"
                       aria-controls="panelsStayOpen-collapseOne"
                       >
-                Blocks
+                Bloques
                 </button>
                     </h2>
                     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
@@ -539,7 +540,7 @@
                                     {% for block_number in "13479" %}
                                     <div class="form-check">
                                         <input href="?searchObject=&place_found=Block {{block_number}}"  class="form-check-input" type="checkbox" value="Block {{ block_number }}" id="blockCheckbox{{ block_number }}" name="blockCheckboxes" >
-                                        <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Block {{ block_number }}</label>
+                                        <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Bloque {{ block_number }}</label>
                                         
                                         {% for count in block_counts %}
                                         {% if count.block_number == block_number %}
@@ -551,49 +552,49 @@
                                     {% for block_number in "23456789" %}
                                     <div class="form-check">
                                         <input href="?searchObject=&place_found=Block 1{{block_number}}" class="form-check-input" type="checkbox" value="Block 1{{ block_number }}" id="blockCheckbox1{{ block_number }}" name="blockCheckboxes">
-                                        <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Block 1{{ block_number }}</label>
+                                        <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Bloque 1{{ block_number }}</label>
                                         
                                     </div>
                                     {% endfor %}
                                     <div class="form-check">
                                       <input href="?searchObject=&place_found=Main Cafeteria" class="form-check-input" type="checkbox" value="Main Cafeteria" id="Main Cafeteria" name="blockCheckboxes">
-                                      <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Main Cafeteria</label>
+                                      <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Cafetería Principal</label>
                                      
                                   </div>
                                   <div class="form-check">
                                     <input href="?searchObject=&place_found=Cafeteria 2" class="form-check-input" type="checkbox" value="Cafeteria 2" id="Cafeteria 2" name="blockCheckboxes">
-                                    <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Cafeteria 2</label>
+                                    <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Cafetería 2</label>
                                    
                                 </div>
                                 <div class="form-check">
                                   <input href="?searchObject=&place_found=North Parking Lot" class="form-check-input" type="checkbox" value="North Parking Lot" id="North Parking Lot" name="blockCheckboxes">
-                                  <label class="form-check-label" for="flexCheckChecked{{ block_number }}">North Parking Lot</label>
+                                  <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Parqueadero Norte</label>
                                  
                               </div>
                               <div class="form-check">
                                 <input href="?searchObject=&place_found=South Parking Lot" class="form-check-input" type="checkbox" value="South Parking Lot" id="South Parking Lot" name="blockCheckboxes">
-                                <label class="form-check-label" for="flexCheckChecked{{ block_number }}">South Parking Lot</label>
+                                <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Parqueadero Sur</label>
                                
                             </div>
                             <div class="form-check">
                               <input href="?searchObject=&place_found=Argos Block" class="form-check-input" type="checkbox" value="Argos Block" id="Argos Block" name="blockCheckboxes">
-                              <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Argos Block</label>
+                              <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Bloque Argos</label>
                              
                           </div>
                           <div class="form-check">
                             <input href="?searchObject=&place_found=Guayabos Parking Lot" class="form-check-input" type="checkbox" value="Guayabos Parking Lot" id="Guayabos Parking Lot" name="blockCheckboxes">
-                            <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Guayabos Parking Lot</label>
+                            <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Parqueadero Guayabos</label>
                            
                         </div>
                             <div class="form-check">
                             <input href="?searchObject=&place_found=Synthetic fields - Main Cafeteria" class="form-check-input" type="checkbox" value="Synthetic fields - Main Cafeteria" id="Synthetic fields - Main Cafeteria" name="blockCheckboxes">
-                            <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Synthetic fields - Main Cafeteria</label>
+                            <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Cancha Sintetica - Cafetería Principal</label>
                            
                         </div>
 
                         <div class="form-check">
                           <input href="?searchObject=&place_found=Synthetic fields - North Parking Lot" class="form-check-input" type="checkbox" value="Synthetic fields - North Parking Lot" id="Synthetic fields - North Parking Lot" name="blockCheckboxes">
-                          <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Synthetic fields - North Parking Lot</label>
+                          <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Cancha Sintética - Parqueadero Norte </label>
                          
                       </div>
                                     </div>
@@ -601,14 +602,14 @@
                                     {% for block_number in "0136789" %}
                                     <div class="form-check">
                                         <input href="?searchObject=&place_found=Block 2{{block_number}}" class="form-check-input" type="checkbox" value="Block 2{{ block_number }}" id="blockCheckbox2{{ block_number }}" name="blockCheckboxes">
-                                        <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Block 2{{ block_number }}</label>
+                                        <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Bloque 2{{ block_number }}</label>
                                         
                                     </div>
                                     {% endfor %}
                                     {% for block_number in "02345789" %}
                                     <div class="form-check">
                                         <input href="?searchObject=&place_found=Block 3{{block_number}}" class="form-check-input" type="checkbox" value="Block {{ block_number }}" id="blockCheckbox3{{ block_number }}" name="blockCheckboxes">
-                                        <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Block 3{{ block_number }}</label>
+                                        <label class="form-check-label" for="flexCheckChecked{{ block_number }}">Bloque 3{{ block_number }}</label>
                                        
                                     </div>
                                     {% endfor %}    
@@ -637,7 +638,7 @@
                           aria-expanded="false"
                           aria-controls="panelsStayOpen-collapseThree"
                           >
-                    Date
+                    Fecha
                   </button>
                 </h2>
                 <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree">
@@ -646,7 +647,7 @@
                     <div class="row mb-3">
                       <div class="col-6">
                         <p class="mb-0">
-                          Start Date
+                          Fecha de Inicio
                         </p>
                         <div class="form-outline">
                           <input type="date" id="startDate" name="startDate" class="form-control" />
@@ -654,14 +655,14 @@
                       </div>
                       <div class="col-6">
                         <p class="mb-0">
-                          End Date
+                          Fecha Final
                         </p>
                         <div class="form-outline">
                           <input type="date" id="endDate" name="endDate" class="form-control" />
                         </div>
                       </div>
                     </div>
-                    <button type="button" class="btn btn-white w-100 border border-secondary" onclick="applyDateFilter()">Apply</button>
+                    <button type="button" class="btn btn-white w-100 border border-secondary" onclick="applyDateFilter()">Aplicar   </button>
                   </div>
                 </div>
                 
@@ -679,7 +680,7 @@
                         aria-expanded="false"
                         aria-controls="panelsStayOpen-collapseFive"
                     >
-                        Hour Range
+                        Rango de Hora
                     </button>
                 </h2>
                 <div
@@ -712,19 +713,19 @@
         <!-- sidebar -->
           <div class="mb-3">
             <label for="searchObject" class="form-label">
-              Search objects:
+              Busca objetos:
             </label>
             <input type="text" class="form-control" name="searchObject" />
           </div>
-          <button type="submit" class="btn btn-primary">Search</button>
+          <button type="submit" class="btn btn-primary">Buscar</button>
       
         
         <!-- content -->
       
             <div class="ms-auto">
               <select class="form-select d-inline-block w-auto border pt-1">
-                <option value="0">Most Recent</option>
-                <option value="1">Less Recent</option>
+                <option value="0">Más reciente</option>
+                <option value="1">Menos Reciente</option>
             
               </select>
               <div class="btn-group shadow-0 border">
@@ -737,12 +738,13 @@
               </div>
               
             </div>
-   
+            
+          </header>
 
 
-            <p>Searching for "{{ searchTerm }}"</p>
+            <p>Buscando por: "{{ searchTerm }}"</p>
       
-            <p>Items Found</p>
+            <p>Items encontrados: </p>
             <div class="row row-cols-1 row-cols-md-3 g-4">
               {% for object in objects %}
               <div class="col">
@@ -756,7 +758,7 @@
                     <p class="card-text">{{ object.category }}</p>
                     {%if object.object_status == "Not Claimed" %}
                     <a href={%url 'claiming' object.id%} class="btn btn-primary" role="button">
-                      Claim
+                      Reclamar
                     </a>
                     {% else %}
                     {%if object.object_recovered == "Not Recovered"%}
@@ -777,11 +779,11 @@
             </div>
             
             <div style="text-align: center;">
-              <br></br>
-              <h3>Is your object not here?</h3>
-              <p>Click below to be notified</p>
+                <br></br>
+                <h3 style='color: black;'>¿No encuentras tu objeto?</h3>
+              <p style='color: black;'>Haz Click aquí para ser notificado</p>
               <a href="{% url 'notify' %}" class="btn btn-primary" style="width: 200px; padding: 10px;">
-                  Notify me
+                  Notificarme
               </a>
           </div>
       
@@ -809,19 +811,20 @@
             </ul>
           </nav>
           <!-- Pagination -->
-        </div>
-      </div>
-    </div>    
-  </div>    
+        <!-- Pagination -->
+    </div>
+</div>
 </div>    
-     
-  </section>
-  </form>
+</div>    
+</div>    
+
+</section>
+</form>
   <!-- sidebar + content -->
 
   <!-- Footer -->
-  <br></br>
-  <footer class="text-center text-lg-start text-muted bg-primary mt-3">
+<br></br>
+<footer class="text-center text-lg-start text-muted bg-primary mt-3">
     <!-- Section: Links  -->
     <section class="">
       <div class="container text-center text-md-start pt-4 pb-4">
@@ -838,7 +841,7 @@
             </p>
           </div>
           <!-- Grid column -->
-
+  
           <!-- Grid column -->
           <div class="col-6 col-sm-4 col-lg-2">
             <!-- Links -->
@@ -846,14 +849,14 @@
               Project
             </h6>
             <ul class="list-unstyled mb-4">
-              <li><a class="text-white-50" href="#">About us</a></li>
+              <li><a class="text-white-50" href="http://localhost:8000/about">Sobre Nosotros</a></li>
               <li><a class="text-white-50" href="#">FAQ</a></li>
-              <li><a class="text-white-50" href="#">Categories</a></li>
-              <li><a class="text-white-50" href="#">Terms and Conditions</a></li>
+              <li><a class="text-white-50" href="#">Categorias</a></li>
+              <li><a class="text-white-50" href="#">Términos y Condiciones</a></li>
             </ul>
           </div>
           <!-- Grid column -->
-
+  
           <!-- Grid column -->
           <div class="col-6 col-sm-4 col-lg-2">
             <!-- Links -->
@@ -861,39 +864,39 @@
               Information
             </h6>
             <ul class="list-unstyled mb-4">
-              <li><a class="text-white-50" href="#">Help center</a></li>
-              <li><a class="text-white-50" href="#">About the Lost and Found Objects System in EAFIT</a></li>
-              <li><a class="text-white-50" href="#">Information</a></li>
-              <li><a class="text-white-50" href="#">Contribute</a></li>
+              <li><a class="text-white-50" href="#">Centro de Ayuda</a></li>
+              <li><a class="text-white-50" href="#">Sobre el sistema de objetos perdidos en EAFIT</a></li>
+              <li><a class="text-white-50" href="#">Información</a></li>
+              <li><a class="text-white-50" href="#">Contribuir</a></li>
             </ul>
           </div>
           <!-- Grid column -->
-
+  
           <!-- Grid column -->
           <div class="col-6 col-sm-4 col-lg-2">
             <!-- Links -->
             <h6 class="text-uppercase text-white fw-bold mb-2">
-              Support
+              Soporte
             </h6>
             <ul class="list-unstyled mb-4">
-              <li><a class="text-white-50" href="#">Help</a></li>
-              <li><a class="text-white-50" href="#">Documents</a></li>
-              <li><a class="text-white-50" href="#">Project Info</a></li>
-              <li><a class="text-white-50" href="#">My profile</a></li>
+              <li><a class="text-white-50" href="#">Ayuda</a></li>
+              <li><a class="text-white-50" href="#">Documentos</a></li>
+              <li><a class="text-white-50" href="#">Información del Proyecto</a></li>
+              <li><a class="text-white-50" href="#">Mi perfil</a></li>
             </ul>
           </div>
           <!-- Grid column -->
-
+  
           <!-- Grid column -->
           <div class="col-12 col-sm-12 col-lg-3">
             <!-- Links -->
-            <h6 class="text-uppercase text-white fw-bold mb-2">Notifications</h6>
-            <p class="text-white">Get information about Seeku</p>
+            <h6 class="text-uppercase text-white fw-bold mb-2">Notificaciones</h6>
+            <p class="text-white">Obtener Información Sobre Seeku</p>
             <div class="input-group mb-3">
               <input type="email" class="form-control border" placeholder="Email" aria-label="Email" aria-describedby="button-addon2" />
               <div class="input-group-append">
                 <button class="btn btn-light border shadow-0" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-                  Join
+                  Únete
                 </button>
               </div>
             </div>
@@ -905,17 +908,16 @@
       </div>
     </section>
     <!-- Section: Links  -->
-
+  
     <div class="">
       <div class="container">
         <div class="d-flex justify-content-between py-4 border-top">
       
           <!--- payment --->
-
+  
           <!--- language selector --->
           <div class="dropdown dropup">
-            <a class="dropdown-toggle text-white" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false"> <i class="flag-united-kingdom flag m-0 me-1"></i>English </a>
-
+  
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="Dropdown">
               <li>
                 <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English <i class="fa fa-check text-success ms-2"></i></a>
@@ -954,19 +956,18 @@
   </footer>
   <!-- Footer -->
       <!-- MDB -->
+      
+      <!-- Custom scripts -->
+      
       <script type="text/javascript" src="/static/app/js/script.js"></script>
-      <script type="text/javascript" src="https://unpkg.com/mdbootstrap@4.20.0/js/mdb.min.js"></script> 
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script type="text/javascript" src="https://unpkg.com/mdbootstrap@4.20.0/js/mdb.min.js"></script>
       <script>
-        const showMoreButton = document.getElementById("showMoreBlocks");
-        const hiddenBlocks = document.querySelectorAll(".form-check.d-none");
-    
-        showMoreButton.addEventListener("click", () => {
-            hiddenBlocks.forEach((block) => {
-                block.classList.remove("d-none");
-            });
-            showMoreButton.style.display = "none"; // Hide the "Show More" button after revealing all blocks.
-        });
-    </script>
-        
+        function myFunction() {
+          var element = document.body;
+          element.classList.toggle("dark-mode");
+        }
+      </script>
   </body>
   </html>
+  

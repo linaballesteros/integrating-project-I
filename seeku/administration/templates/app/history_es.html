@@ -30,7 +30,7 @@
       .main-header-menu .menu-link {
         color: black !important;
 
-    
+   
     }
   </style>
 
@@ -48,7 +48,7 @@
     .main-header-menu .menu-link {
       color: black !important;
     }
-
+  
     .notification-popup {
       display: flex; /*  flexbox para alinear elementos horizontalmente */
       align-items: center; /* Centra verticalmente los elementos dentro de la notificación */
@@ -92,7 +92,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Expired Objects - SeekU</title>
+    <title>Historial - SeekU</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -237,21 +237,21 @@
           
           
         </div>
-          <div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="ast-flex-grow-1 navigation-accessibility" id="site-navigation" aria-label="Navegación del sitio" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="primary-menu" class="main-header-menu ast-nav-menu ast-flex ast-justify-content-flex-end  submenu-with-border astra-menu-animation-fade " aria-expanded="false"><li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633"><a href="http://localhost:8000/my_profile" class="menu-link">My profile</a></li>
+          <div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="ast-flex-grow-1 navigation-accessibility" id="site-navigation" aria-label="Navegación del sitio" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="primary-menu" class="main-header-menu ast-nav-menu ast-flex ast-justify-content-flex-end  submenu-with-border astra-menu-animation-fade " aria-expanded="false"><li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633"><a href="http://localhost:8000/my_profile_es" class="menu-link">Mi perfil</a></li>
     {% if user_role == "admin" %}    
-    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">About Us</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history" class="menu-link">History</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/analytics" class="menu-link">Analytics</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/my_objects" class="menu-link">Objects</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="#" class="menu-link" id="notification-btn">Notification Center</a></li>
+    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about_es" class="menu-link">Sobre Nosotros</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history_es" class="menu-link">Historial</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/analytics_es" class="menu-link">Analítica</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/my_objects_es" class="menu-link">Objetos</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="#" class="menu-link" id="notification-btn">Centro de Notificaciones</a></li>
     <div id="notification-popup" class="notification-popup">
-      <h2 style="color: black;">Notification Center</h2>
+      <h2 style="color: black;">Centro de Notificaciones</h2>
       <hr style="margin: 10px 0; border: none; height: 1px; background-color: #000">
     
       {% for object in objects_complaints %}
           <div class="notification notification-item">
               <div class="notification-content">
-                  <div class="notification-icon">🔔 <strong style="color: black;">Notification:</strong> <span style="color: blue;">{{ object.title }}</span> <span style="margin-top: -5px;">has more than 3 claim complaints.</span></div>
+                  <div class="notification-icon">🔔 <strong style="color: black;">Notificación:</strong> <span style="color: blue;">{{ object.title }}</span> <span style="margin-top: -5px;">tiene más de 3 solicitudes de queja.</span></div>
               </div>
           </div>
           <hr style="margin: 10px 0; border: none; height: 1px; background-color: #000">
@@ -265,19 +265,19 @@
   
   
     {% else %}
-    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">About Us</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history" class="menu-link">History</a></li>
+    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about_es" class="menu-link">Sobre Nosotros</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history_es" class="menu-link">Historial</a></li>
     {% endif %}
     <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
-      <a href="http://localhost:8000/expired_objects" class="menu-link" onclick="changeLanguage('en')">
-          <img src="https://img.freepik.com/vector-premium/gran-bretana-bandera-bandera-inglaterra-vector-icono-reino-unido-bandera-gran-bretana-10-eps_800531-104.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
+        <a href="http://localhost:8000/history" class="menu-link" onclick="changeLanguage('en')">
+            <img src="https://img.freepik.com/vector-premium/gran-bretana-bandera-bandera-inglaterra-vector-icono-reino-unido-bandera-gran-bretana-10-eps_800531-104.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
+        </a>
+    </li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
+      <a href="http://localhost:8000/history_es" class="menu-link" onclick="changeLanguage('en')">
+          <img src="https://img.freepik.com/vector-premium/bandera-espana-nacion-europea_395514-14.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
       </a>
   </li>
-  <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
-    <a href="http://localhost:8000/expired_objects_es" class="menu-link" onclick="changeLanguage('en')">
-        <img src="https://img.freepik.com/vector-premium/bandera-espana-nacion-europea_395514-14.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
-    </a>
-</li>
   </ul></div></nav></div></div>			</div><!-- Main Header Container -->
         </div><!-- ast-row -->
           </div> <!-- Main Header Bar -->
@@ -338,13 +338,13 @@
               <div class="n2_clear"><ss3-force-full-width data-overflow-x="body" data-horizontal-selector="body" class="n2-ss-no-bga-fixed" style="transform: translate3d(44px, 0px, 0px); width: 820px; opacity: 1;"><div class="n2-section-smartslider fitvidsignore n2_clear" data-ssid="8" tabindex="0" role="region" aria-label="Slider"><div id="n2-ss-8-align" class="n2-ss-align n2-ss-align-visible"><div class="n2-padding"><div id="n2-ss-8" data-creator="Smart Slider 3" data-responsive="fullwidth" class="n2-ss-slider n2-ow n2-has-hover n2-ss-loaded n2-ss-mobilePortrait" data-device-mode="mobilePortrait"><div class="n2-ss-slider-wrapper-inside">
               <div class="bg-primary mb-4">
                 <div class="container py-4">
-                  <h3 class="text-white mt-2" style="margin-left: 60px;"> Expired Objects </h3>
+                  <h3 class="text-white mt-2" style="margin-left: 60px;"> Historial </h3>
                   <!-- Breadcrumb -->
                   <nav class="d-flex mb-2">
                     <h6 class="mb-0">
-                      <a href="http://localhost:8000" class="text-white-50" style="margin-left: 60px;"><u>Home</u></a>
+                      <a href="http://localhost:8000/index_es" class="text-white-50" style="margin-left: 60px;"><u>Inicio</u></a>
                       <span class="text-white-50 mx-2"> > </span>
-                      <a href="http://localhost:8000/expired_objects" class="text-white" ><u> Expired Objects</u></a>
+                      <a href="http://localhost:8000/history_es" class="text-white" ><u>Historial </u></a>
                     </h6>
                   </nav>
                   <!-- Breadcrumb -->
@@ -402,87 +402,91 @@
   
   <!-- Jumbotron -->
 </header>
-<form method="POST" enctype="multipart/form-data">
-  <section class="bg-light py-5">
+  
+  <!-- sidebar + content -->
+  <section class="">
     <div class="container">
       <div class="row">
-        <div class="col-xl-12 col-lg-15 mb-4"> <!-- Change from col-xl-8 to col-xl-12 -->
-            <div class="card mb-4 border shadow-0">
-                <div class="p-4 d-flex justify-content-between">
-                    <div class="">
-                        <h5>Expired Objects</h5>
-                        <p class="mb-0 text-wrap ">Delete and view Expired Objects</p>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center flex-column flex-md-row">
-                        <a href="http://localhost:8000" class="btn btn-outline-primary me-0 me-md-2 mb-2 mb-md-0 w-100">Back to Home Page</a>
-                        <a href="http://localhost:8000/publish_object" class="btn btn-primary shadow-0 text-nowrap w-100">Publish a new Object</a>
-                    </div>
+        <!-- sidebar -->
+     
+        </div>
+        <!-- sidebar -->
+        <!-- content -->
+        <div class="col-lg-11">
+          <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
+            <strong class="d-block py-2">Items encontrados </strong>
+            <div class="ms-auto">
+              <select class="form-select d-inline-block w-auto border pt-1">
+                <option value="0">Más reciente</option>
+                <option value="1">Menos reciente</option>
+              </select>
+              <div class="btn-group shadow-0 border">
+                <a href="#" class="btn btn-light" title="List view">
+                  <i class="fa fa-bars fa-lg"></i>
+                </a>
+                <a href="#" class="btn btn-light active" title="Grid view">
+                  <i class="fa fa-th fa-lg"></i>
+                </a>
+              </div>
             </div>
-          </div>
-  
-        <!-- Checkout -->
-       
-          <!-- Checkout -->
-          <div class="card shadow-0 border">
-            <div class="p-4">
-            
-              <div class="row mb-7">
-                <div class="col-md-15">
+          </header>
 
-                    {% csrf_token %}
-                    <h5 class="card-title mb-4" style="font-size: 24px; color: #333; margin-bottom: 20px;">Expired Objects</h5>
-
-                    <div class="row row-cols-1 row-cols-md-4 g-4">
-                      {% for object in objects %}
-                      <div class="col">
-                        <div class="card" style="height: 100%;">
-                          <img class="card-img-top" src="{{ object.image.url }}" style="object-fit: cover; height: 200px;">
-                          <div class="card-body">
-                            <h5 class="card-title fw-bold">{{ object.title }}</h5>
-                            <p class="card-text">{{ object.description }}</p>
-                            <p class="card-text">{{ object.place_found }}</p>
-                            <p class="card-text">{{ object.date_found }}</p>
-                            <p class="card-text">{{ object.hour_range }}</p>
-                            <p class="card-text">{{ object.category }}</p>
-                            {% if object.id %}
-                            <a href="{% url 'delete_object' object_id=object.id %}" class="btn btn-primary" style="background-color: red !important;">
-                              Delete Object
+        
+          <div class="row">
+            {% for object in objetos_claimed %}
+              <div class="col-md-12">
+                <div class="card shadow-0 border rounded-3">
+                  <div class="card-body">
+                    <div class="row g-0">
+                      <div class="col-xl-3 col-md-4 d-flex justify-content-center">
+                        <div class="bg-image hover-zoom ripple rounded ripple-surface me-md-3 mb-3 mb-md-0">
+                          <img class="card-img-top" src="{{ object.image.url }}" class="w-100" />
+                          <a href="#!">
+                            <div class="hover-overlay">
+                              <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                            </div>
                           </a>
-                          
-                          
-                            {% endif %}
-
-                          </div>
                         </div>
                       </div>
-                      {% endfor %}
+                      <div class="col-xl-6 col-md-5 col-sm-7">
+                        <h5 class="card-title fw-bold">{{ object.title }}</h5>
+                        <div class="d-flex flex-row">
+                          <div class="text-warning mb-1 me-2">
+                            <span class="ms-1">
+                              Office: {{ object.place_registered}}
+                            </span>
+                          </div>
+                        </div>
+                        <p class="text mb-4 mb-md-0">
+                          <br></br>
+                          {{ object.object_recovered }}   
+                        </p>
+                      </div>
+                      <div class="col-xl-3 col-md-3 col-sm-5">
+                        <div class="d-flex flex-row align-items-center mb-1">
+                        </div>
+                        <h6 class="text-success">{{ object.object_status }}</h6>
+                        <div class="mt-4">
+                          <input type="hidden" name="object_id" value="{{ object.id }}">
+                          <form method="POST" enctype="multipart/form-data" action="{% url 'count_claim_complaint' object.id %}">
+                            {% csrf_token %}
+                          <button class="btn btn-primary shadow-0" type="submit">Solicitud de Queja</button>
+                        </form>
+                        </div>
+                      </div>
                     </div>
-        <!-- Checkout -->
-      </div>
-      
-        
-        
-<!-- Checkout -->
-
-        
-
-              <!-- You can add more security questions as needed -->
-            </div>
-            
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
           </div>
-       
-        </div>
-      </div>
-    </div>
-        </div>
-        
-        
-  <!-- Footer -->
-  
-<!-- Footer -->
+          
 
-<!-- Footer -->
-<footer class="text-center text-lg-start text-muted bg-primary mt-3">
+          
+ 
+  </section>
+ <!-- Footer -->
+ <footer class="text-center text-lg-start text-muted bg-primary mt-3">
   <!-- Section: Links  -->
   <section class="">
     <div class="container text-center text-md-start pt-4 pb-4">
@@ -507,10 +511,10 @@
             Project
           </h6>
           <ul class="list-unstyled mb-4">
-            <li><a class="text-white-50" href="http://localhost:8000/about">About us</a></li>
+            <li><a class="text-white-50" href="http://localhost:8000/about">Sobre Nosotros</a></li>
             <li><a class="text-white-50" href="#">FAQ</a></li>
-            <li><a class="text-white-50" href="#">Categories</a></li>
-            <li><a class="text-white-50" href="#">Terms and Conditions</a></li>
+            <li><a class="text-white-50" href="#">Categorias</a></li>
+            <li><a class="text-white-50" href="#">Términos y Condiciones</a></li>
           </ul>
         </div>
         <!-- Grid column -->
@@ -522,10 +526,10 @@
             Information
           </h6>
           <ul class="list-unstyled mb-4">
-            <li><a class="text-white-50" href="#">Help center</a></li>
-            <li><a class="text-white-50" href="#">About the Lost and Found Objects System in EAFIT</a></li>
-            <li><a class="text-white-50" href="#">Information</a></li>
-            <li><a class="text-white-50" href="#">Contribute</a></li>
+            <li><a class="text-white-50" href="#">Centro de Ayuda</a></li>
+            <li><a class="text-white-50" href="#">Sobre el sistema de objetos perdidos en EAFIT</a></li>
+            <li><a class="text-white-50" href="#">Información</a></li>
+            <li><a class="text-white-50" href="#">Contribuir</a></li>
           </ul>
         </div>
         <!-- Grid column -->
@@ -534,13 +538,13 @@
         <div class="col-6 col-sm-4 col-lg-2">
           <!-- Links -->
           <h6 class="text-uppercase text-white fw-bold mb-2">
-            Support
+            Soporte
           </h6>
           <ul class="list-unstyled mb-4">
-            <li><a class="text-white-50" href="#">Help</a></li>
-            <li><a class="text-white-50" href="#">Documents</a></li>
-            <li><a class="text-white-50" href="#">Project Info</a></li>
-            <li><a class="text-white-50" href="#">My profile</a></li>
+            <li><a class="text-white-50" href="#">Ayuda</a></li>
+            <li><a class="text-white-50" href="#">Documentos</a></li>
+            <li><a class="text-white-50" href="#">Información del Proyecto</a></li>
+            <li><a class="text-white-50" href="#">Mi perfil</a></li>
           </ul>
         </div>
         <!-- Grid column -->
@@ -548,13 +552,13 @@
         <!-- Grid column -->
         <div class="col-12 col-sm-12 col-lg-3">
           <!-- Links -->
-          <h6 class="text-uppercase text-white fw-bold mb-2">Notifications</h6>
-          <p class="text-white">Get information about Seeku</p>
+          <h6 class="text-uppercase text-white fw-bold mb-2">Notificaciones</h6>
+          <p class="text-white">Obtener Información Sobre Seeku</p>
           <div class="input-group mb-3">
             <input type="email" class="form-control border" placeholder="Email" aria-label="Email" aria-describedby="button-addon2" />
             <div class="input-group-append">
               <button class="btn btn-light border shadow-0" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-                Join
+                Únete
               </button>
             </div>
           </div>
@@ -575,7 +579,6 @@
 
         <!--- language selector --->
         <div class="dropdown dropup">
-          <a class="dropdown-toggle text-dark" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false"> <i class="flag-united-kingdom flag m-0 me-1"></i>English </a>
 
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="Dropdown">
             <li>
@@ -619,7 +622,13 @@
     <!-- Custom scripts -->
     
     <script type="text/javascript" src="/static/app/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/mdbootstrap@4.20.0/js/mdb.min.js"></script>
+    <script>
+      function myFunction() {
+        var element = document.body;
+        element.classList.toggle("dark-mode");
+      }
+    </script>
 </body>
 </html>
-

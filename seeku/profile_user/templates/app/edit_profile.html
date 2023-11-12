@@ -28,14 +28,14 @@
   <style>
     .menu-link {
       color: black;
-
+    }
       .main-header-menu .menu-link {
         color: black !important;
-
-        li.menu-item:hover .menu-link {
-          color: blue !important;;
       }
-    }
+        .main-header-menu .menu-link:hover {
+          color: #2684c7 !important; /* Cambia el color a azul cuando se pasa el mouse por encima */
+        }
+    
   </style>
 
   <style>
@@ -51,11 +51,11 @@
     }
     .main-header-menu .menu-link {
       color: black !important;
-
-      li.menu-item:hover .menu-link {
-        color: blue !important;;
     }
-    }
+      .main-header-menu .menu-link:hover {
+        color: #2684c7 !important; /* Cambia el color a azul cuando se pasa el mouse por encima */
+      }
+    
   </style>
 
     <meta charset="UTF-8" />
@@ -366,7 +366,7 @@
                 </div>
                 <div class="col-lg-8">
                     <!-- Add a form for editing user information here -->
-                    <form action="/edit_profile_view/" method="POST">
+                    <form action="/edit_profile_view_es/" method="POST">
                         {% csrf_token %}
                         <!-- Full Name -->
                         <div class="mb-3">

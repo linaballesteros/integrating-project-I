@@ -25,13 +25,11 @@
  
     .menu-link {
       color: black;
-
+    }
       .main-header-menu .menu-link {
         color: black !important;
 
-        li.menu-item:hover .menu-link {
-          color: blue !important;;
-      }
+  
     }
   </style>
 
@@ -49,9 +47,6 @@
     .main-header-menu .menu-link {
       color: black !important;
 
-      li.menu-item:hover .menu-link {
-        color: blue !important;;
-    }
     }
   </style>
 
@@ -329,7 +324,9 @@
                 <div class="card-body p-md-5">
                   <div class="row justify-content-center">
                     <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-      
+                      <a href="http://localhost:8000/register_es" class="menu-link" onclick="changeLanguage('en')">
+                        <img src="https://img.freepik.com/vector-premium/bandera-espana-nacion-europea_395514-14.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
+                    </a>
                       <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign Up</p>
       
                       <form class="mx-1 mx-md-4" method="POST">

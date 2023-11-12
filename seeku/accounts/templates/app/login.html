@@ -58,7 +58,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Login- SeekU</title>
+    <title>Login - SeekU</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -257,6 +257,7 @@
               <div class="n2_clear"><ss3-force-full-width data-overflow-x="body" data-horizontal-selector="body" class="n2-ss-no-bga-fixed" style="transform: translate3d(44px, 0px, 0px); width: 820px; opacity: 1;"><div class="n2-section-smartslider fitvidsignore n2_clear" data-ssid="8" tabindex="0" role="region" aria-label="Slider"><div id="n2-ss-8-align" class="n2-ss-align n2-ss-align-visible"><div class="n2-padding"><div id="n2-ss-8" data-creator="Smart Slider 3" data-responsive="fullwidth" class="n2-ss-slider n2-ow n2-has-hover n2-ss-loaded n2-ss-mobilePortrait" data-device-mode="mobilePortrait"><div class="n2-ss-slider-wrapper-inside">
               <div class="bg-primary mb-4">
                 <div class="container py-4">
+                  
                   <h3 class="text-white mt-2" style="margin-left: 60px;">Login </h3>
                   <!-- Breadcrumb -->
                   <nav class="d-flex mb-2">
@@ -335,7 +336,11 @@
                       {% if message %}
                       <div class="alert alert-info">{{ message }}</div>
                       {% endif %}
-      
+
+                        <a href="http://localhost:8000/login_es" class="menu-link" onclick="changeLanguage('en')">
+                            <img src="https://img.freepik.com/vector-premium/bandera-espana-nacion-europea_395514-14.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
+                        </a>
+              
                       <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Log In</p>
       
                       <form class="mx-1 mx-md-4" method="POST">
@@ -357,14 +362,16 @@
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <a href="#!">Did you forget your password?</a>
                         </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-4 mt-4">
+                          <a href="http://localhost:8000/register"> Do not have an account yet?</a>
+                        </div>
       
                         <div class="d-flex justify-content-center">
                           <button type="submit" class="btn btn-primary btn-lg">Log In</button>
                         </div>
 
-                        <div class="d-flex justify-content-between align-items-center mb-4 mt-4">
-                          <a href="http://localhost:8000/register"> Do not you have an account yet?</a>
-                        </div>
+                        
 
                       </form>
       

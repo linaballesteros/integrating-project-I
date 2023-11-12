@@ -55,7 +55,7 @@ auth_pyrebase = firebase.auth()
 
 
 #Function that help to register and verificate ther user in the database
-def register(request):
+def register_es(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
@@ -92,11 +92,50 @@ def register(request):
             if hasattr(e, 'error_info') and hasattr(e.error_info, 'message'):
                 error_message = str(e.error_info.message)
             print('Error al registrar usuario:', error_message)
+            return render(request, 'app/register_es.html', {'error_message': error_message})
+
+    return render(request, 'app/register_es.html') 
+ 
+def register(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        phone = request.POST['mobile_phone']
+        country_phone = request.POST['country_code']
+        name = request.POST['name']
+        phone_complete = country_phone+phone
+
+        try:
+            #Verifica que el dominio sea de @eafit.edu.co
+            if not email.endswith('@eafit.edu.co'):
+                error_message = "Plase use a valid email with @eafit.edu.co"
+                return render(request, 'app/register.html', {'error_message': error_message})
+            
+            if len(password) < 6:
+                error_message = "Passwords must contain at least 6 characters"
+                return render(request, 'app/register.html', {'error_message': error_message})
+            
+            user = auth.create_user(email=email, password=password, phone_number=phone_complete)
+            # Crear usuario en Firebase Auth
+            print("Created user:", user.email)
+            # Generar enlace de verificación y enviar correo
+            link = auth.generate_email_verification_link(email)
+            print("Correo de verificación enviado")
+            print("Enlace de verificación:", link)
+            send_email(user.email,link)
+            #Add to the collection the user with the role, "regular"
+            create_Collectio_User(user.email,user.phone_number,'regular',user.uid,password,name)
+            # Redirigir a la página de inicio de sesión u otra página deseada
+            return redirect(reverse('login')+'?email_verification=true') 
+
+        except Exception as e:
+            error_message = str(e)
+            if hasattr(e, 'error_info') and hasattr(e.error_info, 'message'):
+                error_message = str(e.error_info.message)
+            print('Error al registrar usuario:', error_message)
             return render(request, 'app/register.html', {'error_message': error_message})
 
     return render(request, 'app/register.html') 
- 
-
 
 #Function that help to connect the user with the database, and depend of the user_role have some actions. 
 def login(request):
@@ -104,7 +143,7 @@ def login(request):
     #Show in the screen a message to the user for verificate de email. 
      email_verification = request.GET.get('email_verification')
      if email_verification == 'true':
-        message = "Por favor, verifica tu correo electrónico antes de iniciar sesión."
+        message = "Please verify your email before logging in."
      else:
         message = ""
 
@@ -144,6 +183,50 @@ def login(request):
         
      return render(request, 'app/login.html', {'message': message})
  
+def login_es(request):
+    
+    #Show in the screen a message to the user for verificate de email. 
+     email_verification = request.GET.get('email_verification')
+     if email_verification == 'true':
+        message = "Por favor, verifica tu correo electrónico antes de iniciar sesión."
+     else:
+        message = ""
+
+     if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        try:
+            user = auth.get_user_by_email(email)
+            if user.email_verified:
+                auth_pyrebase.sign_in_with_email_and_password(email, password)
+                # Generar el token personalizado
+                # Obtener el uid del usuario autenticado (esto puede variar según cómo almacenes el uid en tu sesión)
+                user_uid = user.uid
+                # Almacenar el uid en la sesión para usarlo posteriormente
+                request.session['user_uid'] = user_uid
+                # Consultar Firestore para obtener el rol del usuario
+                user_doc = db.collection('usuario_eafit').document(user_uid).get()
+                user_role = user_doc.get('profile_role')
+                if user_role == 'admin':
+                    request.session['user_uid'] = user_uid  # Almacena el UID del usuario en la sesión de Django
+                    print("entro aqui")
+                    return redirect('publish_object')
+                elif user_role == 'regular':
+                    request.session['user_uid'] = user_uid  # Almacena el UID del usuario en la sesión de Django
+                    return redirect('search')  # Redirigir a la página del usuario regular
+
+            else:
+                error_message = "Por favor verifica tu correo electrónico"
+                return render(request, 'app/login_es.html', {'error_message': error_message})
+        except Exception as e:
+            error_message = str(e)
+            if hasattr(e, 'error_info') and hasattr(e.error_info, 'message'):
+                error_message = str(e.error_info.message)
+            print('Error Trying to Log In,', error_message)
+            #error_message = "Credenciales inválidas. Por favor, verifica tus datos."
+            return render(request, 'app/login_es.html', {'error_message': error_message})
+        
+     return render(request, 'app/login_es.html', {'message': message})
  
  
 #Function to send email

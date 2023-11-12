@@ -40,8 +40,13 @@ from profile_user.views import get_user_data
 
 @login_required
 def analytics(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
     data = get_user_data(request)
-    user_role = data['profile_role']
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
     # por categorias
     data = Object.objects.values('category').annotate(count=Count('category'))
     
@@ -92,10 +97,74 @@ def analytics(request):
     print("Counts:", counts5)
 
 
-    return render(request, 'app\_analytics.html', {'labels': labels, 'counts': counts, 'months': months, 'counts2': counts2, 'places': places, 'counts3': counts3, 'hours': hours, 'counts4': counts4, 'status': status, 'counts5': counts5, 'user_role': user_role})
+    return render(request, 'app\_analytics.html', {'labels': labels, 'counts': counts, 'months': months, 'counts2': counts2, 'places': places, 'counts3': counts3, 'hours': hours, 'counts4': counts4, 'status': status, 'counts5': counts5, 'user_role': user_role, 'objects_complaints': objects_complaints})
+
+@login_required
+def analytics_es(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    # por categorias
+    data = Object.objects.values('category').annotate(count=Count('category'))
+    
+
+    labels = [item['category'] for item in data]
+    counts = [item['count'] for item in data]
+
+    print("Labels:", labels)
+    print("Counts:", counts)
+
+    # meses 
+    data2 = Object.objects.annotate(month=TruncMonth('date_found'))
+    data2 = data2.values('month').annotate(count=Count('id'))
+
+    months = [item['month'].strftime('%B') for item in data2]
+    counts2 = [item['count'] for item in data2]
+    
+    print("Months:", months)
+    print("Counts2:", counts2)
+    
+    # Obtener los 10 lugares con la mayor cantidad de objetos perdidos
+    data_places = Object.objects.values('place_found').annotate(count=Count('id')).order_by('-count')[:10]
+
+    places = [item['place_found'] for item in data_places]
+    counts3 = [item['count'] for item in data_places]
+
+    print("Places:", places)
+    print("Counts Places:", counts3)
+    
+    # horarios 
+    data_hours = Object.objects.values('hour_range').annotate(count=Count('id'))
+
+    hours = [item['hour_range'] for item in data_hours]
+    counts4 = [item['count'] for item in data_hours]
+
+    print("Hours:", hours)
+    print("Counts Hours:", counts4)
+    
+    # claimed o not claimed
+    
+    data3 = Object.objects.values('object_status').annotate(count=Count('category'))
+    
+
+    status = [item['object_status'] for item in data3]
+    counts5 = [item['count'] for item in data3]
+
+    print("Status:", status)
+    print("Counts:", counts5)
+
+
+    return render(request, 'app\_analytics_es.html', {'labels': labels, 'counts': counts, 'months': months, 'counts2': counts2, 'places': places, 'counts3': counts3, 'hours': hours, 'counts4': counts4, 'status': status, 'counts5': counts5, 'user_role': user_role, 'objects_complaints': objects_complaints})
+
 
 @login_required
 def map_view(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
     data = get_user_data(request)
     user_role = data['profile_role']
    # para mostrar el mapa:
@@ -137,7 +206,7 @@ def map_view(request):
     
     webbrowser.open_new_tab('Path.html')
     
-    return render(request, 'app\_analytics.html', {'user_role': user_role})
+    return render(request, 'app\_analytics.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
 
 def path(request):
     return render(request, "app\Path.html")

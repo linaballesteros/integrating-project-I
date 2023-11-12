@@ -47,16 +47,37 @@ from profile_user.views import get_user_data
 #View to publish the object with the security.
 @login_required
 def publish_object(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
     data = get_user_data(request)
-    user_role = data['profile_role']
-    return render(request, "app\publish_object.html", {'user_role': user_role})
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    return render(request, "app\publish_object.html", {'user_role': user_role, 'objects_complaints': objects_complaints})
+
+@login_required
+def publish_object_es(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    return render(request, "app\publish_object_es.html", {'user_role': user_role, 'objects_complaints': objects_complaints})
 
 
 #Function to publish the object. 
 @login_required
 def publish_object_(request): # for publishing objects (vista vigilantes)
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
     data = get_user_data(request)
-    user_role = data['profile_role']
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
     if request.method == 'POST':
         form = ObjectForm(request.POST, request.FILES)
         print("posttt")
@@ -91,16 +112,67 @@ def publish_object_(request): # for publishing objects (vista vigilantes)
     else:
         form = ObjectForm()
 
-    return render(request, 'app\publish_object.html', {'form': form, 'user_role': user_role})
+    return render(request, 'app\publish_object.html', {'form': form, 'user_role': user_role, 'objects_complaints': objects_complaints})
+
+@login_required
+def publish_object__es(request): # for publishing objects (vista vigilantes)
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    if request.method == 'POST':
+        form = ObjectForm(request.POST, request.FILES)
+        print("posttt")
+        if form.is_valid():
+            new_object=form.save()
+            mails=Noti.objects.filter(brands=new_object.brands,color=new_object.color,place_found=new_object.place_found)
+            subject="Object published"
+            link="http://127.0.0.1:8000"+reverse("claim_req")
+            description=f"""
+            <html>
+            <body>
+            <p>Seems like the object you searched for was found:</p>
+            <p>Color: {new_object.color}</p>
+            <p>Place: {new_object.place_found}</p>
+            <p>Brand: {new_object.brands}</p>
+            <p><span style="background-color: yellow ; color:black;">
+            If your object is not there you will have to select "notify me" option again.</span></p>
+            <a href="{link}">Claim Request</p>
+            
+            </body>
+            </html>"""
+            print("-->",len(mails))
+            for obj in mails:
+                email=obj.user_email
+                print(email)
+                views.send_email2(email,description,subject)
+            mails.delete()
+            print(form.errors)
+            print("pasó el valid")
+        else:
+            print(form.errors)  
+    else:
+        form = ObjectForm()
+
+    return render(request, 'app\publish_object__es   .html', {'form': form, 'user_role': user_role, 'objects_complaints': objects_complaints})
+
 
 
 
 #Function to edit the object by the security.
 @login_required
 def edit_object(request, object_id): # UPDATE OBJECT
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
     object_to_edit = get_object_or_404(Object, pk=object_id)
     data = get_user_data(request)
-    user_role = data['profile_role']
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
     if request.method == "POST" and 'save_changes' in request.POST:
         print("holiss")
         title = request.POST.get('title')
@@ -129,38 +201,130 @@ def edit_object(request, object_id): # UPDATE OBJECT
         
         
         object_to_edit.save() # changes
-        return render(request, 'app\edit_object.html', {'object_to_edit' : object_to_edit, 'user_role': user_role})
+        return render(request, 'app\edit_object.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})
     elif request.method == "POST" and 'delete_object' in request.POST:
          obj_to_delete = get_object_or_404(Object, pk=object_id)
          obj_to_delete.delete()
-         return render(request, 'app\my_objects.html', {'object_to_edit' : object_to_edit, 'user_role': user_role})   
+         return render(request, 'app\my_objects.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})   
     else:
         form = ObjectForm()
-        return render(request, 'app\edit_object.html', {'object_to_edit' : object_to_edit, 'user_role': user_role})
+        return render(request, 'app\edit_object.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})
+
+@login_required
+def edit_object_es(request, object_id): # UPDATE OBJECT
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
+    object_to_edit = get_object_or_404(Object, pk=object_id)
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    if request.method == "POST" and 'save_changes' in request.POST:
+        print("holiss")
+        title = request.POST.get('title')
+        color = request.POST.get('color')
+        image = request.FILES.get('image')  
+        date_found = request.POST.get('date_found')
+        brands = request.POST.get('brands')
+        place_found = request.POST.get('place_found')
+        hour_range = request.POST.get('hour_range')
+        description = request.POST.get('description')
+        category = request.POST.getlist('category')  
+        
+        # updating data of objects in django admin
+        object_to_edit.title = title
+        object_to_edit.color = color
+        
+        if image:
+            object_to_edit.image = image
+            
+        object_to_edit.date_found = date_found
+        object_to_edit.brands = brands
+        object_to_edit.place_found = place_found
+        object_to_edit.hour_range = hour_range
+        object_to_edit.description = description
+        object_to_edit.category = category 
+        
+        
+        object_to_edit.save() # changes
+        return render(request, 'app\edit_object_es.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    elif request.method == "POST" and 'delete_object' in request.POST:
+         obj_to_delete = get_object_or_404(Object, pk=object_id)
+         obj_to_delete.delete()
+         return render(request, 'app\my_objects_es.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})   
+    else:
+        form = ObjectForm()
+        return render(request, 'app\edit_object_es.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})
+
 
 #Function that edit the object to the security
 @login_required
 def delete_object(request, object_id):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
     data = get_user_data(request)
-    user_role = data['profile_role']
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
     obj_to_delete = get_object_or_404(Object, pk=object_id)
     if request.method == "GET":
         print("gettt")
         obj_to_delete.delete()
-    return render(request, 'app\my_objects.html', {'user_role': user_role})
+    
+    return render(request, 'app\my_objects.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
+
+@login_required
+def delete_object_es(request, object_id):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    obj_to_delete = get_object_or_404(Object, pk=object_id)
+    if request.method == "GET":
+        print("gettt")
+        obj_to_delete.delete()
+    
+    return render(request, 'app\my_objects_es.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
 
 @login_required
 def  my_objects(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
     objects = Object.objects.all()  # Retrieve all objects from the database
     data = get_user_data(request)
-    user_role = data['profile_role']
-    return render(request, 'app\my_objects.html', {'objects': objects, 'user_role': user_role})
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    return render(request, 'app\my_objects.html', {'objects': objects, 'user_role': user_role, 'objects_complaints': objects_complaints})
+
+@login_required
+def  my_objects_es(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
+    objects = Object.objects.all()  # Retrieve all objects from the database
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    return render(request, 'app\my_objects_es.html', {'objects': objects, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 
 @login_required
 def expired_objects(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
     data = get_user_data(request)
-    user_role = data['profile_role']
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
     current_date = date.today()
     print("current date")
     print(current_date)
@@ -174,4 +338,61 @@ def expired_objects(request):
     print("two-months")
     print(two_months_ago)
 
-    return render(request, 'app\expired_objects.html', {'objects': objects, 'two_months_ago': two_months_ago, 'user_role': user_role})
+    return render(request, 'app\expired_objects.html', {'objects': objects, 'two_months_ago': two_months_ago, 'user_role': user_role, 'objects_complaints': objects_complaints})
+
+@login_required
+def expired_objects_es(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    current_date = date.today()
+    print("current date")
+    print(current_date)
+
+    # Calcula la fecha hace 2 meses
+    two_months_ago = current_date - timedelta(days=60)
+
+    # Realiza la consulta para obtener objetos encontrados en los últimos 2 meses
+    objects= Object.objects.exclude(date_found__range=(two_months_ago, current_date))
+
+    print("two-months")
+    print(two_months_ago)
+
+    return render(request, 'app\expired_objects_es.html', {'objects': objects, 'two_months_ago': two_months_ago, 'user_role': user_role, 'objects_complaints': objects_complaints})
+
+
+def count_claim_complaint(request, object_id):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    object = get_object_or_404(Object, pk=object_id)
+
+    if request.method == 'POST':
+        object.complaints_amount += 1
+        object.save()
+        
+    return render(request, 'app\history.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
+
+def count_claim_complaint_es(request, object_id):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    object = get_object_or_404(Object, pk=object_id)
+
+    if request.method == 'POST':
+        object.complaints_amount += 1
+        object.save()
+        
+    return render(request, 'app\history_es.html', {'user_role': user_role, 'objects_complaints': objects_complaints})

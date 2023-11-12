@@ -30,7 +30,6 @@
       .main-header-menu .menu-link {
         color: black !important;
 
-    
     }
   </style>
 
@@ -92,7 +91,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Expired Objects - SeekU</title>
+    <title>Editar Objeto - SeekU</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -237,21 +236,21 @@
           
           
         </div>
-          <div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="ast-flex-grow-1 navigation-accessibility" id="site-navigation" aria-label="Navegación del sitio" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="primary-menu" class="main-header-menu ast-nav-menu ast-flex ast-justify-content-flex-end  submenu-with-border astra-menu-animation-fade " aria-expanded="false"><li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633"><a href="http://localhost:8000/my_profile" class="menu-link">My profile</a></li>
+          <div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="ast-flex-grow-1 navigation-accessibility" id="site-navigation" aria-label="Navegación del sitio" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="primary-menu" class="main-header-menu ast-nav-menu ast-flex ast-justify-content-flex-end  submenu-with-border astra-menu-animation-fade " aria-expanded="false"><li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633"><a href="http://localhost:8000/my_profile_es" class="menu-link">Mi perfil</a></li>
     {% if user_role == "admin" %}    
-    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">About Us</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history" class="menu-link">History</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/analytics" class="menu-link">Analytics</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/my_objects" class="menu-link">Objects</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="#" class="menu-link" id="notification-btn">Notification Center</a></li>
+    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about_es" class="menu-link">Sobre Nosotros</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history_es" class="menu-link">Historial</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/analytics_es" class="menu-link">Analítica</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/my_objects_es" class="menu-link">Objetos</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="#" class="menu-link" id="notification-btn">Centro de Notificaciones</a></li>
     <div id="notification-popup" class="notification-popup">
-      <h2 style="color: black;">Notification Center</h2>
+      <h2 style="color: black;">Centro de Notificaciones</h2>
       <hr style="margin: 10px 0; border: none; height: 1px; background-color: #000">
     
       {% for object in objects_complaints %}
           <div class="notification notification-item">
               <div class="notification-content">
-                  <div class="notification-icon">🔔 <strong style="color: black;">Notification:</strong> <span style="color: blue;">{{ object.title }}</span> <span style="margin-top: -5px;">has more than 3 claim complaints.</span></div>
+                  <div class="notification-icon">🔔 <strong style="color: black;">Notificación:</strong> <span style="color: blue;">{{ object.title }}</span> <span style="margin-top: -5px;">tiene más de 3 solicitudes de queja.</span></div>
               </div>
           </div>
           <hr style="margin: 10px 0; border: none; height: 1px; background-color: #000">
@@ -265,19 +264,19 @@
   
   
     {% else %}
-    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about" class="menu-link">About Us</a></li>
-    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history" class="menu-link">History</a></li>
+    <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a title="" href="http://localhost:8000/about_es" class="menu-link">Sobre Nosotros</a></li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340"><a href="http://localhost:8000/history_es" class="menu-link">Historial</a></li>
     {% endif %}
     <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
-      <a href="http://localhost:8000/expired_objects" class="menu-link" onclick="changeLanguage('en')">
-          <img src="https://img.freepik.com/vector-premium/gran-bretana-bandera-bandera-inglaterra-vector-icono-reino-unido-bandera-gran-bretana-10-eps_800531-104.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
+        <a href="http://localhost:8000/edit_object" class="menu-link" onclick="changeLanguage('en')">
+            <img src="https://img.freepik.com/vector-premium/gran-bretana-bandera-bandera-inglaterra-vector-icono-reino-unido-bandera-gran-bretana-10-eps_800531-104.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
+        </a>
+    </li>
+    <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
+      <a href="http://localhost:8000/edit_object_es" class="menu-link" onclick="changeLanguage('en')">
+          <img src="https://img.freepik.com/vector-premium/bandera-espana-nacion-europea_395514-14.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
       </a>
   </li>
-  <li id="menu-item-2340" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2340">
-    <a href="http://localhost:8000/expired_objects_es" class="menu-link" onclick="changeLanguage('en')">
-        <img src="https://img.freepik.com/vector-premium/bandera-espana-nacion-europea_395514-14.jpg" alt="Bandera de Inglaterra" style="width: 25px; height: 25px;">
-    </a>
-</li>
   </ul></div></nav></div></div>			</div><!-- Main Header Container -->
         </div><!-- ast-row -->
           </div> <!-- Main Header Bar -->
@@ -338,13 +337,13 @@
               <div class="n2_clear"><ss3-force-full-width data-overflow-x="body" data-horizontal-selector="body" class="n2-ss-no-bga-fixed" style="transform: translate3d(44px, 0px, 0px); width: 820px; opacity: 1;"><div class="n2-section-smartslider fitvidsignore n2_clear" data-ssid="8" tabindex="0" role="region" aria-label="Slider"><div id="n2-ss-8-align" class="n2-ss-align n2-ss-align-visible"><div class="n2-padding"><div id="n2-ss-8" data-creator="Smart Slider 3" data-responsive="fullwidth" class="n2-ss-slider n2-ow n2-has-hover n2-ss-loaded n2-ss-mobilePortrait" data-device-mode="mobilePortrait"><div class="n2-ss-slider-wrapper-inside">
               <div class="bg-primary mb-4">
                 <div class="container py-4">
-                  <h3 class="text-white mt-2" style="margin-left: 60px;"> Expired Objects </h3>
+                  <h3 class="text-white mt-2" style="margin-left: 60px;">Editar Objeto</h3>
                   <!-- Breadcrumb -->
                   <nav class="d-flex mb-2">
                     <h6 class="mb-0">
-                      <a href="http://localhost:8000" class="text-white-50" style="margin-left: 60px;"><u>Home</u></a>
+                      <a href="http://localhost:8000/index_es" class="text-white-50" style="margin-left: 60px;"><u>Inicio</u></a>
                       <span class="text-white-50 mx-2"> > </span>
-                      <a href="http://localhost:8000/expired_objects" class="text-white" ><u> Expired Objects</u></a>
+                      <a href="http://localhost:8000/edit_object_es" class="text-white" ><u>Editar Objeto</u></a>
                     </h6>
                   </nav>
                   <!-- Breadcrumb -->
@@ -402,84 +401,306 @@
   
   <!-- Jumbotron -->
 </header>
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" action="">
   <section class="bg-light py-5">
     <div class="container">
       <div class="row">
-        <div class="col-xl-12 col-lg-15 mb-4"> <!-- Change from col-xl-8 to col-xl-12 -->
-            <div class="card mb-4 border shadow-0">
-                <div class="p-4 d-flex justify-content-between">
-                    <div class="">
-                        <h5>Expired Objects</h5>
-                        <p class="mb-0 text-wrap ">Delete and view Expired Objects</p>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center flex-column flex-md-row">
-                        <a href="http://localhost:8000" class="btn btn-outline-primary me-0 me-md-2 mb-2 mb-md-0 w-100">Back to Home Page</a>
-                        <a href="http://localhost:8000/publish_object" class="btn btn-primary shadow-0 text-nowrap w-100">Publish a new Object</a>
-                    </div>
+        <div class="col-xl-8 col-lg-8 mb-4">
+          <div class="card mb-4 border shadow-0">
+            <div class="p-4 d-flex justify-content-between">
+              <div class="">
+                <h5>Editar Objeto</h5>
+                <p class="mb-0 text-wrap ">Edita los detalles de un objeto</p>
+              </div>
+              <div class="d-flex align-items-center justify-content-center flex-column flex-md-row">
+                <a href="http://localhost:8000/index_es" class="btn btn-outline-primary me-0 me-md-2 mb-2 mb-md-0 w-100">Volver a la página de Inicio</a>
+                <a href="http://localhost:8000/publish_object_es" class="btn btn-primary shadow-0 text-nowrap w-100">Publicar un objeto nuevo</a>
+                </div>
             </div>
           </div>
   
-        <!-- Checkout -->
-       
           <!-- Checkout -->
           <div class="card shadow-0 border">
             <div class="p-4">
-            
-              <div class="row mb-7">
-                <div class="col-md-15">
+             
+              <div class="row mb-3">
+                <div class="col-md-6">
 
                     {% csrf_token %}
-                    <h5 class="card-title mb-4" style="font-size: 24px; color: #333; margin-bottom: 20px;">Expired Objects</h5>
+                    <h5 class="card-title mb-3"><h1 style="font-size: 30px; color: black !important">Editando Objeto: {{ object_to_edit.title }}</h1></h5>
+                    <div class="mb-3">
+                      <label for="objectName" class="form-label">Nombre del Objeto</label>
+                      <input type="text" class="form-control" id="objectName" placeholder="Ingresa el nombre del objeto" name="title" value="{{ object_to_edit.title }}" required>
+                      
+                  </div>
+                  <div class="mb-3">
+                    <label for="placeFound" class="form-label">Lugar Encontrado</label>
+                    <select class="form-select" id="placeFound" placeholder="Ingresa el lugar donde fue encontrado" name="place_found" value="{{ object_to_edit.place_found }}" required>
+                      <option value="Block 1">Bloque 1</option>
+                      <option value="Block 3">Bloque 3</option>
+                      <option value="Block 4">Bloque 4</option>
+                      <option value="Block 7">Bloque 7</option>
+                      <option value="Block 9">Bloque 9</option>
+                      <option value="Block 12">Bloque 12</option>
+                      <option value="Block 13">Bloque 13</option>
+                      <option value="Block 14">Bloque 14</option>
+                      <option value="Block 15">Bloque 15</option>
+                      <option value="Block 16">Bloque 16</option>
+                      <option value="Block 17">Bloque 17</option>
+                      <option value="Block 18">Bloque 18</option>
+                      <option value="Block 19">Bloque 19</option>
+                      <option value="Block 20">Bloque 20</option>
+                      <option value="Block 21">Bloque 21</option>
+                      <option value="Block 23">Bloque 23</option>
+                      <option value="Block 26">Bloque 26</option>
+                      <option value="Block 27">Bloque 27</option>
+                      <option value="Block 28">Bloque 28</option>
+                      <option value="Block 29">Bloque 29</option>
+                      <option value="Block 30">Bloque 30</option>
+                      <option value="Block 32">Bloque 32</option>
+                      <option value="Block 33">Bloque 33</option>
+                      <option value="Block 34">Bloque 34</option>
+                      <option value="Block 35">Bloque 35</option>
+                      <option value="Block 37">Bloque 37</option>
+                      <option value="Block 38">Bloque 38</option>
+                      <option value="Block 39">Bloque 39</option>
+                      <option value="Argos Block">Bloque Argos</option>
+                      <option value="Main Cafeteria">Cafetería Principal</option>
+                      <option value="Cafeteria 2">Cafetería 2</option>
+                      <option value="North Parking Lot">Estacionamiento Norte</option>
+                      <option value="South Parking Lot">Estacionamiento Sur</option>
+                      <option value="Guayabos Parking Lot">Estacionamiento Guayabos</option>
+                      <option value="Synthetic fields - Main Cafeteria">Campos Sintéticos - Cafetería Principal</option>
+                      <option value="Synthetic fields - North Parking Lot">Campos Sintéticos - Estacionamiento Norte</option>
+                      
+                                               
+                     
+                  </select>
 
-                    <div class="row row-cols-1 row-cols-md-4 g-4">
-                      {% for object in objects %}
-                      <div class="col">
-                        <div class="card" style="height: 100%;">
-                          <img class="card-img-top" src="{{ object.image.url }}" style="object-fit: cover; height: 200px;">
-                          <div class="card-body">
-                            <h5 class="card-title fw-bold">{{ object.title }}</h5>
-                            <p class="card-text">{{ object.description }}</p>
-                            <p class="card-text">{{ object.place_found }}</p>
-                            <p class="card-text">{{ object.date_found }}</p>
-                            <p class="card-text">{{ object.hour_range }}</p>
-                            <p class="card-text">{{ object.category }}</p>
-                            {% if object.id %}
-                            <a href="{% url 'delete_object' object_id=object.id %}" class="btn btn-primary" style="background-color: red !important;">
-                              Delete Object
-                          </a>
-                          
-                          
-                            {% endif %}
+              </div>
+                    
+                </div>
+                  <div class="mb-3">
+                      <label for="objectImage" class="form-label">Imagen del Objeto</label>
+                      <input type="file" class="form-control" id="objectImage" placeholder="Ingresa la imagen del objeto" name="image" value="{{ object_to_edit.image}}" required>
+                     
+                  </div>
+                  <div class="mb-3">
+                      <label for="dateFound" class="form-label">Fecha Encontrado</label>
+                      <input type="date" class="form-control" id="dateFound" placeholder="Ingresa la fecha encontrado" name="date_found" value="{{ object_to_edit.date_found }}" required>
+                   
+                  </div>
+                  <div class="mb-3">
+                    <label for="objectBrand" class="form-label">Marca del Objeto</label>
+                    <input type="text" class="form-control" id="objectBrand" placeholder="Ingresa la marca del objeto" name="brands" value="{{ object_to_edit.brands }}" required>
+                    
+                </div>
+                  <div class="mb-3">
+                    <label for="objectColor" class="form-label">Color del Objeto</label>
+                    <select class="form-select" id="objectColor" placeholder="Selecciona el color del objeto" name="color" value="{{ object_to_edit.color }}" required>
+                      <option value="Red">Rojo</option>
+                      <option value="Blue">Azul</option>
+                      <option value="Green">Verde</option>
+                      <option value="Yellow">Amarillo</option>
+                      <option value="Black">Negro</option>
+                      <option value="White">Blanco</option>
+                      <option value="Purple">Morado</option>
+                      <option value="Orange">Naranja</option>
+                      <option value="Pink">Rosa</option>
+                      <option value="Brown">Marrón</option>
+                      <option value="Gray">Gris</option>
+                      <option value="Teal">Verde azulado</option>
+                      <option value="Cyan">Cian</option>
+                      <option value="Magenta">Magenta</option>
+                      <option value="Lime">Lima</option>
+                      <option value="Indigo">Índigo</option>
+                      <option value="Aqua">Agua</option>
+                      <option value="Gold">Oro</option>
+                      <option value="Silver">Plata</option>
+                      <option value="Maroon">Marrón oscuro</option>
+                      <option value="Navy">Azul marino</option>
+                      <option value="Olive">Oliva</option>
+                      <option value="Turquoise">Turquesa</option>
+                      <option value="Violet">Violeta</option>
+                      <option value="Coral">Coral</option>
+                      <option value="Slate">Gris pizarra</option>
+                      <option value="Crimson">Carmesí</option>
+                      <option value="Fuchsia">Fucsia</option>
+                      <option value="Mint">Menta</option>
+                      <option value="Salmon">Salmón</option>
+                      <option value="Beige">Beige</option>
+                      <option value="Tan">Bronceado</option>
+                      <option value="Khaki">Caqui</option>
+                      <option value="Lavender">Lavanda</option>
+                      <option value="Plum">Ciruela</option>
+                      <option value="Steel Blue">Azul acero</option>
+                      <option value="Forest Green">Verde bosque</option>
+                      <option value="Midnight Blue">Azul medianoche</option>
+                      <option value="Tomato">Tomate</option>
+                      <option value="Dark Slate Gray">Gris pizarra oscuro</option>
+                      <option value="Saddle Brown">Marrón silla</option>
+              
+                      </select>
 
-                          </div>
-                        </div>
-                      </div>
-                      {% endfor %}
-                    </div>
-        <!-- Checkout -->
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="hourFound" class="form-label">Hora encontrado</label>
+                        <select class="form-select" id="placeFound" placeholder="Selecciona el rango de hora" name="hour_range" value="{{ object_to_edit.hour_range }}" required>
+                          <option value="">Selecciona Hora</option>
+                          <option value="5:00-6:00">5:00-6:00</option>
+                          <option value="6:00-7:00">6:00-7:00</option>
+                          <option value="7:00-8:00">7:00-8:00</option>
+                          <option value="8:00-9:00">8:00-9:00</option>
+                          <option value="9:00-10:00">9:00-10:00</option>
+                          <option value="10:00-11:00">10:00-11:00</option>
+                          <option value="11:00-12:00">11:00-12:00</option>
+                          <option value="12:00-13:00">12:00-13:00</option>
+                          <option value="13:00-14:00">13:00-14:00</option>
+                          <option value="14:00-15:00">14:00-15:00</option>
+                          <option value="15:00-16:00">15:00-16:00</option>
+                          <option value="16:00-17:00">16:00-17:00</option>
+                          <option value="17:00-18:00">17:00-18:00</option>
+                          <option value="18:00-19:00">18:00-19:00</option>
+                          <option value="19:00-20:00">19:00-20:00</option>
+                          <option value="20:00-21:00">20:00-21:00</option>
+                          <option value="21:00-22:00">21:00-22:00</option>
+                          <option value="22:00-23:00">22:00-23:00</option>
+                          <option value="23:00-00:00">23:00-00:00</option>
+                      </select>
+  
+            
+              </div>
+              <div class="mb-3">
+                <label for="place_registered" class="form-label">Oficina</label>
+                    <select class="form-select" id="place_registered" placeholder="Selecciona la oficina de objetos perdidos" name="place_registered" value="{{ object_to_edit.place_registered }}" required>
+                      <option value="Block 3">Bloque 3</option>
+                      <option value="Library">Biblioteca</option>
+                      
+                  </select>
+
+        
+          </div>
+          <div class="mb-3">
+            <label for="object_status" class="form-label">Estado actual del Objeto</label>
+                <select class="form-select" id="object_status" placeholder="Selecciona el estado actual" name="object_status" value="{{ object_to_edit.object_status }}" required>
+                  <option value="Not Claimed">No Reclamado</option>
+                  <option value="Claimed">Reclamado</option>
+                  
+              </select>
+
+    
       </div>
-      
-        
-        
-<!-- Checkout -->
+      <div class="mb-3">
+        <label for="object_recovered" class="form-label">Estado de recolección</label>
+            <select class="form-select" id="object_recovered" placeholder="Selecciona el estado" name="object_recovered" value="{{ object_to_edit.object_recovered }}" required>
+              <option value="Not Recovered">No Recogido</option>
+              <option value="Recovered">Recogido</option>
+              
+          </select>
 
-        
 
-              <!-- You can add more security questions as needed -->
+  </div>
+              <h5 class="card-title mb-3">Selecciona una Categoría</h5>
+              <div class="row mb-3">
+                  <div class="col-md-4" id="checkboxGroup">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="Technology" id="categoryTech" name="category">
+                          <label class="form-check-label" for="categoryTech">Tecnología</label>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="Accesories" id="categoryAccessories" name="category">
+                          <label class="form-check-label" for="categoryAccessories">Accesorios</label>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="Books" id="categoryBooks" name="category">
+                          <label class="form-check-label" for="categoryBooks">Libros</label>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Water Bottles" id="categoryWaterBottles" name="category">
+                        <label class="form-check-label" for="categoryWaterBottles">Botellas de Agua</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Headphones" id="categoryHeadphones" name="category">
+                      <label class="form-check-label" for="categoryheadphones">Audífonos</label>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Lunchboxes" id="categoryLunchboxes" name="category">
+                    <label class="form-check-label" for="categoryLunchboxes">Bolsos</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="Clothes" id="categoryClothes" name="category">
+                  <label class="form-check-label" for="categoryClothes">Ropa</label>
+              </div>
+              </div>
+          <div id="errorMessage" style="color: red;"></div>
+          
+                  <br>
+                </br>
+                  <!-- Add more categories as needed -->
+                  <div class="mb-3">
+                    <label for="itemDescription" class="form-label">Descripción adicional del Ítem</label>
+                    <textarea class="form-control" id="itemDescription" rows="4" placeholder="Describe el ítem" name="description" value="{{ form.description.value }}"></textarea>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <h5 class="card-title mb-3">Información del Guardia</h5>
+                <div class="mb-3">
+                    <label for="guardFirstName" class="form-label">Nombre del Guardia </label>
+                    <input type="text" class="form-control" id="guardFirstName" placeholder="Ingresa el Nombre del Guardia">
+                </div>
+                <div class="mb-3">
+                    <label for="guardLastName" class="form-label">Apellido del Guardia</label>
+                    <input type="text" class="form-control" id="guardLastName" placeholder="Ingresa el Apellido del Guardia">
+                </div>
+                <div class="mb-3">
+                    <label for="guardID" class="form-label">ID del Guardia</label>
+                    <input type="text" class="form-control" id="guardID" placeholder="Ingresa el ID del Guardia">
+                </div>
+                <div class="mb-3">
+                    <label for="guardEmail" class="form-label">Correo Electrónico del Guardia</label>
+                    <input type="email" class="form-control" id="guardEmail" placeholder="Ingresa el correo electrónico del Guardia">
+                </div>
+            </div>
             </div>
             
-          </div>
-       
-        </div>
-      </div>
-    </div>
-        </div>
-        
-        
-  <!-- Footer -->
+           
+                <!-- Add more categories as needed -->
+                
+            
+              
   
-<!-- Footer -->
+              <div class="float-end">
+                <a href="http://localhost:8000/my_objects_es" class="btn w-3 gray shadow-0 border w-3" style="background-color: gray; color: white;">Cancelar</a>
+                <button type="submit" name="save_changes" class="btn btn-success shadow-0 border">Guardar Cambios</button>
+                <button type="submit" name="delete_object" class="btn w-3 red shadow-0 border" style="color: white;">Eliminar Objeto</button>                
+
+              </form>
+              </div>
+            </div>
+          </div>
+          <!-- Checkout -->
+        </div>
+    
+       
+          <a href="http://localhost:8000/my_objects_es" class="btn btn-primary">Ver Objetos Publicados</a>
+
+        </div>
+        
+        
 
 <!-- Footer -->
 <footer class="text-center text-lg-start text-muted bg-primary mt-3">
@@ -507,10 +728,10 @@
             Project
           </h6>
           <ul class="list-unstyled mb-4">
-            <li><a class="text-white-50" href="http://localhost:8000/about">About us</a></li>
+            <li><a class="text-white-50" href="http://localhost:8000/about">Sobre Nosotros</a></li>
             <li><a class="text-white-50" href="#">FAQ</a></li>
-            <li><a class="text-white-50" href="#">Categories</a></li>
-            <li><a class="text-white-50" href="#">Terms and Conditions</a></li>
+            <li><a class="text-white-50" href="#">Categorias</a></li>
+            <li><a class="text-white-50" href="#">Términos y Condiciones</a></li>
           </ul>
         </div>
         <!-- Grid column -->
@@ -522,10 +743,10 @@
             Information
           </h6>
           <ul class="list-unstyled mb-4">
-            <li><a class="text-white-50" href="#">Help center</a></li>
-            <li><a class="text-white-50" href="#">About the Lost and Found Objects System in EAFIT</a></li>
-            <li><a class="text-white-50" href="#">Information</a></li>
-            <li><a class="text-white-50" href="#">Contribute</a></li>
+            <li><a class="text-white-50" href="#">Centro de Ayuda</a></li>
+            <li><a class="text-white-50" href="#">Sobre el sistema de objetos perdidos en EAFIT</a></li>
+            <li><a class="text-white-50" href="#">Información</a></li>
+            <li><a class="text-white-50" href="#">Contribuir</a></li>
           </ul>
         </div>
         <!-- Grid column -->
@@ -534,13 +755,13 @@
         <div class="col-6 col-sm-4 col-lg-2">
           <!-- Links -->
           <h6 class="text-uppercase text-white fw-bold mb-2">
-            Support
+            Soporte
           </h6>
           <ul class="list-unstyled mb-4">
-            <li><a class="text-white-50" href="#">Help</a></li>
-            <li><a class="text-white-50" href="#">Documents</a></li>
-            <li><a class="text-white-50" href="#">Project Info</a></li>
-            <li><a class="text-white-50" href="#">My profile</a></li>
+            <li><a class="text-white-50" href="#">Ayuda</a></li>
+            <li><a class="text-white-50" href="#">Documentos</a></li>
+            <li><a class="text-white-50" href="#">Información del Proyecto</a></li>
+            <li><a class="text-white-50" href="#">Mi perfil</a></li>
           </ul>
         </div>
         <!-- Grid column -->
@@ -548,13 +769,13 @@
         <!-- Grid column -->
         <div class="col-12 col-sm-12 col-lg-3">
           <!-- Links -->
-          <h6 class="text-uppercase text-white fw-bold mb-2">Notifications</h6>
-          <p class="text-white">Get information about Seeku</p>
+          <h6 class="text-uppercase text-white fw-bold mb-2">Notificaciones</h6>
+          <p class="text-white">Obtener Información Sobre Seeku</p>
           <div class="input-group mb-3">
             <input type="email" class="form-control border" placeholder="Email" aria-label="Email" aria-describedby="button-addon2" />
             <div class="input-group-append">
               <button class="btn btn-light border shadow-0" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-                Join
+                Únete
               </button>
             </div>
           </div>
@@ -575,7 +796,6 @@
 
         <!--- language selector --->
         <div class="dropdown dropup">
-          <a class="dropdown-toggle text-dark" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false"> <i class="flag-united-kingdom flag m-0 me-1"></i>English </a>
 
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="Dropdown">
             <li>
@@ -619,7 +839,13 @@
     <!-- Custom scripts -->
     
     <script type="text/javascript" src="/static/app/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/mdbootstrap@4.20.0/js/mdb.min.js"></script>
+    <script>
+      function myFunction() {
+        var element = document.body;
+        element.classList.toggle("dark-mode");
+      }
+    </script>
 </body>
 </html>
-

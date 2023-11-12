@@ -47,8 +47,13 @@ from profile_user.views import get_user_data
  
 @login_required
 def search(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
     data = get_user_data(request)
-    user_role = data['profile_role']
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
     searchTerm = request.POST.get('searchObject')
     categories = request.POST.getlist('category')
     selected_blocks = request.POST.getlist('blockCheckboxes')
@@ -203,25 +208,214 @@ def search(request):
    # if selected_blocks:
        # objects = objects.filter(place_found=selected_blocks)
 
-    return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects, 'user_role': user_role})
+    return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects, 'user_role': user_role, 'objects_complaints': objects_complaints})
+
+@login_required
+def search_es(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    searchTerm = request.POST.get('searchObject')
+    categories = request.POST.getlist('category')
+    selected_blocks = request.POST.getlist('blockCheckboxes')
+    start_date = request.POST.get('startDate')
+    end_date = request.POST.get('endDate')
+    start_hour = request.POST.get('startHour')
+    end_hour = request.POST.get('endHour')
+    
+    objects = Object.objects.all()
+    print("Selected Categories", categories)
+    print("Search term =", searchTerm)
+    
+    if request.method == 'POST':
+        
+        if searchTerm == "salir":
+            logout(request)
+            return redirect('login')
+        
+        if searchTerm:
+            objects = objects.filter(title__icontains=searchTerm)
+        
+        print("Selected Categories", categories)
+        if categories:
+            objects = objects.filter(category__in=categories)
+            
+        if categories and selected_blocks:
+            objects = objects.filter(place_found__in=selected_blocks, category__in=categories)
+            
+        if categories and selected_blocks and start_date and end_date:
+            try:
+
+                start_date = datetime.strptime(start_date, '%Y-%m-%d')
+                end_date = datetime.strptime(end_date, '%Y-%m-%d')
+                
+                # date range
+                objects = objects.filter(place_found__in=selected_blocks, category__in=categories,date_found__gte=start_date, date_found__lte=end_date)
+            except ValueError:
+                print("Invalid date format")
+                
+        if categories and selected_blocks and start_date and end_date and start_hour and end_hour:
+            try:
+
+                start_date = datetime.strptime(start_date, '%Y-%m-%d')
+                end_date = datetime.strptime(end_date, '%Y-%m-%d')
+                start_hour = datetime.strptime(start_hour, '%H:%M').time()
+                end_hour = datetime.strptime(end_hour, '%H:%M').time()
+                
+                # date range
+                objects = objects.filter(place_found__in=selected_blocks, category__in=categories,date_found__gte=start_date, date_found__lte=end_date, hour_range__gte=start_hour,
+                    hour_range__lte=end_hour)
+            except ValueError:
+                print("Invalid date format")
+                
+        print("Selected Blocks:", selected_blocks)
+        
+        
+        
+        print(start_date)
+        print(end_date)
+
+        if start_date and end_date:
+            try:
+
+
+                start_date = datetime.strptime(start_date, '%Y-%m-%d')
+                end_date = datetime.strptime(end_date, '%Y-%m-%d')
+                
+                # date range
+                objects = objects.filter(date_found__gte=start_date, date_found__lte=end_date)
+            except ValueError:
+                print("Invalid date format")
+                
+        if selected_blocks and start_date and end_date:
+                try:
+
+                    start_date = datetime.strptime(start_date, '%Y-%m-%d')
+                    end_date = datetime.strptime(end_date, '%Y-%m-%d')
+                    
+                    # 
+                    objects = objects.filter(place_found__in=selected_blocks, date_found__gte=start_date, date_found__lte=end_date)
+                except ValueError:
+                    print("Invalid date format")
+                
+        else:
+            print("Both start_date and end_date are required")
+            
+        if selected_blocks:
+            objects = objects.filter(place_found__in=selected_blocks)
+       # objects = objects.filter(date_found__gte=start_date, date_found__lte=end_date)
+        if start_hour and end_hour and selected_blocks:
+            try:
+                # Convert the hour strings to time objects
+                start_hour = datetime.strptime(start_hour, '%H:%M').time()
+                end_hour = datetime.strptime(end_hour, '%H:%M').time()
+
+                # Filter objects based on selected blocks and hour range
+                objects = objects.filter(
+                    place_found__in=selected_blocks,
+                    hour_range__gte=start_hour,
+                    hour_range__lte=end_hour
+                )
+            except ValueError:
+                print("Invalid time format")
+        else:
+            print("Both start_hour and end_hour are required")
+            
+        if start_hour and end_hour and selected_blocks and start_date and end_date:
+            try:
+                # Convert the hour strings to time objects
+                start_date = datetime.strptime(start_date, '%Y-%m-%d')
+                end_date = datetime.strptime(end_date, '%Y-%m-%d')
+                start_hour = datetime.strptime(start_hour, '%H:%M').time()
+                end_hour = datetime.strptime(end_hour, '%H:%M').time()
+
+                # Filter objects based on selected blocks and hour range
+                objects = objects.filter(
+                    date_found__gte=start_date, 
+                    date_found__lte=end_date,
+                    place_found__in=selected_blocks,
+                    hour_range__gte=start_hour,
+                    hour_range__lte=end_hour
+                )
+            except ValueError:
+                print("Invalid time format")
+        else:
+            print("Both start_hour and end_hour are required")
+            
+        if start_hour and end_hour:
+            try:
+                # Convert the hour strings to time objects
+                start_hour = datetime.strptime(start_hour, '%H:%M').time()
+                end_hour = datetime.strptime(end_hour, '%H:%M').time()
+
+                # Filter objects based on selected blocks and hour range
+                objects = objects.filter(
+                    hour_range__gte=start_hour,
+                    hour_range__lte=end_hour
+                )
+            except ValueError:
+                print("Invalid time format")
+        else:
+            print("Both start_hour and end_hour are required")
+        context = {
+            'objects': objects,
+            'searchTerm': '',  #
+        }
+   # selected_blocks = request.GET.getlist("blockCheckboxes")
+
+    
+
+    
+   # if selected_blocks:
+       # objects = objects.filter(place_found=selected_blocks)
+
+    return render(request, "app\index2_es.html", {'searchTerm': searchTerm, 'objects': objects, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
    
    
 @login_required
 def claim_request(request):
+
     data = get_user_data(request)
-    user_role = data['profile_role']
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
     return render(request, "app\claim_request.html", {'user_role': user_role})
 
 @login_required
 def history(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
     data = get_user_data(request)
-    user_role = data['profile_role']
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
     print("entró a history")
     # Consulta la base de datos para obtener los objetos con object_status igual a "Claimed" para mostrarlos en el historial
     objetos_claimed = Object.objects.filter(object_status="Claimed")
     print(objetos_claimed)
-    return render(request, 'app\history.html', {'objetos_claimed': objetos_claimed, 'user_role': user_role})
+    return render(request, 'app\history.html', {'objetos_claimed': objetos_claimed, 'user_role': user_role, 'objects_complaints': objects_complaints})
+
+@login_required
+def history_es(request):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    print("entró a history")
+    # Consulta la base de datos para obtener los objetos con object_status igual a "Claimed" para mostrarlos en el historial
+    objetos_claimed = Object.objects.filter(object_status="Claimed")
+    print(objetos_claimed)
+    return render(request, 'app\history_es.html', {'objetos_claimed': objetos_claimed, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 
 # analytics
@@ -333,13 +527,18 @@ CATEGORY_CHOICES = [
 
 
 def delete_object(request, object_id):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
     data = get_user_data(request)
-    user_role = data['profile_role']
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
     obj_to_delete = get_object_or_404(Object, pk=object_id)
     if request.method == "GET":
         print("gettt")
         obj_to_delete.delete()
-    return render(request, 'app\my_objects.html', {'user_role': user_role})
+    return render(request, 'app\my_objects.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
 
 
 
@@ -392,13 +591,41 @@ def create_Collectio_User(email,mobile_phone,profile_role,user_uid,password,name
     }   
     coleccion_ref.document(user_uid).set(nuevo_documento)
 class ClaimObjectView(View):
+    objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
     def get(self,request):
+        objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
+        data = get_user_data(request)
+        if data is not None:
+            user_role = data['profile_role']
+        else:
+            user_role = 'guest'
         form=ClaimObject()
-        return render(request,"app/claim_req.html",{'form':form})
+        return render(request,"app/claim_req.html",{'form':form, 'user_role':user_role, 'objects_complaints': objects_complaints})
     def post(self,request):
         pass
+class ClaimObjectView_es(View):
+    def get(self,request):
+        objects_complaints = Object.objects.filter(complaints_amount__gt=2)
+
+        data = get_user_data(request)
+        if data is not None:
+            user_role = data['profile_role']
+        else:
+            user_role = 'guest'
+        form=ClaimObject_es()
+        return render(request,"app/claim_req_es.html",{'form':form, 'user_role':user_role, 'objects_complaints': objects_complaints})
+    def post(self,request):
+        pass 
+    
 @login_required  
 def filterObjects(request):
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
     place=request.POST.get('place_found','')
     date=request.POST.get('date_found','datetime')
     color = request.POST.get('color', '')
@@ -408,19 +635,62 @@ def filterObjects(request):
     request.session['brand']=brand
     filtered_objects = Object.objects.filter(color=color, brands=brand,place_found=place,date_found__gte=date)
     print(filtered_objects)
-    return render(request,"app/index2.html",{'objects': filtered_objects})
+    return render(request,"app/index2.html",{'objects': filtered_objects, 'user_role':user_role, 'objects_complaints': objects_complaints})
+
+@login_required  
+def filterObjects_es(request):
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    place=request.POST.get('place_found','')
+    date=request.POST.get('date_found','datetime')
+    color = request.POST.get('color', '')
+    brand = request.POST.get('brands', '')
+    request.session["place_found"]=place
+    request.session['color']=color
+    request.session['brand']=brand
+    filtered_objects = Object.objects.filter(color=color, brands=brand,place_found=place,date_found__gte=date)
+    print(filtered_objects)
+    return render(request,"app/index2_es.html",{'objects': filtered_objects, 'user_role':user_role, 'objects_complaints': objects_complaints})
+
 
 @login_required
 def count_objects(request):
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
     # Retrieve the counts of objects for each block from the database
     block_counts = Object.objects.values('place_found').annotate(count=Count('place_found'))
     
     # Pass the block-wise object counts as a context variable to the template
     context = {
-        'block_counts': block_counts,
+        'block_counts': block_counts, 'user_role':user_role, 'objects_complaints': objects_complaints
     }
     
     return render(request, 'app/index2.html', context)
+
+
+@login_required
+def count_objects_es(request):
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    # Retrieve the counts of objects for each block from the database
+    block_counts = Object.objects.values('place_found').annotate(count=Count('place_found'))
+    
+    # Pass the block-wise object counts as a context variable to the template
+    context = {
+        'block_counts': block_counts, 'user_role':user_role
+    }
+    
+    return render(request, 'app/index2_es.html', context)
+
 def send_email2(email_user,description,subject_):
     load_dotenv()
     email_sender ="seek.ueafit@gmail.com"
@@ -449,6 +719,7 @@ def NotifyMe(request):
     Noti.objects.create(brands=brand,color=color,place_found=place,user_email=email)
     print("hola",place,color,brand)
     return redirect(reverse("home"))
+
 @login_required
 def claiming(request,id):
     try:
