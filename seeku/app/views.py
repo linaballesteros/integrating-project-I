@@ -509,7 +509,7 @@ def claim_complaints_views(request):
     emails=Object.objects.exclude(user_claimer__isnull=True).values_list('user_claimer',flat=True).distinct()
     #list_ids=Claim_Complaint.objects.exclude(object_related__user_claimer=F('user_email')).values_list('object_related',flat=True)
     #objects=Object.objects.filter(id__in=list_ids).distinct()
-    objects=Object.objects.filter(complaints_amount__gte=0)
+    objects=Object.objects.filter(complaints_amount__gte=2).distinct()
     return render(request, 'app/complaints.html',{'objects':objects})
 def claim_complaint_detail_view(request,id):
     objects=Claim_Complaint.objects.filter(object_related=id)
