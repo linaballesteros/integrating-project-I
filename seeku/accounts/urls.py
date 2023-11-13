@@ -2,6 +2,8 @@ from django.urls import path, include
 from accounts import views
 from django.conf.urls.static import static
 from django.conf import settings
+
+
 urlpatterns = [
     path('login/', views.login, name='login'),
     path('login_es/', views.login_es, name='login_es'),

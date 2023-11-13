@@ -32,7 +32,7 @@ from utils.forms import ObjectForm, ClaimObject
 from datetime import datetime
 from profile_user.views import get_user_data
 
-@login_required
+
 def home(request):
 
     data = get_user_data(request)
@@ -54,7 +54,7 @@ def home(request):
     
     return render(request, "app\index2.html", {'user_role': user_role, 'searchTerm': searchTerm, 'objects': objects, 'objects_complaints': objects_complaints}) 
 
-@login_required
+
 def index_es(request):
     data = get_user_data(request)
     if data is not None:
