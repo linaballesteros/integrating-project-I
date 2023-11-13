@@ -162,6 +162,7 @@ class Object(models.Model):
     object_status = models.CharField(max_length=100, default='Not Claimed', choices=STATUS_CHOICES)    
     object_recovered = models.CharField(max_length=100, default='Not Recovered', choices=RECOVERED_CHOICES)          
     user_claimer=models.EmailField(max_length=254,blank=True)
+    complaints_amount = models.IntegerField(default=0)
 # actualizar modeloooooooooooooo
 class Noti(models.Model):
     place_found = models.CharField(max_length=100, default='Block 1', choices=BLOCK_CHOICES)
