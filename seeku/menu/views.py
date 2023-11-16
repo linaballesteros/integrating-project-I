@@ -52,10 +52,10 @@ def home(request):
         objects = Object.objects.all()
     
     else:
-        return render(request, "app/index.html", {'user_role': user_role})   
+        return render(request, "index.html", {'user_role': user_role})   
     
     
-    return render(request, "app\index2.html", {'user_role': user_role, 'searchTerm': searchTerm, 'objects': objects, 'objects_complaints': objects_complaints}) 
+    return render(request, "index2.html", {'user_role': user_role, 'searchTerm': searchTerm, 'objects': objects, 'objects_complaints': objects_complaints}) 
 
 
 def index_es(request):
@@ -72,10 +72,10 @@ def index_es(request):
     elif searchTerm == False:
         objects = Object.objects.all()
     else:
-        return render(request, "app\index_es.html")   
+        return render(request, "index_es.html")   
     
 
-    return render(request, "app\index2_es.html", {'user_role': user_role, 'searchTerm': searchTerm, 'objects': objects, 'objects_complaints': objects_complaints}) 
+    return render(request, "index2_es.html", {'user_role': user_role, 'searchTerm': searchTerm, 'objects': objects, 'objects_complaints': objects_complaints}) 
 
 def about(request):
     data = get_user_data(request)
@@ -84,7 +84,7 @@ def about(request):
     else:
         user_role = 'student'
     objects_complaints = Object.objects.filter(complaints_amount__gt=2)
-    return render(request, "app\_about.html", {'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, "_about.html", {'user_role': user_role, 'objects_complaints': objects_complaints})
 
 
 def about_es(request):
@@ -94,4 +94,4 @@ def about_es(request):
     else:
         user_role = 'guest'
     objects_complaints = Object.objects.filter(complaints_amount__gt=2)
-    return render(request, "app\_about_es.html", {'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, "_about_es.html", {'user_role': user_role, 'objects_complaints': objects_complaints})

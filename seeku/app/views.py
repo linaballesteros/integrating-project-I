@@ -213,7 +213,7 @@ def search(request):
    # if selected_blocks:
        # objects = objects.filter(place_found=selected_blocks)
 
-    return render(request, "app\index2.html", {'searchTerm': searchTerm, 'objects': objects, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, "index2.html", {'searchTerm': searchTerm, 'objects': objects, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 @login_required
 def search_es(request):
@@ -378,7 +378,7 @@ def search_es(request):
    # if selected_blocks:
        # objects = objects.filter(place_found=selected_blocks)
 
-    return render(request, "app\index2_es.html", {'searchTerm': searchTerm, 'objects': objects, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, "index2_es.html", {'searchTerm': searchTerm, 'objects': objects, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
    
    
@@ -390,7 +390,7 @@ def claim_request(request):
         user_role = data['profile_role']
     else:
         user_role = 'guest'
-    return render(request, "app\claim_request.html", {'user_role': user_role})
+    return render(request, "claim_request.html", {'user_role': user_role})
 
 @login_required
 def history(request):
@@ -405,7 +405,7 @@ def history(request):
     # Consulta la base de datos para obtener los objetos con object_status igual a "Claimed" para mostrarlos en el historial
     objetos_claimed = Object.objects.filter(object_status="Claimed")
     print(objetos_claimed)
-    return render(request, 'app\history.html', {'objetos_claimed': objetos_claimed, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, 'history.html', {'objetos_claimed': objetos_claimed, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 @login_required
 def history_es(request):
@@ -420,7 +420,7 @@ def history_es(request):
     # Consulta la base de datos para obtener los objetos con object_status igual a "Claimed" para mostrarlos en el historial
     objetos_claimed = Object.objects.filter(object_status="Claimed")
     print(objetos_claimed)
-    return render(request, 'app\history_es.html', {'objetos_claimed': objetos_claimed, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, 'history_es.html', {'objetos_claimed': objetos_claimed, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 
 # analytics
@@ -543,7 +543,7 @@ def delete_object(request, object_id):
     if request.method == "GET":
         print("gettt")
         obj_to_delete.delete()
-    return render(request, 'app\my_objects.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, 'my_objects.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
 
 
 

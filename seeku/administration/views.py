@@ -54,7 +54,7 @@ def publish_object(request):
         user_role = data['profile_role']
     else:
         user_role = 'guest'
-    return render(request, "app\publish_object.html", {'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, "publish_object.html", {'user_role': user_role, 'objects_complaints': objects_complaints})
 
 @login_required
 def publish_object_es(request):
@@ -65,7 +65,7 @@ def publish_object_es(request):
         user_role = data['profile_role']
     else:
         user_role = 'guest'
-    return render(request, "app\publish_object_es.html", {'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, "publish_object_es.html", {'user_role': user_role, 'objects_complaints': objects_complaints})
 
 
 #Function to publish the object. 
@@ -112,7 +112,7 @@ def publish_object_(request): # for publishing objects (vista vigilantes)
     else:
         form = ObjectForm()
 
-    return render(request, 'app\publish_object.html', {'form': form, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, 'publish_object.html', {'form': form, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 @login_required
 def publish_object__es(request): # for publishing objects (vista vigilantes)
@@ -157,7 +157,7 @@ def publish_object__es(request): # for publishing objects (vista vigilantes)
     else:
         form = ObjectForm()
 
-    return render(request, 'app\publish_object__es   .html', {'form': form, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, 'publish_object__es   .html', {'form': form, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 
 
@@ -201,14 +201,14 @@ def edit_object(request, object_id): # UPDATE OBJECT
         
         
         object_to_edit.save() # changes
-        return render(request, 'app\edit_object.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})
+        return render(request, 'edit_object.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})
     elif request.method == "POST" and 'delete_object' in request.POST:
          obj_to_delete = get_object_or_404(Object, pk=object_id)
          obj_to_delete.delete()
-         return render(request, 'app\my_objects.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})   
+         return render(request, 'my_objects.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})   
     else:
         form = ObjectForm()
-        return render(request, 'app\edit_object.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})
+        return render(request, 'edit_object.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 @login_required
 def edit_object_es(request, object_id): # UPDATE OBJECT
@@ -248,14 +248,14 @@ def edit_object_es(request, object_id): # UPDATE OBJECT
         
         
         object_to_edit.save() # changes
-        return render(request, 'app\edit_object_es.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})
+        return render(request, 'edit_object_es.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})
     elif request.method == "POST" and 'delete_object' in request.POST:
          obj_to_delete = get_object_or_404(Object, pk=object_id)
          obj_to_delete.delete()
-         return render(request, 'app\my_objects_es.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})   
+         return render(request, 'my_objects_es.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})   
     else:
         form = ObjectForm()
-        return render(request, 'app\edit_object_es.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})
+        return render(request, 'edit_object_es.html', {'object_to_edit' : object_to_edit, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 
 #Function that edit the object to the security
@@ -273,7 +273,7 @@ def delete_object(request, object_id):
         print("gettt")
         obj_to_delete.delete()
     
-    return render(request, 'app\my_objects.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, 'my_objects.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
 
 @login_required
 def delete_object_es(request, object_id):
@@ -289,7 +289,7 @@ def delete_object_es(request, object_id):
         print("gettt")
         obj_to_delete.delete()
     
-    return render(request, 'app\my_objects_es.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, 'my_objects_es.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
 
 @login_required
 def  my_objects(request):
@@ -301,7 +301,7 @@ def  my_objects(request):
         user_role = data['profile_role']
     else:
         user_role = 'guest'
-    return render(request, 'app\my_objects.html', {'objects': objects, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, 'my_objects.html', {'objects': objects, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 @login_required
 def  my_objects_es(request):
@@ -313,7 +313,7 @@ def  my_objects_es(request):
         user_role = data['profile_role']
     else:
         user_role = 'guest'
-    return render(request, 'app\my_objects_es.html', {'objects': objects, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, 'my_objects_es.html', {'objects': objects, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 
 @login_required
@@ -338,7 +338,7 @@ def expired_objects(request):
     print("two-months")
     print(two_months_ago)
 
-    return render(request, 'app\expired_objects.html', {'objects': objects, 'two_months_ago': two_months_ago, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, 'expired_objects.html', {'objects': objects, 'two_months_ago': two_months_ago, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 @login_required
 def expired_objects_es(request):
@@ -362,7 +362,7 @@ def expired_objects_es(request):
     print("two-months")
     print(two_months_ago)
 
-    return render(request, 'app\expired_objects_es.html', {'objects': objects, 'two_months_ago': two_months_ago, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, 'expired_objects_es.html', {'objects': objects, 'two_months_ago': two_months_ago, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 
 def count_claim_complaint(request, object_id):
@@ -379,7 +379,7 @@ def count_claim_complaint(request, object_id):
         object.complaints_amount += 1
         object.save()
         
-    return render(request, 'app\history.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, 'history.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
 
 def count_claim_complaint_es(request, object_id):
     objects_complaints = Object.objects.filter(complaints_amount__gt=2)
@@ -395,4 +395,4 @@ def count_claim_complaint_es(request, object_id):
         object.complaints_amount += 1
         object.save()
         
-    return render(request, 'app\history_es.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, 'history_es.html', {'user_role': user_role, 'objects_complaints': objects_complaints})

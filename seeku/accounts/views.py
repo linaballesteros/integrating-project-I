@@ -68,11 +68,11 @@ def register_es(request):
             #Verifica que el dominio sea de @eafit.edu.co
             if not email.endswith('@eafit.edu.co'):
                 error_message = "Por favor, use un correo electrónico válido de @eafit.edu.co"
-                return render(request, 'app/register.html', {'error_message': error_message})
+                return render(request, 'register.html', {'error_message': error_message})
             
             if len(password) < 6:
                 error_message = "La contrasena no es lo suficientemente larga, minimo de 6"
-                return render(request, 'app/register.html', {'error_message': error_message})
+                return render(request, 'register.html', {'error_message': error_message})
             
             user = auth.create_user(email=email, password=password, phone_number=phone_complete)
             # Crear usuario en Firebase Auth
@@ -92,9 +92,9 @@ def register_es(request):
             if hasattr(e, 'error_info') and hasattr(e.error_info, 'message'):
                 error_message = str(e.error_info.message)
             print('Error al registrar usuario:', error_message)
-            return render(request, 'app/register_es.html', {'error_message': error_message})
+            return render(request, 'register_es.html', {'error_message': error_message})
 
-    return render(request, 'app/register_es.html') 
+    return render(request, 'register_es.html') 
  
 def register(request):
     if request.method == 'POST':
@@ -109,11 +109,11 @@ def register(request):
             #Verifica que el dominio sea de @eafit.edu.co
             if not email.endswith('@eafit.edu.co'):
                 error_message = "Plase use a valid email with @eafit.edu.co"
-                return render(request, 'app/register.html', {'error_message': error_message})
+                return render(request, 'register.html', {'error_message': error_message})
             
             if len(password) < 6:
                 error_message = "Passwords must contain at least 6 characters"
-                return render(request, 'app/register.html', {'error_message': error_message})
+                return render(request, 'register.html', {'error_message': error_message})
             
             user = auth.create_user(email=email, password=password, phone_number=phone_complete)
             # Crear usuario en Firebase Auth
@@ -133,9 +133,9 @@ def register(request):
             if hasattr(e, 'error_info') and hasattr(e.error_info, 'message'):
                 error_message = str(e.error_info.message)
             print('Error al registrar usuario:', error_message)
-            return render(request, 'app/register.html', {'error_message': error_message})
+            return render(request, 'register.html', {'error_message': error_message})
 
-    return render(request, 'app/register.html') 
+    return render(request, 'register.html') 
 
 #Function that help to connect the user with the database, and depend of the user_role have some actions. 
 def login(request):
@@ -173,16 +173,16 @@ def login(request):
 
             else:
                 error_message = "Please, verify your email"
-                return render(request, 'app/login.html', {'error_message': error_message})
+                return render(request, 'login.html', {'error_message': error_message})
         except Exception as e:
             error_message = str(e)
             if hasattr(e, 'error_info') and hasattr(e.error_info, 'message'):
                 error_message = str(e.error_info.message)
             print('Error Trying to Log In,', error_message)
             #error_message = "Credenciales inválidas. Por favor, verifica tus datos."
-            return render(request, 'app/login.html', {'error_message': error_message})
+            return render(request, 'login.html', {'error_message': error_message})
         
-     return render(request, 'app/login.html', {'message': message})
+     return render(request, 'login.html', {'message': message})
  
 def login_es(request):
     
@@ -218,16 +218,16 @@ def login_es(request):
 
             else:
                 error_message = "Por favor verifica tu correo electrónico"
-                return render(request, 'app/login_es.html', {'error_message': error_message})
+                return render(request, 'login_es.html', {'error_message': error_message})
         except Exception as e:
             error_message = str(e)
             if hasattr(e, 'error_info') and hasattr(e.error_info, 'message'):
                 error_message = str(e.error_info.message)
             print('Error Trying to Log In,', error_message)
             #error_message = "Credenciales inválidas. Por favor, verifica tus datos."
-            return render(request, 'app/login_es.html', {'error_message': error_message})
+            return render(request, 'login_es.html', {'error_message': error_message})
         
-     return render(request, 'app/login_es.html', {'message': message})
+     return render(request, 'login_es.html', {'message': message})
  
  
 #Function to send email

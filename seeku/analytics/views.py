@@ -97,7 +97,7 @@ def analytics(request):
     print("Counts:", counts5)
 
 
-    return render(request, 'app\_analytics.html', {'labels': labels, 'counts': counts, 'months': months, 'counts2': counts2, 'places': places, 'counts3': counts3, 'hours': hours, 'counts4': counts4, 'status': status, 'counts5': counts5, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, '_analytics.html', {'labels': labels, 'counts': counts, 'months': months, 'counts2': counts2, 'places': places, 'counts3': counts3, 'hours': hours, 'counts4': counts4, 'status': status, 'counts5': counts5, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 @login_required
 def analytics_es(request):
@@ -158,7 +158,7 @@ def analytics_es(request):
     print("Counts:", counts5)
 
 
-    return render(request, 'app\_analytics_es.html', {'labels': labels, 'counts': counts, 'months': months, 'counts2': counts2, 'places': places, 'counts3': counts3, 'hours': hours, 'counts4': counts4, 'status': status, 'counts5': counts5, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, '_analytics_es.html', {'labels': labels, 'counts': counts, 'months': months, 'counts2': counts2, 'places': places, 'counts3': counts3, 'hours': hours, 'counts4': counts4, 'status': status, 'counts5': counts5, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 
 @login_required
@@ -206,7 +206,7 @@ def map_view(request):
     
     webbrowser.open_new_tab('Path.html')
     
-    return render(request, 'app\_analytics.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, '_analytics.html', {'user_role': user_role, 'objects_complaints': objects_complaints})
 
 def path(request):
-    return render(request, "app\Path.html")
+    return render(request, "Path.html")

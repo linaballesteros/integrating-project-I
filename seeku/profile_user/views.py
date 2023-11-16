@@ -82,7 +82,7 @@ def my_profile(request):
     # Obtiene los datos del usuario
     user_data = user_ref.get()
     user_dict = user_data.to_dict()
-    return render(request, 'app\profile.html', {'user_data': user_dict, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, 'profile.html', {'user_data': user_dict, 'user_role': user_role, 'objects_complaints': objects_complaints})
   
 @login_required
 def my_profile_es(request):
@@ -103,7 +103,7 @@ def my_profile_es(request):
     # Obtiene los datos del usuario
     user_data = user_ref.get()
     user_dict = user_data.to_dict()
-    return render(request, 'app\profile_es.html', {'user_data': user_dict, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, 'profile_es.html', {'user_data': user_dict, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 @login_required
 def edit_profile_view(request):
@@ -136,7 +136,7 @@ def edit_profile_view(request):
     user_data = user_ref.get()
     user_dict = user_data.to_dict()
         
-    return render(request, "app\edit_profile.html", {'user_data' : user_dict, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, "edit_profile.html", {'user_data' : user_dict, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
 
 @login_required
@@ -170,5 +170,5 @@ def edit_profile_view_es(request):
     user_data = user_ref.get()
     user_dict = user_data.to_dict()
         
-    return render(request, "app\edit_profile_es.html", {'user_data' : user_dict, 'user_role': user_role, 'objects_complaints': objects_complaints})
+    return render(request, "edit_profile_es.html", {'user_data' : user_dict, 'user_role': user_role, 'objects_complaints': objects_complaints})
 
