@@ -52,7 +52,7 @@ def home(request):
         objects = Object.objects.all()
     
     else:
-        return render(request, "index.html", {'user_role': user_role})   
+        return render(request, "app/index.html", {'user_role': user_role})   
     
     
     return render(request, "app\index2.html", {'user_role': user_role, 'searchTerm': searchTerm, 'objects': objects, 'objects_complaints': objects_complaints}) 
