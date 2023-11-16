@@ -442,10 +442,10 @@
         <div class="mb-3">
           <a href="http://localhost:8000/claim"  class="btn btn-primary">Make Claim Request</a>
           <br></br>
-
+          {% if user_role == "admin" %}   
           
           <label for="searchObject" class="form-label">
-            Search your Lost Item:
+            Search Lost Items:
           </label>
           <input type="text" class="form-control" name="searchObject" />
           <br></br>
@@ -454,6 +454,7 @@
        
         <button type="submit" class="btn btn-primary">Search</button>
       </form>
+      {% endif %}
     </header>
 
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">

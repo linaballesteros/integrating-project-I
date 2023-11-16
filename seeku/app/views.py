@@ -18,7 +18,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from firebase_admin._auth_utils import handle_auth_backend_error
 from django.urls import reverse
-from .models import Object, Noti
+from .models import Object, Noti,Claim_Complaint,Search,HistorySearches
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q # para hacer consultas
 from django.http import HttpResponse
@@ -31,17 +31,22 @@ import os
 from email.message import EmailMessage
 import ssl
 import smtplib
-from .forms import ObjectForm, ClaimObject
+from .forms import ObjectForm, ClaimObject, ClaimComplaint
 from datetime import datetime
 from accounts.views import login_required
 from profile_user.views import get_user_data
-
+from django.core.mail import send_mail
 #Connect to firebase data. 
 #-------------------------------------------------------------------------------------------
 #--------------------------------------------------------------------------------------------------------
 
 #Start de functions for the page. 
-
+def getUser(request):
+    try:
+        email=request.session['email']
+        return email
+    except:
+        return redirect(reverse('accounts:login'))
 
 
  
@@ -619,23 +624,37 @@ class ClaimObjectView_es(View):
     def post(self,request):
         pass 
     
-@login_required  
+@login_required
 def filterObjects(request):
-    data = get_user_data(request)
-    if data is not None:
-        user_role = data['profile_role']
-    else:
-        user_role = 'guest'
     place=request.POST.get('place_found','')
     date=request.POST.get('date_found','datetime')
     color = request.POST.get('color', '')
     brand = request.POST.get('brands', '')
+    description=request.POST.get('user_comment','')
     request.session["place_found"]=place
     request.session['color']=color
     request.session['brand']=brand
+    request.session['date']=date
+    request.session['description']=description
+    email=getUser(request)
+    try:
+        searched=Search.objects.get(place_found=place, date_found=date, color=color, brands=brand)
+    except:
+        searched=Search.objects.create(place_found=place, date_found=date, color=color, brands=brand)
+    try:
+        history_search=HistorySearches.objects.get(object_related=searched,user_email=email)
+        history_search.quantity+=1
+        history_search.save()
+    except:
+        history_search=HistorySearches.objects.create(object_related=searched,user_email=email,quantity=1)
+    seven_days_ago = datetime.now().date() - timedelta(days=7)
+    if len(list(HistorySearches.objects.filter(user_email=email,date_searched__gte=seven_days_ago)))>20:
+        print("Suspicious behavior")
     filtered_objects = Object.objects.filter(color=color, brands=brand,place_found=place,date_found__gte=date)
-    print(filtered_objects)
-    return render(request,"app/index2.html",{'objects': filtered_objects, 'user_role':user_role, 'objects_complaints': objects_complaints})
+    not_allowed_objects=filtered_objects.filter(user_claimer=email).values_list('id',flat=True)
+    not_allowed_objects2=Claim_Complaint.objects.filter(user_email=email).values_list('object_related',flat=True)
+    print(list(not_allowed_objects))
+    return render(request,"app/index2.html",{'objects': filtered_objects,'unallowed':list(not_allowed_objects),'unallowed2':list(not_allowed_objects2)})
 
 @login_required  
 def filterObjects_es(request):
@@ -691,7 +710,7 @@ def count_objects_es(request):
     
     return render(request, 'app/index2_es.html', context)
 
-def send_email2(email_user,description,subject_):
+def send_email2(email_user,description,subject_,parametro=True):
     load_dotenv()
     email_sender ="seek.ueafit@gmail.com"
     password = os.getenv("PASSWORD")
@@ -702,8 +721,8 @@ def send_email2(email_user,description,subject_):
     em["From"] = email_sender
     em["To"] = email_reciver
     em["Subject"] = subject
-    em.set_content(body,subtype="html")
-    
+    if parametro:
+        em.set_content(body,subtype="html")
     context = ssl.create_default_context()
     
     with smtplib.SMTP_SSL("smtp.gmail.com",465,context = context) as smtp:
@@ -715,7 +734,7 @@ def NotifyMe(request):
     place=request.session.get('place_found')
     color=request.session.get('color')
     brand=request.session.get('brand')
-    email=request.user.email
+    email=getUser(request)
     Noti.objects.create(brands=brand,color=color,place_found=place,user_email=email)
     print("hola",place,color,brand)
     return redirect(reverse("home"))
@@ -726,12 +745,87 @@ def claiming(request,id):
         object_to_edit = get_object_or_404(Object, pk=id)
         print(id)
         object_to_edit.object_status="Claimed"
+        object_to_edit.user_claimer=getUser(request)
         subject="Object claimed"
         description=f"""
         <p>Your claimed object has an ID {id}</p>
         """
-        send_email2(request.user.email,description,subject)
+        send_email2(getUser(request),description,subject)
         object_to_edit.save()
     except:
         pass
     return redirect(reverse("home"))
+
+
+@login_required
+def claim_complaint(request,id,method=2):
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    lost_object=get_object_or_404(Object,id=id)
+    if request.method=="POST":
+        form=ClaimComplaint(request.POST)
+        if form.is_valid():
+            cd=form.cleaned_data
+            Claim_Complaint.objects.create(time_initial=cd['time_initial'],
+                                          time_final=cd['time_final'],
+                                          date_lost=request.session['date'],
+                                          extra_data=request.session['description']+'\n'+cd['extra_data'],
+                                          object_related=lost_object,
+                                          user_email=getUser(request),
+                                          
+                                          )
+            print("object created")
+            if method==2:
+                lost_object.complaints_amount=2
+                lost_object.save()
+                return redirect(reverse("home"))
+            else:
+                lost_object.complaints_amount+=1
+                lost_object.save()
+                
+                return redirect(reverse('claiming',args=(id,)))
+    else:
+        form=ClaimComplaint()
+        return render(request, 'app/claim_complaint.html',{'form':form, 'user_role':user_role})
+
+def claim_complaints_views(request):
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    emails=Object.objects.exclude(user_claimer__isnull=True).values_list('user_claimer',flat=True).distinct()
+    #list_ids=Claim_Complaint.objects.exclude(object_related__user_claimer=F('user_email')).values_list('object_related',flat=True)
+    #objects=Object.objects.filter(id__in=list_ids).distinct()
+    objects=Object.objects.filter(complaints_amount__gte=2).distinct()
+    return render(request, 'app/complaints.html',{'objects':objects, 'user_role':user_role})
+
+def claim_complaint_detail_view(request,id):
+    data = get_user_data(request)
+    if data is not None:
+        user_role = data['profile_role']
+    else:
+        user_role = 'guest'
+    objects=Claim_Complaint.objects.filter(object_related=id)
+    if objects:
+        return render(request, 'app/complaint_claimers.html',{'objects':objects, 'length':len(list(objects)), 'user_role':user_role})
+    else:
+        return redirect(reverse('claim_complaints_view'))
+
+def claim_complaint_script(request, id, user_email,parametro):
+    object=Claim_Complaint.objects.get(object_related=id,user_email=user_email)
+    object.delete()
+    thing=Object.objects.get(id=id)
+    description=f"""
+    Color: {thing.color}\n
+    Brand: {thing.brands}\n
+    Place found: {thing.place_found}"""
+    if parametro:
+        description="Your claim request was rejected because the entered data was false\n"+ description
+    else:
+        description=f"Your claim request was accepted, you can claim your object with the id {thing.id}\n"+description
+    send_email2(user_email,description,"Claim complaint",False)
+    return redirect(reverse('claim_complaint_detail', args=(id,)))

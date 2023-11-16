@@ -756,8 +756,191 @@ var myChart = new Chart(ctxP, {
         });
     });
     </script>
+    </div>
+  </div>
+  </div>
+  </div>
     
-
+    <footer class="text-center text-lg-start text-muted bg-primary mt-3">
+      <!-- Section: Links  -->
+      <section class="">
+        <div class="container text-center text-md-start pt-4 pb-4">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-12 col-lg-3 col-sm-12 mb-2">
+              <!-- Content -->
+              <a href="https://mdbootstrap.com/" target="_blank" class="text-white h2">
+                SeekU
+              </a>
+              <p class="mt-1 text-white">
+                © 2023 Copyright: Seeku 2023
+              </p>
+            </div>
+            <!-- Grid column -->
+    
+            <!-- Grid column -->
+            <div class="col-6 col-sm-4 col-lg-2">
+              <!-- Links -->
+              <h6 class="text-uppercase text-white fw-bold mb-2">
+                Project
+              </h6>
+              <ul class="list-unstyled mb-4">
+                <li><a class="text-white-50" href="#">About us</a></li>
+                <li><a class="text-white-50" href="#">FAQ</a></li>
+                <li><a class="text-white-50" href="#">Categories</a></li>
+                <li><a class="text-white-50" href="#">Terms and Conditions</a></li>
+              </ul>
+            </div>
+            <!-- Grid column -->
+    
+            <!-- Grid column -->
+            <div class="col-6 col-sm-4 col-lg-2">
+              <!-- Links -->
+              <h6 class="text-uppercase text-white fw-bold mb-2">
+                Information
+              </h6>
+              <ul class="list-unstyled mb-4">
+                <li><a class="text-white-50" href="#">Help center</a></li>
+                <li><a class="text-white-50" href="#">About the Lost and Found Objects System in EAFIT</a></li>
+                <li><a class="text-white-50" href="#">Information</a></li>
+                <li><a class="text-white-50" href="#">Contribute</a></li>
+              </ul>
+            </div>
+            <!-- Grid column -->
+    
+            <!-- Grid column -->
+            <div class="col-6 col-sm-4 col-lg-2">
+              <!-- Links -->
+              <h6 class="text-uppercase text-white fw-bold mb-2">
+                Support
+              </h6>
+              <ul class="list-unstyled mb-4">
+                <li><a class="text-white-50" href="#">Help</a></li>
+                <li><a class="text-white-50" href="#">Documents</a></li>
+                <li><a class="text-white-50" href="#">Project Info</a></li>
+                <li><a class="text-white-50" href="#">My profile</a></li>
+              </ul>
+            </div>
+            <!-- Grid column -->
+    
+            <!-- Grid column -->
+            <div class="col-12 col-sm-12 col-lg-3">
+              <!-- Links -->
+              <h6 class="text-uppercase text-white fw-bold mb-2">Notifications</h6>
+              <p class="text-white">Get information about Seeku</p>
+              <div class="input-group mb-3">
+                <input type="email" class="form-control border" placeholder="Email" aria-label="Email" aria-describedby="button-addon2" />
+                <div class="input-group-append">
+                  <button class="btn btn-light border shadow-0" type="button" id="button-addon2" data-mdb-ripple-color="dark">
+                    Join
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+    
+      <div class="">
+        <div class="container">
+          <div class="d-flex justify-content-between py-4 border-top">
+        
+            <!--- payment --->
+              <!--- language selector --->
+              <div class="dropdown dropup">
+                <a class="dropdown-toggle text-white" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false"> <i class="flag-united-kingdom flag m-0 me-1"></i>English </a>
+      
+                <ul class="dropdown-menu dropdown-menu-endp" aria-labelledby="Dropdown">
+                  <li>
+                    <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English <i class="fa fa-check text-success ms-2"></i></a>
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
+                  </li>
+                </ul>
+              </div>
+              <!--- language selector --->
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- Footer -->
+         <!-- Custom scripts -->
+        
+         <script type="text/javascript" src="/static/app/js/script.js"></script>
+         <script type="text/javascript" src="https://unpkg.com/mdbootstrap@4.20.0/js/mdb.min.js"></script>
+         <script>
+          // Función para validar las casillas de verificación
+          function validateCheckboxes() {
+              var checkboxes = document.querySelectorAll('#checkboxGroup input[type="checkbox"]');
+              var checked = false;
+      
+              for (var i = 0; i < checkboxes.length; i++) {
+                  if (checkboxes[i].checked) {
+                      checked = true;
+                      break;
+                  }
+              }
+      
+              if (!checked) {
+                  document.getElementById('errorMessage').textContent = 'Debes seleccionar al menos una categoría.';
+                  return false;
+              }
+      
+              return true;
+          }
+      
+          // Agrega un controlador de eventos para el envío del formulario
+          document.querySelector('form').addEventListener('submit', function (event) {
+              if (!validateCheckboxes()) {
+                  event.preventDefault(); // Evita que el formulario se envíe si la validación falla
+              }
+          });
+      </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("submit-button").addEventListener("click", function(event) {
+                const requiredFields = document.querySelectorAll("input[required], select[required], textarea[required]");
+                
+                for (const field of requiredFields) {
+                    if (!field.value.trim()) {
+                        field.classList.add("incomplete-field");
+                    }
+                }
+            });
+        });
+    </script>
+    
+      
+     </body>
+     </html>
 
     
 </body>

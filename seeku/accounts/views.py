@@ -159,6 +159,7 @@ def login(request):
                 user_uid = user.uid
                 # Almacenar el uid en la sesión para usarlo posteriormente
                 request.session['user_uid'] = user_uid
+                request.session['email']=email
                 # Consultar Firestore para obtener el rol del usuario
                 user_doc = db.collection('usuario_eafit').document(user_uid).get()
                 user_role = user_doc.get('profile_role')

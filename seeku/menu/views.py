@@ -36,9 +36,12 @@ from profile_user.views import get_user_data
 def home(request):
 
     data = get_user_data(request)
+    print(data)
     if data is not None:
         user_role = data['profile_role']
+        print(user_role)
     else:
+        print("holi")
         user_role = 'guest'
     searchTerm = request.GET.get('searchObject')
     objects_complaints = Object.objects.filter(complaints_amount__gt=2)
@@ -49,7 +52,7 @@ def home(request):
         objects = Object.objects.all()
     
     else:
-        return render(request, "app\index.html")   
+        return render(request, "app\index.html", {'user_role': user_role})   
     
     
     return render(request, "app\index2.html", {'user_role': user_role, 'searchTerm': searchTerm, 'objects': objects, 'objects_complaints': objects_complaints}) 
